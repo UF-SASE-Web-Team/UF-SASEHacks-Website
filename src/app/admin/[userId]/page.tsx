@@ -180,7 +180,7 @@ export default async function AdminUserDetailPage({
               <label className="text-sm font-medium text-gray-600">Race</label>
               <p className="text-sm capitalize">
                 {profile.race && Array.isArray(profile.race) && profile.race.length > 0
-                  ? profile.race.map(r => r.split("-").join(" ")).join(", ")
+                  ? profile.race.map((r: string) => r.split("-").join(" ")).join(", ")
                   : "-"}
               </p>
             </div>

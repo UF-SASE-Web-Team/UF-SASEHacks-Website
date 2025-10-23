@@ -9,9 +9,7 @@ import {
   tshirtOptions,
   dietaryOptions,
   gradYearOptions,
-  levelOfStudyOptions,
   hackathonExperienceOptions,
-  genderOptions,
   raceOptions,
 } from "@/lib/validation";
 

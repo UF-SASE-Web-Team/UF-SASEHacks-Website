@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
       await supabase.auth.exchangeCodeForSession(code);
     }
   } catch {
-    // ignore
+    // ignore this
   }
 
   return NextResponse.redirect(new URL(next, url.origin));

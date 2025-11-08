@@ -111,7 +111,7 @@ export default function HeroSection() {
           ref={subtitleRef}
           className="font-[family-name:var(--font-body)] text-[#560700] text-lg md:text-2xl max-w-3xl mx-auto mb-10 font-medium leading-relaxed"
         >
-          Build something amazing in 24 hours. Meet new teammates, learn from mentors, and ship projects you'll be proud of!
+          Build something amazing in 24 hours. Meet new teammates, learn from mentors, and ship projects you&apos;ll be proud of!
         </p>
 
         {/* CTA Buttons */}

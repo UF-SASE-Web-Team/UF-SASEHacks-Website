@@ -155,14 +155,15 @@ export default async function AdminUserDetailPage({
           <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#FFC7E5] to-[#E6D4FF] opacity-20 blur-xl"></div>
           <div className="relative backdrop-blur-xl bg-white/95 rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8">
             <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700] mb-4">Experience</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label className="text-sm font-medium text-gray-600">Engineering Skill Level</label>
-              <p className="text-sm">{profile.engineering_skill ? `${profile.engineering_skill}/5` : "-"}</p>
-            </div>
-            <div>
-              <label className="text-sm font-medium text-gray-600">Hackathon Experience</label>
-              <p className="text-sm">{profile.hackathon_experience || "-"} hackathons attended</p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Engineering Skill Level</label>
+                <p className="font-[family-name:var(--font-body)] text-sm mt-1">{profile.engineering_skill ? `${profile.engineering_skill}/5` : "-"}</p>
+              </div>
+              <div>
+                <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Hackathon Experience</label>
+                <p className="font-[family-name:var(--font-body)] text-sm mt-1">{profile.hackathon_experience || "-"} hackathons attended</p>
+              </div>
             </div>
           </div>
         </div>
@@ -305,6 +306,7 @@ export default async function AdminUserDetailPage({
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

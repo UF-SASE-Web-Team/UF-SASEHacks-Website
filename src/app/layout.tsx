@@ -2,6 +2,18 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { HACK_NAME, DATES, CITY, DOMAIN } from "@/lib/constants";
 import Header from "@/components/Header";
+import { Jersey_20, Inconsolata } from "next/font/google";
+
+const jersey20 = Jersey_20({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-heading",
+});
+
+const inconsolata = Inconsolata({
+  subsets: ["latin"],
+  variable: "--font-body",
+});
 
 export const metadata: Metadata = {
   title: `${HACK_NAME}`,
@@ -26,12 +38,19 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${jersey20.variable} ${inconsolata.variable}`}>
         <Header />
         <main>{children}</main>
-        <footer className="border-t">
-          <div className="mx-auto max-w-screen-xl px-4 py-6 text-sm text-gray-600">
-            © {new Date().getFullYear()} {HACK_NAME}. All rights reserved.
+        <footer className="bg-[#560700] border-t-4 border-[#FFE4B3]">
+          <div className="mx-auto max-w-screen-xl px-4 py-8">
+            <div className="text-center space-y-4">
+              <h3 className="font-[family-name:var(--font-heading)] text-[#FFE4B3] text-2xl md:text-3xl">
+                SASEHacks
+              </h3>
+              <p className="font-[family-name:var(--font-body)] text-[#FFE4B3]/60 text-xs md:text-sm">
+                © {new Date().getFullYear()} {HACK_NAME}. All rights reserved.
+              </p>
+            </div>
           </div>
         </footer>
       </body>

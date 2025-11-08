@@ -125,14 +125,16 @@ export default function OnboardingForm({
   return (
     <form onSubmit={form.handleSubmit(submit)} className="space-y-6">
       {/* Personal Information */}
-      <div className="rounded-xl border p-6 space-y-4">
-        <h2 className="text-lg font-semibold">Personal Information</h2>
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#560700] to-[#ff9b5e] opacity-10 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8 space-y-4">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700]">Personal Information</h2>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block">
-            <span className="text-sm font-medium">Full name *</span>
+            <span className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-700">Full name *</span>
             <input
-              className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
+              className="mt-2 w-full rounded-xl border-2 border-gray-300 px-4 py-3 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#ff9b5e] focus:border-transparent hover:border-gray-400 font-[family-name:var(--font-body)]"
               disabled={disabled}
               {...form.register("full_name")}
             />
@@ -177,11 +179,14 @@ export default function OnboardingForm({
             )}
           </label>
         </div>
+        </div>
       </div>
 
       {/* Education */}
-      <div className="rounded-xl border p-6 space-y-4">
-        <h2 className="text-lg font-semibold">Education</h2>
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#BFDCFF] to-[#D0FFCB] opacity-20 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8 space-y-4">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700]">Education</h2>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block">
@@ -234,11 +239,14 @@ export default function OnboardingForm({
             </select>
           </label>
         </div>
+        </div>
       </div>
 
       {/* Experience */}
-      <div className="rounded-xl border p-6 space-y-4">
-        <h2 className="text-lg font-semibold">Experience</h2>
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#FFC7E5] to-[#E6D4FF] opacity-20 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8 space-y-4">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700]">Experience</h2>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block">
@@ -268,11 +276,14 @@ export default function OnboardingForm({
             </select>
           </label>
         </div>
+        </div>
       </div>
 
       {/* Contact Information */}
-      <div className="rounded-xl border p-6 space-y-4">
-        <h2 className="text-lg font-semibold">Contact Information</h2>
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#560700] to-[#ff9b5e] opacity-10 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8 space-y-4">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700]">Contact Information</h2>
 
         <div className="grid gap-4">
           <label className="block">
@@ -349,11 +360,14 @@ export default function OnboardingForm({
             )}
           </label>
         </div>
+        </div>
       </div>
 
       {/* Event Preferences */}
-      <div className="rounded-xl border p-6 space-y-4">
-        <h2 className="text-lg font-semibold">Event Preferences</h2>
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#BFDCFF] to-[#D0FFCB] opacity-20 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8 space-y-4">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700]">Event Preferences</h2>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block">
@@ -396,11 +410,14 @@ export default function OnboardingForm({
             {...form.register("accessibility")}
           />
         </label>
+        </div>
       </div>
 
       {/* Resume Upload */}
-      <div className="rounded-xl border p-6 space-y-4">
-        <h2 className="text-lg font-semibold">Resume Upload</h2>
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#FFC7E5] to-[#E6D4FF] opacity-20 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8 space-y-4">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700]">Resume Upload</h2>
 
         <div>
           <label className="block">
@@ -428,11 +445,14 @@ export default function OnboardingForm({
             Maximum file size: 10 MB
           </p>
         </div>
+        </div>
       </div>
 
       {/* Demographics */}
-      <div className="rounded-xl border p-6 space-y-4">
-        <h2 className="text-lg font-semibold">Demographics</h2>
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#560700] to-[#ff9b5e] opacity-10 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8 space-y-4">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700]">Demographics</h2>
 
         <label className="block">
           <span className="text-sm font-medium">Gender *</span>
@@ -466,11 +486,14 @@ export default function OnboardingForm({
             ))}
           </div>
         </label>
+        </div>
       </div>
 
       {/* Final Steps */}
-      <div className="rounded-xl border p-6 space-y-4">
-        <h2 className="text-lg font-semibold">Final Steps</h2>
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#BFDCFF] to-[#D0FFCB] opacity-20 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8 space-y-4">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700]">Final Steps</h2>
 
         <div className="space-y-3">
           <label className="flex items-start gap-3">
@@ -536,6 +559,7 @@ export default function OnboardingForm({
               </span>
             </span>
           </label>
+        </div>
         </div>
       </div>
 

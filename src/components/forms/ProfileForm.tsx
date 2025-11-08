@@ -64,10 +64,12 @@ export default function ProfileForm({ initialValues, initialConsents, action, di
   };
 
   return (
-    <form onSubmit={form.handleSubmit(submit)} className="space-y-8">
+    <form onSubmit={form.handleSubmit(submit)} className="space-y-6">
       {/* Personal Information */}
-      <div className="rounded-xl border p-6">
-        <h2 className="text-lg font-semibold mb-4">Personal Information</h2>
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#560700] to-[#ff9b5e] opacity-10 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700] mb-4">Personal Information</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block">
             <span className="text-sm font-medium">Full name *</span>
@@ -119,11 +121,14 @@ export default function ProfileForm({ initialValues, initialConsents, action, di
             )}
           </label>
         </div>
+        </div>
       </div>
 
       {/* Education */}
-      <div className="rounded-xl border p-6">
-        <h2 className="text-lg font-semibold mb-4">Education</h2>
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#BFDCFF] to-[#D0FFCB] opacity-20 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700] mb-4">Education</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block">
             <span className="text-sm font-medium">School *</span>
@@ -180,11 +185,14 @@ export default function ProfileForm({ initialValues, initialConsents, action, di
             )}
           </label>
         </div>
+        </div>
       </div>
 
       {/* Experience */}
-      <div className="rounded-xl border p-6">
-        <h2 className="text-lg font-semibold mb-4">Experience</h2>
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#FFC7E5] to-[#E6D4FF] opacity-20 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700] mb-4">Experience</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block">
             <span className="text-sm font-medium">Engineering Skill Level *</span>
@@ -220,11 +228,14 @@ export default function ProfileForm({ initialValues, initialConsents, action, di
             )}
           </label>
         </div>
+        </div>
       </div>
 
       {/* Contact Information */}
-      <div className="rounded-xl border p-6">
-        <h2 className="text-lg font-semibold mb-4">Contact Information</h2>
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#560700] to-[#ff9b5e] opacity-10 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700] mb-4">Contact Information</h2>
         <div className="grid gap-4">
           <label className="block">
             <span className="text-sm font-medium">Address Line 1 *</span>
@@ -298,11 +309,14 @@ export default function ProfileForm({ initialValues, initialConsents, action, di
             )}
           </label>
         </div>
+        </div>
       </div>
 
       {/* Event Preferences */}
-      <div className="rounded-xl border p-6">
-        <h2 className="text-lg font-semibold mb-4">Event Preferences</h2>
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#BFDCFF] to-[#D0FFCB] opacity-20 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700] mb-4">Event Preferences</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block">
             <span className="text-sm font-medium">T-shirt Size *</span>
@@ -349,11 +363,14 @@ export default function ProfileForm({ initialValues, initialConsents, action, di
             {...form.register("accessibility")}
           />
         </label>
+        </div>
       </div>
 
       {/* Demographics */}
-      <div className="rounded-xl border p-6">
-        <h2 className="text-lg font-semibold mb-4">Demographics</h2>
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#FFC7E5] to-[#E6D4FF] opacity-20 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700] mb-4">Demographics</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block">
             <span className="text-sm font-medium">Gender *</span>
@@ -394,12 +411,15 @@ export default function ProfileForm({ initialValues, initialConsents, action, di
             <p className="text-xs text-red-600 mt-1">{form.formState.errors.race.message as string}</p>
           )}
         </label>
+        </div>
       </div>
 
       {/* Consents - only show if initialConsents is provided */}
       {initialConsents && (
-        <div className="rounded-xl border p-6">
-          <h2 className="text-lg font-semibold mb-4">Consents</h2>
+        <div className="relative">
+          <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#560700] to-[#ff9b5e] opacity-10 blur-xl"></div>
+          <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8">
+            <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700] mb-4">Consents</h2>
           <div className="space-y-3">
             <label className="flex items-start gap-2 text-sm">
               <input
@@ -453,6 +473,7 @@ export default function ProfileForm({ initialValues, initialConsents, action, di
               </span>
             </label>
           </div>
+        </div>
         </div>
       )}
 

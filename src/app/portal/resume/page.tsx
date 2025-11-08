@@ -1,6 +1,8 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getSignedResumeUrl, uploadResume } from "./actions";
 import ResumeUploader from "@/components/resume/ResumeUploader";
+import Image from "next/image";
+import Link from "next/link";
 
 export default async function ResumePage() {
   const supabase = await createSupabaseServerClient();
@@ -17,60 +19,135 @@ export default async function ResumePage() {
   const signed = await getSignedResumeUrl();
 
   return (
-    <div className="mx-auto max-w-screen-md px-4 py-10">
-      <h1 className="text-2xl font-semibold">Resume</h1>
+    <div className="min-h-screen bg-gradient-to-br from-[#FFE4B3] via-[#BFDCFF] to-[#D0FFCB] relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-20 right-10 w-64 h-64 bg-[#FFC7E5] opacity-20 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#E6D4FF] opacity-20 rounded-full blur-3xl"></div>
 
-      {!hasResume && (
-        <div className="mt-4 rounded-md border border-blue-300 bg-blue-50 p-3 text-sm">
-          <strong>Resume upload is required</strong> to complete your registration. Please upload your resume below.
+      {/* Shark mascot decoration */}
+      <div className="absolute bottom-0 right-0 opacity-10 pointer-events-none">
+        <Image
+          src="/images/shark-mascot.png"
+          alt="Shark mascot"
+          width={400}
+          height={400}
+          className="object-contain"
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-screen-md px-4 py-10">
+        {/* Header with back button */}
+        <div className="mb-8">
+          <Link href="/portal" className="inline-flex items-center gap-2 text-[#560700] hover:underline font-[family-name:var(--font-body)] mb-4">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Dashboard
+          </Link>
+          <h1 className="font-[family-name:var(--font-heading)] text-5xl md:text-6xl text-[#560700] mb-4">
+            Resume
+          </h1>
+          <p className="font-[family-name:var(--font-body)] text-lg text-[#560700]/70">
+            {hasResume ? "Manage your resume" : "Upload your resume to complete registration"}
+          </p>
         </div>
-      )}
 
-      {locked && (
-        <div className="mt-4 rounded-md border border-yellow-300 bg-yellow-50 p-3 text-sm">
-          Editing is locked by admins. You can still download the last uploaded resume.
-        </div>
-      )}
+        {!hasResume && (
+          <div className="mb-6 rounded-2xl bg-gradient-to-r from-blue-100 to-indigo-100 border-2 border-blue-400 p-5 shadow-lg">
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0 text-2xl">📄</div>
+              <div className="font-[family-name:var(--font-body)]">
+                <p className="font-semibold text-blue-900">Resume Required</p>
+                <p className="text-sm text-blue-800 mt-1">
+                  Resume upload is required to complete your registration. Please upload your resume below.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
-      <div className="mt-6 rounded-xl border p-4 space-y-3">
-        <div className="text-sm">
-          {hasResume ? (
-            <>
-              <div>Current file: <span className="font-medium">resume.pdf</span></div>
-              {reg?.resume_updated_at && (
-                <div className="text-xs text-gray-500">
-                  Last updated: {new Date(reg.resume_updated_at).toLocaleString()}
+        {locked && (
+          <div className="mb-6 rounded-2xl bg-gradient-to-r from-yellow-100 to-orange-100 border-2 border-yellow-400 p-5 shadow-lg">
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0 text-2xl">🔒</div>
+              <div className="font-[family-name:var(--font-body)]">
+                <p className="font-semibold text-yellow-900">Editing is locked</p>
+                <p className="text-sm text-yellow-800 mt-1">
+                  Editing is locked by admins. You can still download your last uploaded resume.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Current Resume Card */}
+        <div className="relative mb-6">
+          <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#560700] to-[#ff9b5e] opacity-20 blur-xl"></div>
+          <div className="relative backdrop-blur-xl bg-white/90 rounded-3xl shadow-2xl border border-[#FFE4B3]/30 p-8">
+            <h2 className="font-[family-name:var(--font-heading)] text-2xl text-[#560700] mb-4">
+              Current Resume
+            </h2>
+
+            <div className="space-y-4">
+              {hasResume ? (
+                <>
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#560700] to-[#ff9b5e] flex items-center justify-center text-white shadow-lg">
+                      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-[family-name:var(--font-body)] font-semibold text-[#560700]">resume.pdf</p>
+                      {reg?.resume_updated_at && (
+                        <p className="font-[family-name:var(--font-body)] text-xs text-gray-600">
+                          Last updated: {new Date(reg.resume_updated_at).toLocaleString()}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {signed.url && (
+                    <a
+                      className="inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-[#560700] to-[#6b1003] hover:from-[#6b1003] hover:to-[#560700] transition-all shadow-lg hover:shadow-xl font-[family-name:var(--font-body)]"
+                      href={signed.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                      Preview / Download
+                    </a>
+                  )}
+                </>
+              ) : (
+                <div className="flex items-center gap-3 text-gray-500">
+                  <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <p className="font-[family-name:var(--font-body)]">No resume uploaded yet.</p>
                 </div>
               )}
-            </>
-          ) : (
-            <div>No resume uploaded yet.</div>
-          )}
+            </div>
+          </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          {signed.url ? (
-            <a
-              className="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium border hover:bg-gray-50"
-              href={signed.url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {hasResume ? "Preview / Download" : "Preview"}
-            </a>
-          ) : (
-            <span className="text-sm text-gray-500">No preview available.</span>
-          )}
+        {/* Upload Section */}
+        <div className="relative">
+          <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#ff9b5e] to-[#560700] opacity-20 blur-xl"></div>
+          <div className="relative backdrop-blur-xl bg-white/90 rounded-3xl shadow-2xl border border-[#FFE4B3]/30 p-8">
+            <h2 className="font-[family-name:var(--font-heading)] text-2xl text-[#560700] mb-4">
+              {hasResume ? "Replace Resume" : "Upload Resume"}
+            </h2>
+            <ResumeUploader action={uploadResume} disabled={locked} />
+            <p className="mt-4 font-[family-name:var(--font-body)] text-xs text-gray-500">
+              PDFs only, max 10 MB. Your file is stored privately at <code className="bg-gray-100 px-1 py-0.5 rounded">resumes/{user?.id}/resume.pdf</code>.
+            </p>
+          </div>
         </div>
       </div>
-
-      <div className="mt-6">
-        <ResumeUploader action={uploadResume} disabled={locked} />
-      </div>
-
-      <p className="mt-3 text-xs text-gray-500">
-        PDFs only, max 10 MB. Your file is stored privately at <code>resumes/{user?.id}/resume.pdf</code>.
-      </p>
     </div>
   );
 }

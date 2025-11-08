@@ -1,6 +1,7 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 export default async function AdminUserDetailPage({
   params,
@@ -29,73 +30,131 @@ export default async function AdminUserDetailPage({
     .single();
 
   if (!profile) {
-    return <div className="mx-auto max-w-screen-lg px-4 py-10">User not found</div>;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-[#FFE4B3] via-[#BFDCFF] to-[#D0FFCB] flex items-center justify-center">
+        <div className="relative">
+          <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-red-500 to-rose-600 opacity-20 blur-xl"></div>
+          <div className="relative backdrop-blur-xl bg-white/95 rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-8">
+            <p className="font-[family-name:var(--font-body)] text-xl text-gray-700">User not found</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "confirmed": return "bg-green-100 text-green-700 border-green-300";
+      case "waitlist": return "bg-yellow-100 text-yellow-700 border-yellow-300";
+      case "rejected": return "bg-red-100 text-red-700 border-red-300";
+      default: return "bg-blue-100 text-blue-700 border-blue-300";
+    }
+  };
+
   return (
-    <div className="mx-auto max-w-screen-lg px-4 py-10">
-      <div className="mb-6">
-        <Link href="/admin" className="text-sm text-blue-600 hover:underline">
-          ← Back to Admin Panel
-        </Link>
+    <div className="min-h-screen bg-gradient-to-br from-[#FFE4B3] via-[#BFDCFF] to-[#D0FFCB] relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-20 right-10 w-64 h-64 bg-[#FFC7E5] opacity-20 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#E6D4FF] opacity-20 rounded-full blur-3xl"></div>
+
+      {/* Shark mascot decoration */}
+      <div className="absolute bottom-0 right-0 opacity-5 pointer-events-none">
+        <Image
+          src="/images/shark-mascot.png"
+          alt="Shark mascot"
+          width={400}
+          height={400}
+          className="object-contain"
+        />
       </div>
 
-      <h1 className="text-2xl font-semibold mb-2">Profile: {profile.full_name}</h1>
-      <div className="mb-6 flex items-center gap-2">
-        <span className="text-sm text-gray-600">User ID:</span>
-        <code className="text-xs bg-gray-100 px-2 py-1 rounded font-mono">{userId}</code>
-      </div>
+      <div className="relative z-10 mx-auto max-w-screen-lg px-4 py-10">
+        {/* Back button and header */}
+        <div className="mb-8">
+          <Link href="/admin" className="inline-flex items-center gap-2 text-[#560700] hover:underline font-[family-name:var(--font-body)] mb-4">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Admin Console
+          </Link>
 
-      <div className="space-y-6">
-        {/* Personal Information */}
-        <div className="rounded-xl border p-6">
-          <h2 className="text-lg font-semibold mb-4">Personal Information</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
-              <label className="text-sm font-medium text-gray-600">Full Name</label>
-              <p className="text-sm">{profile.full_name || "-"}</p>
+              <h1 className="font-[family-name:var(--font-heading)] text-5xl md:text-6xl text-[#560700]">
+                {profile.full_name}
+              </h1>
+              <div className="mt-2 flex items-center gap-2">
+                <span className="font-[family-name:var(--font-body)] text-sm text-gray-600">User ID:</span>
+                <code className="font-[family-name:var(--font-body)] text-xs bg-white/80 px-3 py-1 rounded-lg font-mono border border-gray-300">{userId}</code>
+              </div>
             </div>
+
             <div>
-              <label className="text-sm font-medium text-gray-600">Email</label>
-              <p className="text-sm">{profile.email || "-"}</p>
-            </div>
-            <div>
-              <label className="text-sm font-medium text-gray-600">Phone Number</label>
-              <p className="text-sm">{profile.phone_number || "-"}</p>
-            </div>
-            <div>
-              <label className="text-sm font-medium text-gray-600">Date of Birth</label>
-              <p className="text-sm">{profile.date_of_birth || "-"}</p>
+              <span className={`inline-flex items-center rounded-2xl px-5 py-2 text-sm font-semibold border-2 ${getStatusColor(registration?.status || "pending")}`}>
+                {registration?.status?.toUpperCase() || "PENDING"}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Education */}
-        <div className="rounded-xl border p-6">
-          <h2 className="text-lg font-semibold mb-4">Education</h2>
+        <div className="space-y-6">
+          {/* Personal Information */}
+          <div className="relative">
+            <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#560700] to-[#ff9b5e] opacity-10 blur-xl"></div>
+            <div className="relative backdrop-blur-xl bg-white/95 rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8">
+              <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700] mb-4">Personal Information</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label className="text-sm font-medium text-gray-600">School</label>
-              <p className="text-sm">{profile.school || "-"}</p>
+              <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Full Name</label>
+              <p className="font-[family-name:var(--font-body)] text-sm mt-1">{profile.full_name || "-"}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-600">Major</label>
-              <p className="text-sm">{profile.major || "-"}</p>
+              <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Email</label>
+              <p className="font-[family-name:var(--font-body)] text-sm mt-1">{profile.email || "-"}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-600">Graduation Year</label>
-              <p className="text-sm">{profile.grad_year || "-"}</p>
+              <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Phone Number</label>
+              <p className="font-[family-name:var(--font-body)] text-sm mt-1">{profile.phone_number || "-"}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-600">Level of Study</label>
-              <p className="text-sm capitalize">{profile.level_of_study || "-"}</p>
+              <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Date of Birth</label>
+              <p className="font-[family-name:var(--font-body)] text-sm mt-1">{profile.date_of_birth || "-"}</p>
+            </div>
+          </div>
+        </div>
+          </div>
+
+        {/* Education */}
+        <div className="relative">
+          <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#BFDCFF] to-[#D0FFCB] opacity-20 blur-xl"></div>
+          <div className="relative backdrop-blur-xl bg-white/95 rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8">
+            <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700] mb-4">Education</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">School</label>
+                <p className="font-[family-name:var(--font-body)] text-sm mt-1">{profile.school || "-"}</p>
+              </div>
+              <div>
+                <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Major</label>
+                <p className="font-[family-name:var(--font-body)] text-sm mt-1">{profile.major || "-"}</p>
+              </div>
+              <div>
+                <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Graduation Year</label>
+                <p className="font-[family-name:var(--font-body)] text-sm mt-1">{profile.grad_year || "-"}</p>
+              </div>
+              <div>
+                <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Level of Study</label>
+                <p className="font-[family-name:var(--font-body)] text-sm mt-1 capitalize">{profile.level_of_study || "-"}</p>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Experience */}
-        <div className="rounded-xl border p-6">
-          <h2 className="text-lg font-semibold mb-4">Experience</h2>
+        <div className="relative">
+          <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#FFC7E5] to-[#E6D4FF] opacity-20 blur-xl"></div>
+          <div className="relative backdrop-blur-xl bg-white/95 rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8">
+            <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700] mb-4">Experience</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <label className="text-sm font-medium text-gray-600">Engineering Skill Level</label>

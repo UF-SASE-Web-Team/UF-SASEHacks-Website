@@ -1,4 +1,4 @@
-export const HACK_NAME = "UF SASE Hacks";
+export const HACK_NAME = "SASEHacks";
 export const DOMAIN = "ufsase.com";
 export const DATES = "March 7-8, 2026";
 export const CITY = "Gainesville, FL";

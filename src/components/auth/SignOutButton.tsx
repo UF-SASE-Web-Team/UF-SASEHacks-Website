@@ -10,7 +10,7 @@ export default function SignOutButton() {
         await supabase.auth.signOut();
         window.location.href = "/portal";
       }}
-      className="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium border hover:bg-gray-50"
+      className="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium border border-[#FFE4B3] text-[#FFE4B3] hover:bg-[#FFE4B3] hover:text-[#560700] transition-colors"
     >
       Sign out
     </button>

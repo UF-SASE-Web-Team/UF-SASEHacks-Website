@@ -2,6 +2,8 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import OnboardingForm from "@/components/forms/OnboardingForm";
 import { upsertProfile, saveRegistrationFlags, uploadResumeOnboarding } from "../actions";
+import { HACK_NAME } from "@/lib/constants";
+import Image from "next/image";
 
 export default async function OnboardingPage() {
   const supabase = await createSupabaseServerClient();
@@ -32,15 +34,42 @@ export default async function OnboardingPage() {
   const locked = reg?.editing_locked ?? false;
 
   return (
-    <div className="mx-auto max-w-screen-md px-4 py-10">
-      <div className="mb-6">
-        <h1 className="text-2xl font-semibold">Complete Your Registration</h1>
-        <p className="mt-2 text-sm text-gray-600">
-          Welcome! Please complete your profile to finish registration for UF SASE Hacks.
-        </p>
+    <div className="min-h-screen bg-gradient-to-br from-[#FFE4B3] via-[#BFDCFF] to-[#D0FFCB] relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-20 right-10 w-64 h-64 bg-[#FFC7E5] opacity-20 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#E6D4FF] opacity-20 rounded-full blur-3xl"></div>
+
+      {/* Shark mascot decoration */}
+      <div className="absolute bottom-0 right-0 opacity-5 pointer-events-none">
+        <Image
+          src="/images/shark-mascot.png"
+          alt="Shark mascot"
+          width={400}
+          height={400}
+          className="object-contain"
+        />
       </div>
 
-      <OnboardingForm
+      <div className="relative z-10 mx-auto max-w-screen-lg px-4 py-10">
+        {/* Header */}
+        <div className="mb-8 text-center">
+          <h1 className="font-[family-name:var(--font-heading)] text-5xl md:text-6xl text-[#560700] mb-4">
+            Complete Registration
+          </h1>
+          <p className="font-[family-name:var(--font-body)] text-lg text-[#560700]/70 max-w-2xl mx-auto">
+            Welcome to {HACK_NAME}! Please complete your profile to finish your registration.
+          </p>
+          <div className="mt-6 flex justify-center">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#560700]/10 border border-[#560700]/20">
+              <svg className="w-5 h-5 text-[#560700]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              <span className="font-[family-name:var(--font-body)] text-sm text-[#560700]">All fields marked with * are required</span>
+            </div>
+          </div>
+        </div>
+
+        <OnboardingForm
         initialProfile={{
           full_name: profile?.full_name ?? "",
           email: profile?.email ?? user.email ?? "",
@@ -80,6 +109,7 @@ export default async function OnboardingPage() {
         resumeAction={uploadResumeOnboarding}
         disabled={locked}
       />
+      </div>
     </div>
   );
 }

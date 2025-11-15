@@ -78,8 +78,8 @@ export default function FaqSection({ faqItems }: Props) {
   }, []);
 
   return (
-    <section id="faq" className="w-full bg-[#FFC7E5] py-12 md:py-20 relative overflow-hidden">
-      <div className="mx-auto max-w-screen-xl px-4">
+    <section id="faq" className="w-full bg-[#FFC7E5] min-h-screen flex items-center relative overflow-hidden py-12">
+      <div className="mx-auto max-w-screen-xl px-4 w-full">
         {/* Section title */}
         <h2 ref={titleRef} className="font-[family-name:var(--font-heading)] text-[#560700] text-4xl md:text-6xl mb-12 text-center">
           FAQ

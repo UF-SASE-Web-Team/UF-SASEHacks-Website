@@ -108,8 +108,8 @@ export default function TracksSection() {
   };
 
   return (
-    <section id="tracks" className="w-full bg-[#FFE4B3] py-12 md:py-20 relative overflow-hidden">
-      <div className="mx-auto max-w-screen-xl px-4 relative z-10">
+    <section id="tracks" className="w-full bg-[#FFE4B3] min-h-screen flex items-center relative overflow-hidden py-12">
+      <div className="mx-auto max-w-screen-xl px-4 relative z-10 w-full">
         {/* Section title */}
         <h2
           ref={titleRef}

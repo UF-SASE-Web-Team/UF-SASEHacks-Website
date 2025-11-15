@@ -79,7 +79,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#FFE4B3] via-[#BFDCFF] to-[#D0FFCB]">
+    <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#FFE4B3] via-[#BFDCFF] to-[#D0FFCB]">
       {/* Floating decorative shapes */}
       <div ref={shape1Ref} className="absolute top-20 left-10 w-32 h-32 bg-[#FFC7E5] opacity-30 rounded-full blur-2xl" />
       <div ref={shape2Ref} className="absolute bottom-32 right-20 w-40 h-40 bg-[#E6D4FF] opacity-30 rounded-full blur-2xl" />
@@ -87,7 +87,7 @@ export default function HeroSection() {
       <div ref={shape4Ref} className="absolute bottom-20 left-32 w-36 h-36 bg-[#BFDCFF] opacity-40 rounded-full blur-xl" />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-screen-xl px-4 py-12 md:py-20 text-center">
+      <div className="relative z-10 mx-auto max-w-screen-xl px-4 text-center">
         {/* Location & Date Badges */}
         <div ref={badgesRef} className="flex flex-wrap gap-3 justify-center mb-6">
           <div className="inline-flex items-center rounded-full bg-[#560700] text-[#FFE4B3] px-5 py-2 text-sm md:text-base font-[family-name:var(--font-body)] font-semibold shadow-lg border-2 border-[#560700]">
@@ -141,7 +141,7 @@ export default function HeroSection() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="mt-16 animate-bounce">
+        <div className="mt-12 animate-bounce">
           <div className="inline-block text-[#560700] text-4xl opacity-60">
             ↓
           </div>

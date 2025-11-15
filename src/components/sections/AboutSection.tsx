@@ -81,7 +81,7 @@ export default function AboutSection() {
   const repeatedImages = [...carouselImages, ...carouselImages, ...carouselImages, ...carouselImages];
 
   return (
-    <section id="about" className="w-full bg-[#BFDCFF] relative overflow-hidden min-h-screen">
+    <section id="about" className="w-full bg-[#BFDCFF] relative overflow-hidden min-h-screen flex items-center">
       {/* Desktop: Carousel on right side touching top and bottom */}
       <div className="hidden lg:block absolute top-0 bottom-0 right-0 w-1/2 overflow-hidden">
         <div className="animate-scroll-vertical h-[200%]">
@@ -127,7 +127,7 @@ export default function AboutSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-screen-xl px-4 pt-12 md:pt-16 pb-32 md:pb-48">
+      <div className="relative z-10 mx-auto max-w-screen-xl px-4 w-full pb-80 md:pb-96 lg:pb-[500px]">
         {/* ABOUT US title */}
         <h2 ref={titleRef} className="font-[family-name:var(--font-heading)] text-[#560700] text-4xl md:text-6xl mb-12">
           ABOUT US

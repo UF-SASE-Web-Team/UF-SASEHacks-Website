@@ -61,8 +61,8 @@ export default function ScheduleSection() {
   const events = selectedDay === "saturday" ? saturdayEvents : sundayEvents;
 
   return (
-    <section id="schedule" className="w-full bg-[#BFDCFF] py-12 md:py-20 relative overflow-hidden">
-      <div className="mx-auto max-w-screen-xl px-4">
+    <section id="schedule" className="w-full bg-[#BFDCFF] min-h-screen flex items-center relative overflow-hidden py-12">
+      <div className="mx-auto max-w-screen-xl px-4 w-full">
         {/* Section title */}
         <h2
           ref={titleRef}
@@ -105,7 +105,7 @@ export default function ScheduleSection() {
         {/* Timeline */}
         <div className="max-w-4xl mx-auto relative">
           {/* Vertical Line */}
-          <div className="absolute left-8 md:left-32 top-0 bottom-0 w-1 bg-[#560700]/20" />
+          <div className="absolute left-[6.5rem] md:left-32 top-0 bottom-0 w-1 bg-[#560700]/20" />
 
           {/* Events */}
           <div className="space-y-6">
@@ -124,7 +124,7 @@ export default function ScheduleSection() {
                 </div>
 
                 {/* Timeline Dot */}
-                <div className="absolute left-[1.6rem] md:left-[7.6rem] top-3 w-4 h-4 bg-[#560700] rounded-full border-4 border-[#BFDCFF] z-10 group-hover:scale-150 transition-transform duration-300" />
+                <div className="absolute left-[6.3rem] md:left-[7.6rem] top-3 w-4 h-4 bg-[#560700] rounded-full border-4 border-[#BFDCFF] z-10 group-hover:scale-150 transition-transform duration-300" />
 
                 {/* Event Card */}
                 <div className={`flex-1 ${event.color} rounded-2xl p-4 md:p-6 shadow-lg border-4 border-transparent hover:border-[#560700] transition-all duration-300 hover:scale-105`}>

@@ -58,8 +58,8 @@ export default function SponsorsSection() {
   };
 
   return (
-    <section id="sponsors" className="w-full bg-[#D0FFCB] py-12 md:py-20 relative overflow-hidden">
-      <div className="mx-auto max-w-screen-xl px-4 relative z-10">
+    <section id="sponsors" className="w-full bg-[#D0FFCB] min-h-screen flex items-center relative overflow-hidden py-12">
+      <div className="mx-auto max-w-screen-xl px-4 relative z-10 w-full">
         {/* Section title */}
         <h2
           ref={titleRef}

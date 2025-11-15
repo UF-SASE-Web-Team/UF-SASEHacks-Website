@@ -1,5 +1,6 @@
 import SignInForm from "@/components/auth/SignInForm";
 import { HACK_NAME } from "@/lib/constants";
+import { getPublicImageUrl } from "@/lib/supabase/storage";
 import Image from "next/image";
 
 export const dynamic = "force-dynamic";
@@ -11,13 +12,13 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#560700] via-[#6b1003] to-[#4a0600]">
       {/* Shark mascot on left side */}
-      <div className="absolute inset-y-0 left-0 w-1/2 z-0 lg:w-2/3">
+      <div className="absolute bottom-0 left-0 w-1/2 h-2/3 z-0 lg:w-2/3 lg:h-3/4">
         <div className="relative w-full h-full">
           <Image
-            src="/images/shark-mascot.png"
+            src={getPublicImageUrl("shark-mascot2.png")}
             alt="Shark mascot"
             fill
-            className="object-contain object-left opacity-30 blur-sm"
+            className="object-contain object-left-bottom opacity-30 blur-sm"
             priority
           />
         </div>

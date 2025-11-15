@@ -4,13 +4,14 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getPublicImageUrl } from "@/lib/supabase/storage";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const carouselImages = [
-  { id: 1, src: "/images/gbm-4-s25.jpg", alt: "GBM 4" },
-  { id: 2, src: "/images/gbm-4-s25.jpg", alt: "Event Photo 2" },
-  { id: 3, src: "/images/gbm-4-s25.jpg", alt: "Event Photo 3" },
+  { id: 1, src: getPublicImageUrl("gbm-4-s25.jpg"), alt: "GBM 4" },
+  { id: 2, src: getPublicImageUrl("gbm-4-s25.jpg"), alt: "Event Photo 2" },
+  { id: 3, src: getPublicImageUrl("gbm-4-s25.jpg"), alt: "Event Photo 3" },
 ];
 
 export default function AboutSection() {
@@ -150,7 +151,7 @@ export default function AboutSection() {
       {/* Shark mascot - anchored to bottom left */}
       <div ref={sharkRef} className="absolute bottom-0 left-0 md:left-8 lg:left-16 z-20 pointer-events-none">
         <Image
-          src="/images/shark-mascot.png"
+          src={getPublicImageUrl("shark-mascot.png")}
           alt="Shark Mascot"
           width={500}
           height={500}

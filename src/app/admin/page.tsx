@@ -1,6 +1,7 @@
 import { fetchAdminRows } from "./actions";
 import AdminTable from "@/components/admin/AdminTable";
 import DownloadAllResumes from "@/components/admin/DownloadAllResumes";
+import { getPublicImageUrl } from "@/lib/supabase/storage";
 import Image from "next/image";
 
 export const dynamic = "force-dynamic";
@@ -29,7 +30,7 @@ export default async function AdminPage({
       {/* Shark mascot decoration */}
       <div className="absolute bottom-0 left-0 opacity-5 pointer-events-none">
         <Image
-          src="/images/shark-mascot.png"
+          src={getPublicImageUrl("shark-mascot.png")}
           alt="Shark mascot"
           width={300}
           height={300}

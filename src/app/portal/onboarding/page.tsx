@@ -3,7 +3,6 @@ import { redirect } from "next/navigation";
 import OnboardingForm from "@/components/forms/OnboardingForm";
 import { upsertProfile, saveRegistrationFlags, uploadResumeOnboarding } from "../actions";
 import { HACK_NAME } from "@/lib/constants";
-import Image from "next/image";
 
 export default async function OnboardingPage() {
   const supabase = await createSupabaseServerClient();
@@ -38,17 +37,6 @@ export default async function OnboardingPage() {
       {/* Decorative background elements */}
       <div className="absolute top-20 right-10 w-64 h-64 bg-[#FFC7E5] opacity-20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#E6D4FF] opacity-20 rounded-full blur-3xl"></div>
-
-      {/* Shark mascot decoration */}
-      <div className="absolute bottom-0 right-0 opacity-5 pointer-events-none">
-        <Image
-          src="/images/shark-mascot.png"
-          alt="Shark mascot"
-          width={400}
-          height={400}
-          className="object-contain"
-        />
-      </div>
 
       <div className="relative z-10 mx-auto max-w-screen-lg px-4 py-10">
         {/* Header */}

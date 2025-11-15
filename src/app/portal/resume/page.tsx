@@ -1,7 +1,6 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getSignedResumeUrl, uploadResume } from "./actions";
 import ResumeUploader from "@/components/resume/ResumeUploader";
-import Image from "next/image";
 import Link from "next/link";
 
 export default async function ResumePage() {
@@ -23,17 +22,6 @@ export default async function ResumePage() {
       {/* Decorative background elements */}
       <div className="absolute top-20 right-10 w-64 h-64 bg-[#FFC7E5] opacity-20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#E6D4FF] opacity-20 rounded-full blur-3xl"></div>
-
-      {/* Shark mascot decoration */}
-      <div className="absolute bottom-0 right-0 opacity-10 pointer-events-none">
-        <Image
-          src="/images/shark-mascot.png"
-          alt="Shark mascot"
-          width={400}
-          height={400}
-          className="object-contain"
-        />
-      </div>
 
       <div className="relative z-10 mx-auto max-w-screen-md px-4 py-10">
         {/* Header with back button */}

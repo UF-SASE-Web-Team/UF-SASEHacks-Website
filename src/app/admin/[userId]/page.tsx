@@ -1,6 +1,7 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { getPublicImageUrl } from "@/lib/supabase/storage";
 import Image from "next/image";
 
 export default async function AdminUserDetailPage({
@@ -60,7 +61,7 @@ export default async function AdminUserDetailPage({
       {/* Shark mascot decoration */}
       <div className="absolute bottom-0 right-0 opacity-5 pointer-events-none">
         <Image
-          src="/images/shark-mascot.png"
+          src={getPublicImageUrl("shark-mascot.png")}
           alt="Shark mascot"
           width={400}
           height={400}

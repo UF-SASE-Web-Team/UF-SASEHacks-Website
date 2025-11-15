@@ -2,7 +2,6 @@ import { ensureRows, upsertProfileAndConsents } from "../actions";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import ProfileForm from "@/components/forms/ProfileForm";
 import { dietaryOptions, raceOptions } from "@/lib/validation";
-import Image from "next/image";
 import Link from "next/link";
 
 export default async function ProfilePage() {
@@ -33,17 +32,6 @@ export default async function ProfilePage() {
       {/* Decorative background elements */}
       <div className="absolute top-20 right-10 w-64 h-64 bg-[#FFC7E5] opacity-20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#E6D4FF] opacity-20 rounded-full blur-3xl"></div>
-
-      {/* Shark mascot decoration */}
-      <div className="absolute bottom-0 right-0 opacity-5 pointer-events-none">
-        <Image
-          src="/images/shark-mascot.png"
-          alt="Shark mascot"
-          width={400}
-          height={400}
-          className="object-contain"
-        />
-      </div>
 
       <div className="relative z-10 mx-auto max-w-screen-lg px-4 py-10">
         {/* Header with back button */}

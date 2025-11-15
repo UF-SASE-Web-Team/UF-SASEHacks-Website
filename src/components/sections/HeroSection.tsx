@@ -9,58 +9,8 @@ export default function HeroSection() {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const badgesRef = useRef<HTMLDivElement>(null);
-  const shape1Ref = useRef<HTMLDivElement>(null);
-  const shape2Ref = useRef<HTMLDivElement>(null);
-  const shape3Ref = useRef<HTMLDivElement>(null);
-  const shape4Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Floating shapes animation
-    if (shape1Ref.current) {
-      gsap.to(shape1Ref.current, {
-        y: -30,
-        x: 20,
-        rotation: 360,
-        duration: 8,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    }
-    if (shape2Ref.current) {
-      gsap.to(shape2Ref.current, {
-        y: 40,
-        x: -30,
-        rotation: -360,
-        duration: 10,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    }
-    if (shape3Ref.current) {
-      gsap.to(shape3Ref.current, {
-        y: -25,
-        x: -20,
-        rotation: 180,
-        duration: 12,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    }
-    if (shape4Ref.current) {
-      gsap.to(shape4Ref.current, {
-        y: 35,
-        x: 25,
-        rotation: -180,
-        duration: 9,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    }
-
     // Entrance animations
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
@@ -80,12 +30,6 @@ export default function HeroSection() {
 
   return (
     <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#FFE4B3] via-[#BFDCFF] to-[#D0FFCB]">
-      {/* Floating decorative shapes */}
-      <div ref={shape1Ref} className="absolute top-20 left-10 w-32 h-32 bg-[#FFC7E5] opacity-30 rounded-full blur-2xl" />
-      <div ref={shape2Ref} className="absolute bottom-32 right-20 w-40 h-40 bg-[#E6D4FF] opacity-30 rounded-full blur-2xl" />
-      <div ref={shape3Ref} className="absolute top-40 right-32 w-24 h-24 bg-[#D0FFCB] opacity-40 rounded-full blur-xl" />
-      <div ref={shape4Ref} className="absolute bottom-20 left-32 w-36 h-36 bg-[#BFDCFF] opacity-40 rounded-full blur-xl" />
-
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-screen-xl px-4 text-center">
         {/* Location & Date Badges */}

@@ -58,7 +58,19 @@ export default function SponsorsSection() {
   };
 
   return (
-    <section id="sponsors" className="w-full bg-[#D0FFCB] min-h-screen flex items-center relative overflow-hidden py-12">
+    <section id="sponsors" className="w-full bg-gradient-to-br from-[#D0FFCB] via-[#b8ffad] to-[#D0FFCB] min-h-screen flex items-center relative overflow-hidden py-12">
+      {/* Diagonal stripes pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 35px,
+            #560700 35px,
+            #560700 37px
+          )`
+        }}></div>
+      </div>
       <div className="mx-auto max-w-screen-xl px-4 relative z-10 w-full">
         {/* Section title */}
         <h2
@@ -90,13 +102,13 @@ export default function SponsorsSection() {
             <p className="font-[family-name:var(--font-body)] text-gray-600 text-sm mb-3 text-center">
               Get in touch with us:
             </p>
-            <div className="flex items-center gap-3">
-              <div className="flex-1 bg-[#BFDCFF] rounded-lg px-4 py-3 font-[family-name:var(--font-body)] text-[#560700] font-semibold text-center">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <div className="flex-1 bg-[#BFDCFF] rounded-lg px-4 py-3 font-[family-name:var(--font-body)] text-[#560700] font-semibold text-center break-all">
                 ufsase.evp@gmail.com
               </div>
               <button
                 onClick={copyEmail}
-                className="bg-[#560700] text-[#FFE4B3] px-6 py-3 rounded-lg font-[family-name:var(--font-body)] font-semibold hover:opacity-90 transition-opacity"
+                className="bg-[#560700] text-[#FFE4B3] px-6 py-3 rounded-lg font-[family-name:var(--font-body)] font-semibold hover:opacity-90 transition-opacity whitespace-nowrap flex-shrink-0"
               >
                 {copied ? "Copied!" : "Copy"}
               </button>

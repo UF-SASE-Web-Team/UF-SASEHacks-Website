@@ -14,24 +14,24 @@ type ScheduleEvent = {
 };
 
 const saturdayEvents: ScheduleEvent[] = [
-  { time: "7:00 AM", title: "Check-In & Registration", location: "Newell Hall", color: "bg-[#D0FFCB]" },
-  { time: "8:00 AM", title: "Opening Ceremony", location: "Turlington", color: "bg-[#FFE4B3]" },
-  { time: "9:00 AM", title: "Team Formation", location: "Throughout Venue", color: "bg-[#E6D4FF]" },
-  { time: "10:00 AM", title: "Hacking Begins!", location: "Newell / Marston", color: "bg-[#FFC7E5]" },
-  { time: "11:00 AM", title: "Mini-Workshops", location: "Turlington", color: "bg-[#D0FFCB]" },
-  { time: "2:00 PM", title: "Mentor Check-Ins", location: "Newell Hall", color: "bg-[#FFE4B3]" },
-  { time: "4:00 PM", title: "Technical Workshops", location: "Various Rooms", color: "bg-[#E6D4FF]" },
-  { time: "4:30 PM", title: "Food Break", location: "Turlington", color: "bg-[#FFC7E5]" },
-  { time: "9:00 PM", title: "Wellness Activity", location: "TBA", color: "bg-[#D0FFCB]" },
-  { time: "10:00 PM", title: "Late Night Snacks", location: "Main Area", color: "bg-[#FFE4B3]" },
+  { time: "7:00 AM", title: "Check-In & Registration", location: "Newell Hall", color: "bg-[#FFE4B3]" },
+  { time: "8:00 AM", title: "Opening Ceremony", location: "Turlington", color: "bg-[#BFDCFF]" },
+  { time: "9:00 AM", title: "Team Formation", location: "Throughout Venue", color: "bg-[#FFC7E5]" },
+  { time: "10:00 AM", title: "Hacking Begins!", location: "Newell / Marston", color: "bg-[#D0FFCB]" },
+  { time: "11:00 AM", title: "Mini-Workshops", location: "Turlington", color: "bg-[#FFE4B3]" },
+  { time: "2:00 PM", title: "Mentor Check-Ins", location: "Newell Hall", color: "bg-[#BFDCFF]" },
+  { time: "4:00 PM", title: "Technical Workshops", location: "Various Rooms", color: "bg-[#FFC7E5]" },
+  { time: "4:30 PM", title: "Food Break", location: "Turlington", color: "bg-[#D0FFCB]" },
+  { time: "9:00 PM", title: "Wellness Activity", location: "TBA", color: "bg-[#FFE4B3]" },
+  { time: "10:00 PM", title: "Late Night Snacks", location: "Main Area", color: "bg-[#BFDCFF]" },
 ];
 
 const sundayEvents: ScheduleEvent[] = [
-  { time: "8:00 AM", title: "Breakfast", location: "Main Area", color: "bg-[#E6D4FF]" },
-  { time: "10:00 AM", title: "Project Submissions Close", color: "bg-[#FFC7E5]" },
-  { time: "10:30 AM", title: "Judging Begins", location: "Reitz Meeting Rooms", color: "bg-[#D0FFCB]" },
-  { time: "12:30 PM", title: "Awards & Closing Ceremony", location: "Main Hall", color: "bg-[#FFE4B3]" },
-  { time: "1:30 PM", title: "Event Ends", color: "bg-[#E6D4FF]" },
+  { time: "8:00 AM", title: "Breakfast", location: "Main Area", color: "bg-[#FFC7E5]" },
+  { time: "10:00 AM", title: "Project Submissions Close", color: "bg-[#D0FFCB]" },
+  { time: "10:30 AM", title: "Judging Begins", location: "Reitz Meeting Rooms", color: "bg-[#FFE4B3]" },
+  { time: "12:30 PM", title: "Awards & Closing Ceremony", location: "Main Hall", color: "bg-[#BFDCFF]" },
+  { time: "1:30 PM", title: "Event Ends", color: "bg-[#FFC7E5]" },
 ];
 
 export default function ScheduleSection() {
@@ -61,8 +61,22 @@ export default function ScheduleSection() {
   const events = selectedDay === "saturday" ? saturdayEvents : sundayEvents;
 
   return (
-    <section id="schedule" className="w-full bg-[#BFDCFF] min-h-screen flex items-center relative overflow-hidden py-12">
-      <div className="mx-auto max-w-screen-xl px-4 w-full">
+    <section id="schedule" className="w-full bg-gradient-to-br from-[#E6D4FF] via-[#d4bfff] to-[#E6D4FF] min-h-screen flex items-center relative overflow-hidden py-12">
+      {/* Wave pattern overlay */}
+      <div className="absolute inset-0 opacity-20">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="wave" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+              <path d="M0 50 Q 25 30, 50 50 T 100 50" stroke="#560700" strokeWidth="2" fill="none" opacity="0.3"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#wave)" />
+        </svg>
+      </div>
+      {/* Gradient orbs */}
+      <div className="absolute top-32 left-10 w-96 h-96 bg-gradient-to-br from-[#FFC7E5]/30 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute bottom-40 right-10 w-80 h-80 bg-gradient-to-tl from-[#BFDCFF]/30 to-transparent rounded-full blur-3xl"></div>
+      <div className="mx-auto max-w-screen-xl px-4 w-full relative z-10">
         {/* Section title */}
         <h2
           ref={titleRef}
@@ -124,7 +138,7 @@ export default function ScheduleSection() {
                 </div>
 
                 {/* Timeline Dot */}
-                <div className="absolute left-[6.3rem] md:left-[7.6rem] top-3 w-4 h-4 bg-[#560700] rounded-full border-4 border-[#BFDCFF] z-10 group-hover:scale-150 transition-transform duration-300" />
+                <div className="absolute left-[6.3rem] md:left-[7.6rem] top-3 w-4 h-4 bg-[#560700] rounded-full border-4 border-[#E6D4FF] z-10 group-hover:scale-150 transition-transform duration-300" />
 
                 {/* Event Card */}
                 <div className={`flex-1 ${event.color} rounded-2xl p-4 md:p-6 shadow-lg border-4 border-transparent hover:border-[#560700] transition-all duration-300 hover:scale-105`}>

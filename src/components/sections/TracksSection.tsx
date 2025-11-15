@@ -70,7 +70,7 @@ export default function TracksSection() {
           {
             opacity: 1,
             y: 0,
-            duration: 0.4,
+            duration: 0.3,
             ease: "power3.out",
             scrollTrigger: {
               trigger: card,
@@ -89,7 +89,7 @@ export default function TracksSection() {
       gsap.to(card, {
         scale: 1.05,
         rotation: tilt,
-        duration: 0.5,
+        duration: 0.2,
         ease: "power2.out",
       });
     }
@@ -101,7 +101,7 @@ export default function TracksSection() {
       gsap.to(card, {
         scale: 1,
         rotation: 0,
-        duration: 0.5,
+        duration: 0.2,
         ease: "power2.out",
       });
     }
@@ -109,6 +109,16 @@ export default function TracksSection() {
 
   return (
     <section id="tracks" className="w-full bg-[#FFE4B3] min-h-screen flex items-center relative overflow-hidden py-12">
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(to right, #560700 1px, transparent 1px),
+            linear-gradient(to bottom, #560700 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px'
+        }}></div>
+      </div>
       <div className="mx-auto max-w-screen-xl px-4 relative z-10 w-full">
         {/* Section title */}
         <h2
@@ -126,13 +136,10 @@ export default function TracksSection() {
               ref={(el) => {
                 cardsRef.current[index] = el;
               }}
-              className={`${track.color} rounded-3xl p-8 md:p-10 shadow-lg relative overflow-visible border-4 border-transparent hover:shadow-2xl hover:border-[#560700] transition-all duration-500`}
+              className={`${track.color} rounded-3xl p-8 md:p-10 shadow-lg relative overflow-hidden border-4 border-transparent hover:shadow-2xl hover:border-[#560700] transition-all duration-500`}
               onMouseEnter={() => handleMouseEnter(index, track.tilt)}
               onMouseLeave={() => handleMouseLeave(index)}
             >
-              {/* Hover glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl" />
-
               <h3 className="font-[family-name:var(--font-heading)] text-[#560700] text-2xl md:text-3xl mb-4 relative z-10">
                 {track.name}
               </h3>

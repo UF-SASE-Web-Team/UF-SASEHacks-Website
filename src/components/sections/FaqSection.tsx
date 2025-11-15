@@ -78,8 +78,19 @@ export default function FaqSection({ faqItems }: Props) {
   }, []);
 
   return (
-    <section id="faq" className="w-full bg-[#FFC7E5] min-h-screen flex items-center relative overflow-hidden py-12">
-      <div className="mx-auto max-w-screen-xl px-4 w-full">
+    <section id="faq" className="w-full bg-gradient-to-br from-[#FFC7E5] via-[#ffb3dc] to-[#FFC7E5] min-h-screen flex items-center relative overflow-hidden py-12">
+      {/* Circular pattern overlay */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle, #560700 2px, transparent 2px)`,
+          backgroundSize: '50px 50px'
+        }}></div>
+      </div>
+      {/* Decorative gradients */}
+      <div className="absolute top-10 right-10 w-80 h-80 bg-gradient-to-bl from-[#E6D4FF]/40 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-tr from-[#FFE4B3]/40 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-white/20 rounded-full blur-3xl"></div>
+      <div className="mx-auto max-w-screen-xl px-4 w-full relative z-10">
         {/* Section title */}
         <h2 ref={titleRef} className="font-[family-name:var(--font-heading)] text-[#560700] text-4xl md:text-6xl mb-12 text-center">
           FAQ
@@ -109,10 +120,6 @@ export default function FaqSection({ faqItems }: Props) {
             Devpost
           </a>
         </div>
-
-        {/* Decorative elements */}
-        <div className="absolute top-10 right-10 w-20 h-20 bg-[#560700] opacity-10 rounded-full" />
-        <div className="absolute bottom-10 left-10 w-32 h-32 bg-[#560700] opacity-10 rounded-full" />
       </div>
     </section>
   );

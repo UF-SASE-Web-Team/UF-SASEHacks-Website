@@ -20,6 +20,7 @@ type Props = {
     terms_and_conditions: boolean;
     code_of_conduct: boolean;
     can_photograph: boolean;
+    share_resume_with_companies: boolean;
   };
   action: (state: unknown, formData: FormData) => Promise<{ ok: boolean; error?: string }>;
   disabled?: boolean;
@@ -51,11 +52,13 @@ export default function ProfileForm({ initialValues, initialConsents, action, di
       const termsCheckbox = document.querySelector('input[name="terms_and_conditions"]') as HTMLInputElement;
       const codeCheckbox = document.querySelector('input[name="code_of_conduct"]') as HTMLInputElement;
       const photoCheckbox = document.querySelector('input[name="can_photograph"]') as HTMLInputElement;
+      const resumeCheckbox = document.querySelector('input[name="share_resume_with_companies"]') as HTMLInputElement;
 
       if (accuracyCheckbox?.checked) fd.append("accuracy_agreement", "on");
       if (termsCheckbox?.checked) fd.append("terms_and_conditions", "on");
       if (codeCheckbox?.checked) fd.append("code_of_conduct", "on");
       if (photoCheckbox?.checked) fd.append("can_photograph", "on");
+      if (resumeCheckbox?.checked) fd.append("share_resume_with_companies", "on");
     }
 
     const result = await action(undefined, fd);
@@ -470,6 +473,19 @@ export default function ProfileForm({ initialValues, initialConsents, action, di
               />
               <span>
                 I consent to photography at the event (optional)
+              </span>
+            </label>
+
+            <label className="flex items-start gap-2 text-sm">
+              <input
+                type="checkbox"
+                name="share_resume_with_companies"
+                defaultChecked={initialConsents.share_resume_with_companies}
+                disabled={disabled}
+                className="mt-0.5"
+              />
+              <span>
+                I consent to having my resume shared with participating companies for recruitment purposes (optional)
               </span>
             </label>
           </div>

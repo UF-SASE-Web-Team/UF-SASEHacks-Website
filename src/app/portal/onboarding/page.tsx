@@ -21,7 +21,7 @@ export default async function OnboardingPage() {
 
   const { data: reg } = await supabase
     .from("registrations")
-    .select("accuracy_agreement, terms_and_conditions, code_of_conduct, can_photograph, editing_locked")
+    .select("accuracy_agreement, terms_and_conditions, code_of_conduct, can_photograph, editing_locked, share_resume_with_companies")
     .eq("user_id", user.id)
     .single();
 
@@ -91,6 +91,7 @@ export default async function OnboardingPage() {
           terms_and_conditions: reg?.terms_and_conditions ?? false,
           code_of_conduct: reg?.code_of_conduct ?? false,
           can_photograph: reg?.can_photograph ?? false,
+          share_resume_with_companies: reg?.share_resume_with_companies ?? false,
         }}
         profileAction={upsertProfile}
         consentAction={saveRegistrationFlags}

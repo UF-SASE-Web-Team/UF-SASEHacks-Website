@@ -23,6 +23,7 @@ type Props = {
     terms_and_conditions: boolean;
     code_of_conduct: boolean;
     can_photograph: boolean;
+    share_resume_with_companies: boolean;
   };
   profileAction: (state: unknown, formData: FormData) => Promise<{ ok: boolean; error?: string }>;
   consentAction: (state: unknown, formData: FormData) => Promise<{ ok: boolean; error?: string }>;
@@ -45,6 +46,7 @@ export default function OnboardingForm({
   const [termsAndConditions, setTermsAndConditions] = useState(initialConsents.terms_and_conditions);
   const [codeOfConduct, setCodeOfConduct] = useState(initialConsents.code_of_conduct);
   const [canPhotograph, setCanPhotograph] = useState(initialConsents.can_photograph);
+  const [shareResumeWithCompanies, setShareResumeWithCompanies] = useState(initialConsents.share_resume_with_companies);
   const [resumeFile, setResumeFile] = useState<File | null>(null);
 
   const form = useForm<ProfileFormValues>({
@@ -95,6 +97,7 @@ export default function OnboardingForm({
       if (termsAndConditions) consentFd.append("terms_and_conditions", "on");
       if (codeOfConduct) consentFd.append("code_of_conduct", "on");
       if (canPhotograph) consentFd.append("can_photograph", "on");
+      if (shareResumeWithCompanies) consentFd.append("share_resume_with_companies", "on");
 
       const consentResult = await consentAction(undefined, consentFd);
       if (!consentResult.ok) {
@@ -556,6 +559,22 @@ export default function OnboardingForm({
               <span className="font-medium">Photography Consent (optional)</span>
               <span className="block text-gray-600 mt-1">
                 I consent to being photographed or recorded during the event for promotional purposes.
+              </span>
+            </span>
+          </label>
+
+          <label className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              checked={shareResumeWithCompanies}
+              onChange={(e) => setShareResumeWithCompanies(e.target.checked)}
+              disabled={disabled}
+              className="mt-1"
+            />
+            <span className="text-sm">
+              <span className="font-medium">Share Resumes with Companies (optional)</span>
+              <span className="block text-gray-600 mt-1">
+                I consent to having my resume shared with participating companies for recruitment purposes.
               </span>
             </span>
           </label>

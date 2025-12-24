@@ -183,6 +183,7 @@ export async function getAllResumeLinks() {
   const { data: registrations, error } = await supabase
     .from("registrations")
     .select("user_id, profiles(full_name, email)")
+    .eq('share_resume_with_companies', true)
     .not("resume_url", "is", null);
 
   if (error) return { ok: false, error: error.message };

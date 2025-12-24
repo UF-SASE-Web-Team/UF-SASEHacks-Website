@@ -112,9 +112,6 @@ export default function AboutSection() {
         {/* text modal */}
         <div className="lg:col-span-5 order-2 lg:order-1 flex justify-center lg:justify-start">
           <div className="bg-white/90 backdrop-blur-sm p-8 md:p-10 rounded-[3rem] shadow-2xl border-4 border-white transform -rotate-1 max-w-lg">
-            <h2 className="font-[family-name:var(--font-heading)] text-[#560700] text-5xl md:text-6xl mb-6">
-              ABOUT US
-            </h2>
             <p className="font-[family-name:var(--font-body)] text-[#560700] text-lg md:text-xl leading-relaxed font-medium">
               SASEHacks will be a 24 hour long hackathon where students make a project that
               solves a real world problem, showcases their technical creativity, and brings their

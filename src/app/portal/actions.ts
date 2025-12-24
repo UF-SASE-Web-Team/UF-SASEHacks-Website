@@ -104,6 +104,7 @@ export async function saveRegistrationFlags(_: unknown, formData: FormData) {
     terms_and_conditions: formData.get("terms_and_conditions") === "on",
     code_of_conduct: formData.get("code_of_conduct") === "on",
     can_photograph: formData.get("can_photograph") === "on",
+    share_resume_with_companies: formData.get("share_resume_with_companies") === "on",
   };
   const parsed = registrationFlagsSchema.safeParse(values);
   if (!parsed.success) {

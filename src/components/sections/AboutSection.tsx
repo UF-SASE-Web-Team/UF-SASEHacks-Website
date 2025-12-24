@@ -142,11 +142,11 @@ export default function AboutSection() {
 
       <div className="container mx-auto px-4 sm:px-6 z-20 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 items-center flex-1 pt-36 sm:pt-48 md:pt-56 lg:pt-0">
         
-        {/* Text modal */}
-        <div className="lg:col-span-5 order-2 lg:order-1 flex justify-center lg:justify-start mt-8 lg:mt-0">
-          <div className="bg-white/90 backdrop-blur-sm p-6 sm:p-8 md:p-10 rounded-[2rem] sm:rounded-[3rem] shadow-2xl border-2 sm:border-4 border-white transform -rotate-1 max-w-lg w-full">
-            <p className="font-[family-name:var(--font-body)] text-[#560700] text-base sm:text-lg md:text-xl leading-relaxed font-medium">
-              SASEHacks is a 24-hour long hackathon where students make a project that
+        {/* text modal */}
+        <div className="lg:col-span-5 order-2 lg:order-1 flex justify-center lg:justify-start">
+          <div className="bg-white/90 backdrop-blur-sm p-8 md:p-10 rounded-[3rem] shadow-2xl border-4 border-white transform -rotate-1 max-w-lg">
+            <p className="font-[family-name:var(--font-body)] text-[#560700] text-lg md:text-xl leading-relaxed font-medium">
+              SASEHacks is a 24 hour long hackathon where students make a project that
               solves a real world problem, showcases their technical creativity, and brings their
               unique perspective to life through code.
             </p>

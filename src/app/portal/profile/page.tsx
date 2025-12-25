@@ -21,7 +21,7 @@ export default async function ProfilePage() {
 
   const { data: registration } = await supabase
     .from("registrations")
-    .select("editing_locked, accuracy_agreement, terms_and_conditions, code_of_conduct, can_photograph")
+    .select("editing_locked, accuracy_agreement, terms_and_conditions, code_of_conduct, can_photograph, share_resume_with_companies")
     .eq("user_id", user.id)
     .single();
 
@@ -102,6 +102,7 @@ export default async function ProfilePage() {
               terms_and_conditions: !!registration?.terms_and_conditions,
               code_of_conduct: !!registration?.code_of_conduct,
               can_photograph: !!registration?.can_photograph,
+              share_resume_with_companies: !!registration?.share_resume_with_companies,
             }}
             action={upsertProfileAndConsents}
             disabled={disabled}

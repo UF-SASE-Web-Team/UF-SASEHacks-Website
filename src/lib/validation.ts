@@ -56,5 +56,6 @@ export const registrationFlagsSchema = z.object({
   terms_and_conditions: z.boolean().refine(val => val === true, "You must agree to the terms and conditions"),
   code_of_conduct: z.boolean().refine(val => val === true, "You must agree to the code of conduct"),
   can_photograph: z.boolean().default(false),
+  share_resume_with_companies: z.boolean().default(false),
 });
 export type RegistrationFlagsValues = z.infer<typeof registrationFlagsSchema>;

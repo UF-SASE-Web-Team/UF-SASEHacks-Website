@@ -121,21 +121,21 @@ export default function AboutSection() {
       </div>
 
       {/* Floating shapes */}
-      <div className="absolute inset-0 pointer-events-none z-10">
+      <div className="absolute inset-0 pointer-events-none z-10 flex flex-col items-start -space-y-5 translate-y-110 lg:translate-y-0 lg:block">
         {/* Yellow block */}
-        <div ref={shapeYellowRef} className="absolute bottom-0 left-[1%] md:bottom-0 md:left-[2%] w-24 md:w-32">
+        <div ref={shapeYellowRef} className="relative lg:absolute lg:bottom-0 lg:left-[1%] w-24 md:w-32 ml-4 lg:ml-0">
           <Image src={getPublicImageUrl("about/aboutYellowBlock.png")} alt="Yellow" width={140} height={90} />
         </div>
         {/* Blue block */}
-        <div ref={shapeBlueRef} className="absolute bottom-0 left-[12%] md:bottom-0 md:left-[15%] w-28 md:w-40">
+        <div ref={shapeBlueRef} className="relative lg:absolute lg:bottom-0 lg:left-[12%] w-28 md:w-40 ml-4 lg:ml-0">
           <Image src={getPublicImageUrl("about/aboutBlueBlock.png")} alt="Blue" width={180} height={120} />
         </div>
         {/* Orange block */}
-        <div ref={shapeOrangeRef} className="absolute bottom-0 left-[24%] md:bottom-0 md:left-[28%] w-20 md:w-28">
+        <div ref={shapeOrangeRef} className="relative lg:absolute lg:bottom-0 lg:left-[24%] w-20 md:w-28 ml-4 lg:ml-0">
           <Image src={getPublicImageUrl("about/aboutOrangeBlock.png")} alt="Orange" width={120} height={120} />
         </div>
         {/* Green block */}
-        <div ref={shapeGreenRef} className="absolute bottom-0 left-[36%] md:bottom-0 md:left-[40%] w-16 md:w-24">
+        <div ref={shapeGreenRef} className="relative lg:absolute lg:bottom-0 lg:left-[36%] w-16 md:w-24 ml-4 lg:ml-0">
           <Image src={getPublicImageUrl("about/aboutGreenBlock.png")} alt="Green" width={100} height={100} />
         </div>
       </div>
@@ -143,8 +143,8 @@ export default function AboutSection() {
       <div className="container mx-auto px-4 sm:px-6 z-20 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 items-center flex-1 pt-36 sm:pt-48 md:pt-56 lg:pt-0">
         
         {/* text modal */}
-        <div className="lg:col-span-5 order-2 lg:order-1 flex justify-center lg:justify-start">
-          <div className="bg-white/90 backdrop-blur-sm p-8 md:p-10 rounded-[3rem] shadow-2xl border-4 border-white transform -rotate-1 max-w-lg">
+        <div className="lg:col-span-5 order-2 lg:order-1 flex justify-center lg:justify-start -translate-y-90 md:-translate-y-150 lg:translate-y-0">
+          <div className="bg-white/90 backdrop-blur-sm p-8 md:p-10 rounded-[3rem] shadow-2xl border-4 border-white transform -rotate-1 max-w-lg z-30">
             <p className="font-[family-name:var(--font-body)] text-[#560700] text-lg md:text-xl leading-relaxed font-medium">
               SASEHacks is a 24 hour long hackathon where students make a project that
               solves a real world problem, showcases their technical creativity, and brings their
@@ -154,11 +154,11 @@ export default function AboutSection() {
         </div>
 
         {/* About us blocks */}
-        <div className="lg:col-span-7 relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[800px] w-full flex justify-center items-end order-1 lg:order-2">
+        <div className="lg:col-span-7 relative h-[350px] sm:h-[500px] md:h-[600px] lg:h-[800px] w-full flex justify-center items-end order-1 lg:order-2">
           <div className="relative w-full max-w-[900px] h-full flex items-end justify-end pr-2 sm:pr-4 md:pr-8 pb-0">
             
             {/* About stack */}
-            <div ref={aboutStackRef} className="relative z-20 w-[100%] md:w-[95%] mb-[-11%] -mr-10 md:-mr-20">
+            <div ref={aboutStackRef} className="relative z-20 w-[100%] md:w-[95%] mb-[-70%] md:mb-[-50%] lg:mb-[-11%] -mr-40 md:-mr-20">
               <Image 
                 src={getPublicImageUrl("about/aboutBlocks.png")} 
                 alt="About Blocks" 
@@ -169,7 +169,7 @@ export default function AboutSection() {
             </div>
 
             {/* Us stack */}
-            <div ref={usStackRef} className="relative z-10 w-[40%] md:w-[35%] mb-[-12%] md:-ml-20">
+            <div ref={usStackRef} className="relative z-10 w-[35%] md:w-[35%] mb-[-70%] md:mb-[-50%] lg:mb-[-12%] md:-ml-20">
               <div className="relative w-full">
                 <Image 
                   src={getPublicImageUrl("about/usBlocks.png")} 

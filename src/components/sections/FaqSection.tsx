@@ -90,7 +90,7 @@ export default function FaqSection({ faqItems }: Props) {
       })
     }
 
-    // Animate wind and leaves - MORE DRAMATIC
+    // Animate wind and leaves
     if (windLeavesRef.current) {
       gsap.to(windLeavesRef.current, {
         x: 20,
@@ -105,7 +105,7 @@ export default function FaqSection({ faqItems }: Props) {
   }, [])
 
   return (
-    <section id="faq" className="w-full min-h-screen flex items-center relative overflow-hidden py-16 md:py-20">
+    <section id="faq" className="w-full min-h-screen flex items-center relative overflow-hidden py-16 md:py-24">
       <div className="absolute inset-0 z-0">
         <Image
           src={getPublicImageUrl("faq/faqBackground.png") || "/placeholder.svg"}
@@ -116,30 +116,38 @@ export default function FaqSection({ faqItems }: Props) {
           priority
         />
       </div>
+      {/* Flag and Mascot Layer */}
+      <div className="absolute left-[-40px] sm:left-[-40px] md:left-[-40px] top-35 md:top-10 z-20 w-[450px] sm:w-[480px] md:w-[550px] lg:w-[570px] pointer-events-none">
+        <div className="relative w-full">
+          {/* FAQ Flag */}
+          <Image
+            src={getPublicImageUrl("faq/faqFlag.png") || "/placeholder.svg"}
+            alt="FAQ Flag"
+            width={500}
+            height={700}
+            className="w-full h-auto drop-shadow-lg"
+          />
 
-      <div className="absolute left-4 md:left-12 top-8 md:top-12 z-20 w-64 md:w-96 lg:w-[500px]">
-        <Image
-          src={getPublicImageUrl("faq/faqFlag.png") || "/placeholder.svg"}
-          alt="FAQ Flag"
-          width={500}
-          height={750}
-          className="w-full h-auto drop-shadow-lg"
-        />
+          {/* Mascot */}
+          <div 
+            ref={mascotRef} 
+            className="absolute left-[14%] top-[40%] md:top-[43%] w-[45%] md:w-[40%]"
+          >
+            <Image
+              src={getPublicImageUrl("faq/faqMascot.png") || "/placeholder.svg"}
+              alt="FAQ Mascot"
+              width={300}
+              height={300}
+              className="w-full h-auto drop-shadow-2xl"
+            />
+          </div>
+        </div>
       </div>
 
-      <div ref={mascotRef} className="absolute left-16 md:left-28 top-[42%] md:top-[47%] z-20 w-40 md:w-56 lg:w-64">
-        <Image
-          src={getPublicImageUrl("faq/faqMascot.png") || "/placeholder.svg"}
-          alt="FAQ Mascot"
-          width={300}
-          height={300}
-          className="w-full h-auto drop-shadow-2xl"
-        />
-      </div>
-
+      {/* Wind and Leaves*/}
       <div
         ref={windLeavesRef}
-        className="absolute bottom-0 left-60 w-[77%] pointer-events-none z-[5] opacity-90"
+        className="absolute bottom-0 left-20 md:left-60 w-[90%] md:w-[77%] pointer-events-none z-[5] opacity-90"
       >
         <Image
           src={getPublicImageUrl("faq/faqWindLeaves.png") || "/placeholder.svg"}
@@ -150,8 +158,7 @@ export default function FaqSection({ faqItems }: Props) {
         />
       </div>
 
-      <div className="mx-auto max-w-screen-xl px-4 md:px-8 w-full relative z-10">
-
+      <div className="mx-auto max-w-screen-xl px-4 md:px-8 w-full relative z-30 mt-45 md:mt-15">
         {/* FAQ List */}
         <div ref={faqListRef} className="mb-8 md:mb-12">
           <FaqList items={faqItems} />

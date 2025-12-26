@@ -1,22 +1,26 @@
-"use client";
+"use client"
 
-import { DISCORD_INVITE, DEVPOST_URL } from "@/lib/constants";
-import FaqList from "@/components/FaqList";
-import type { FaqItem } from "@/lib/notion";
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { DISCORD_INVITE, DEVPOST_URL } from "@/lib/constants"
+import FaqList from "@/components/FaqList"
+import type { FaqItem } from "@/lib/notion"
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import Image from "next/image"
+import { getPublicImageUrl } from "@/lib/supabase/storage"
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 type Props = {
-  faqItems: FaqItem[];
-};
+  faqItems: FaqItem[]
+}
 
 export default function FaqSection({ faqItems }: Props) {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const faqListRef = useRef<HTMLDivElement>(null);
-  const buttonsRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const faqListRef = useRef<HTMLDivElement>(null)
+  const buttonsRef = useRef<HTMLDivElement>(null)
+  const mascotRef = useRef<HTMLDivElement>(null)
+  const windLeavesRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     // Animate title
@@ -32,10 +36,10 @@ export default function FaqSection({ faqItems }: Props) {
           scrollTrigger: {
             trigger: titleRef.current,
             start: "top 80%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
+            toggleActions: "play none none none",
+          },
+        },
+      )
     }
 
     // Animate FAQ list
@@ -51,10 +55,10 @@ export default function FaqSection({ faqItems }: Props) {
           scrollTrigger: {
             trigger: faqListRef.current,
             start: "top 85%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
+            toggleActions: "play none none none",
+          },
+        },
+      )
     }
 
     // Animate buttons
@@ -70,34 +74,93 @@ export default function FaqSection({ faqItems }: Props) {
           scrollTrigger: {
             trigger: buttonsRef.current,
             start: "top 85%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
+            toggleActions: "play none none none",
+          },
+        },
+      )
     }
-  }, []);
+
+    if (mascotRef.current) {
+      gsap.to(mascotRef.current, {
+        y: 10,
+        duration: 4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      })
+    }
+
+    // Animate wind and leaves
+    if (windLeavesRef.current) {
+      gsap.to(windLeavesRef.current, {
+        x: 20,
+        y: 12,
+        rotation: 2,
+        duration: 4.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      })
+    }
+  }, [])
 
   return (
-    <section id="faq" className="w-full bg-gradient-to-br from-[#FFC7E5] via-[#ffb3dc] to-[#FFC7E5] min-h-screen flex items-center relative overflow-hidden py-12">
-      {/* Circular pattern overlay */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle, #560700 2px, transparent 2px)`,
-          backgroundSize: '50px 50px'
-        }}></div>
+    <section id="faq" className="w-full min-h-screen flex items-center relative overflow-hidden py-16 md:py-24">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={getPublicImageUrl("faq/faqBackground.png") || "/placeholder.svg"}
+          alt="FAQ Background"
+          fill
+          className="object-cover"
+          style={{ objectPosition: "center" }}
+          priority
+        />
       </div>
-      {/* Decorative gradients */}
-      <div className="absolute top-10 right-10 w-80 h-80 bg-gradient-to-bl from-[#E6D4FF]/40 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-tr from-[#FFE4B3]/40 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-white/20 rounded-full blur-3xl"></div>
-      <div className="mx-auto max-w-screen-xl px-4 w-full relative z-10">
-        {/* Section title */}
-        <h2 ref={titleRef} className="font-[family-name:var(--font-heading)] text-[#560700] text-4xl md:text-6xl mb-12 text-center">
-          FAQ
-        </h2>
+      {/* Flag and Mascot Layer */}
+      <div className="absolute left-[-40px] sm:left-[-40px] md:left-[-40px] top-35 md:top-10 z-20 w-[450px] sm:w-[480px] md:w-[550px] lg:w-[570px] pointer-events-none">
+        <div className="relative w-full">
+          {/* FAQ Flag */}
+          <Image
+            src={getPublicImageUrl("faq/faqFlag.png") || "/placeholder.svg"}
+            alt="FAQ Flag"
+            width={500}
+            height={700}
+            className="w-full h-auto drop-shadow-lg"
+          />
 
+          {/* Mascot */}
+          <div 
+            ref={mascotRef} 
+            className="absolute left-[14%] top-[40%] md:top-[43%] w-[45%] md:w-[40%]"
+          >
+            <Image
+              src={getPublicImageUrl("faq/faqMascot.png") || "/placeholder.svg"}
+              alt="FAQ Mascot"
+              width={300}
+              height={300}
+              className="w-full h-auto drop-shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Wind and Leaves*/}
+      <div
+        ref={windLeavesRef}
+        className="absolute bottom-0 left-20 md:left-60 w-[90%] md:w-[77%] pointer-events-none z-[5] opacity-90"
+      >
+        <Image
+          src={getPublicImageUrl("faq/faqWindLeaves.png") || "/placeholder.svg"}
+          alt="Wind and Leaves"
+          width={1200}
+          height={600}
+          className="w-full h-auto"
+        />
+      </div>
+
+      <div className="mx-auto max-w-screen-xl px-4 md:px-8 w-full relative z-30 mt-45 md:mt-15">
         {/* FAQ List */}
-        <div ref={faqListRef} className="mb-12">
+        <div ref={faqListRef} className="mb-8 md:mb-12">
           <FaqList items={faqItems} />
         </div>
 
@@ -107,7 +170,7 @@ export default function FaqSection({ faqItems }: Props) {
             href={DISCORD_INVITE}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center rounded-2xl px-8 py-4 font-[family-name:var(--font-heading)] text-lg md:text-xl bg-[#560700] text-[#FFE4B3] hover:scale-105 transition-transform duration-300 shadow-lg"
+            className="inline-flex items-center justify-center rounded-2xl px-6 md:px-8 py-3 md:py-4 font-[family-name:var(--font-heading)] text-lg md:text-xl bg-[#560700] text-[#FFE4B3] hover:scale-105 transition-transform duration-300 shadow-lg"
           >
             Join Discord
           </a>
@@ -115,7 +178,7 @@ export default function FaqSection({ faqItems }: Props) {
             href={DEVPOST_URL}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center rounded-2xl px-8 py-4 font-[family-name:var(--font-heading)] text-lg md:text-xl bg-[#FFE4B3] text-[#560700] border-4 border-[#560700] hover:scale-105 transition-transform duration-300 shadow-lg"
+            className="inline-flex items-center justify-center rounded-2xl px-6 md:px-8 py-3 md:py-4 font-[family-name:var(--font-heading)] text-lg md:text-xl bg-[#FFE4B3] text-[#560700] border-4 border-[#560700] hover:scale-105 transition-transform duration-300 shadow-lg"
           >
             Devpost
           </a>

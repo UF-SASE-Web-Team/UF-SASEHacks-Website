@@ -69,6 +69,7 @@ src/
 │   ├── admin/            # Admin components
 │   ├── auth/             # Auth components
 │   ├── forms/            # Form components
+│   ├── resume/           # Resume components
 │   └── sections/         # Landing page sections
 └── lib/                  # Utilities and configs
     ├── supabase/         # Supabase client setup

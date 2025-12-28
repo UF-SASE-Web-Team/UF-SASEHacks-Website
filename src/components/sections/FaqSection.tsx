@@ -117,7 +117,7 @@ export default function FaqSection({ faqItems }: Props) {
         />
       </div>
       {/* Flag and Mascot Layer */}
-      <div className="absolute left-[-40px] sm:left-[-40px] md:left-[-40px] top-35 md:top-10 z-20 w-[450px] sm:w-[480px] md:w-[550px] lg:w-[570px] pointer-events-none">
+      <div className="absolute left-[-160px] sm:left-[-160px] md:left-[-160px] top-30 md:top-13 z-20 w-[600px] sm:w-[600px] md:w-[660px] lg:w-[670px] pointer-events-none">
         <div className="relative w-full">
           {/* FAQ Flag */}
           <Image
@@ -131,7 +131,7 @@ export default function FaqSection({ faqItems }: Props) {
           {/* Mascot */}
           <div 
             ref={mascotRef} 
-            className="absolute left-[14%] top-[40%] md:top-[43%] w-[45%] md:w-[40%]"
+            className="absolute left-[31%] top-[50%] md:top-[48%] w-[32%] sm:w-[34%] md:w-[38%] lg:w-[38%]"
           >
             <Image
               src={getPublicImageUrl("faq/faqMascot.png") || "/placeholder.svg"}

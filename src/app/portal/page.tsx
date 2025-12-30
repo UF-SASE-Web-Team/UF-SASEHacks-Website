@@ -63,7 +63,7 @@ export default async function PortalPage() {
 
       <div className="relative z-10 mx-auto max-w-screen-xl px-4 py-10">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-8 pt-18">
           <h1 className="font-[family-name:var(--font-heading)] text-5xl md:text-6xl text-[#560700]">
             Dashboard
           </h1>

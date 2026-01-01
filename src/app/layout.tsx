@@ -27,11 +27,20 @@ export const metadata: Metadata = {
     title: `${HACK_NAME}`,
     description: `Build with us in ${CITY}.`,
     type: "website",
+    images: [
+      {
+        url: "/images/gbm-4-s25.JPG", 
+        width: 1200,
+        height: 630,
+        alt: `${HACK_NAME} Event Preview`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${HACK_NAME} - ${DATES}`,
     description: `Build with us in ${CITY}.`,
+    images: ["/images/gbm-4-s25.JPG"],
   },
 };
 
@@ -41,13 +50,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${jersey20.variable} ${inconsolata.variable}`}>
         <Header />
         <main>{children}</main>
-        <footer className="bg-[#560700] border-t-4 border-[#FFE4B3]">
+        <footer className="bg-[#ebb8ce] border-t-4 border-[#ffffff]">
           <div className="mx-auto max-w-screen-xl px-4 py-8">
             <div className="text-center space-y-4">
-              <h3 className="font-[family-name:var(--font-heading)] text-[#FFE4B3] text-2xl md:text-3xl">
+              <h3 className="font-[family-name:var(--font-heading)] text-[#560700] text-2xl md:text-3xl">
                 SASEHacks
               </h3>
-              <p className="font-[family-name:var(--font-body)] text-[#FFE4B3]/60 text-xs md:text-sm">
+              <p className="font-[family-name:var(--font-body)] text-[#560700]/60 text-xs md:text-sm">
                 © {new Date().getFullYear()} {HACK_NAME}. All rights reserved.
               </p>
             </div>

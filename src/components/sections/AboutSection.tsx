@@ -158,7 +158,7 @@ export default function AboutSection() {
           <div className="relative w-full max-w-[900px] h-full flex items-end justify-end pr-2 sm:pr-4 md:pr-8 pb-0">
             
             {/* About stack */}
-            <div ref={aboutStackRef} className="relative z-20 w-[100%] md:w-[95%] mb-[-70%] md:mb-[-50%] lg:mb-[-11%] -mr-40 md:-mr-20">
+            <div ref={aboutStackRef} className="relative z-20 w-[100%] md:w-[95%] mb-[-70%] md:mb-[-50%] lg:mb-[-11%] -mr-35 sm:-mr-40 md:-mr-20">
               <Image 
                 src={getPublicImageUrl("about/aboutBlocks.png")} 
                 alt="About Blocks" 
@@ -169,7 +169,7 @@ export default function AboutSection() {
             </div>
 
             {/* Us stack */}
-            <div ref={usStackRef} className="relative z-10 w-[35%] md:w-[35%] mb-[-70%] md:mb-[-50%] lg:mb-[-12%] md:-ml-20">
+            <div ref={usStackRef} className="relative z-20 w-[35%] md:w-[35%] mb-[-70%] md:mb-[-50%] lg:mb-[-12%] md:-ml-20">
               <div className="relative w-full">
                 <Image 
                   src={getPublicImageUrl("about/usBlocks.png")} 

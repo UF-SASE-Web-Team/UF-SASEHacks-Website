@@ -79,7 +79,7 @@ export default function SponsorsSection() {
 
       <div
         ref={mascotRef}
-        className="absolute right-4 -bottom-12 md:right-20 md:bottom-32 lg:right-32 z-20 w-32 md:w-48 lg:w-64"
+        className="absolute right-4 -bottom-12 md:right-20 md:bottom-45 lg:right-32 z-20 w-32 md:w-48 lg:w-64"
       >
         <Image
           src={getPublicImageUrl("sponsor/sponsorMascot.png")}

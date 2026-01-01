@@ -113,7 +113,7 @@ export default function TracksSection() {
     <section 
       id="tracks" 
       ref={containerRef} 
-      className="relative w-full min-h-[90vh] sm:min-h-[130vh] md:min-h-[90vh] lg:min-h-[130vh] overflow-hidden bg-[#7CD0E0] pt-24 md:pt-40"
+      className="relative w-full min-h-[70vh] sm:min-h-[130vh] md:min-h-[90vh] lg:min-h-[130vh] overflow-hidden bg-[#7CD0E0] pt-24 md:pt-40"
       onClick={() => setActiveTrack(null)}
     >
       <div className="absolute inset-0 z-0">
@@ -161,7 +161,7 @@ export default function TracksSection() {
       <div 
         ref={bubble1Ref}
         onClick={(e) => { e.stopPropagation(); setActiveTrack(activeTrack === 1 ? null : 1); }}
-        className="absolute top-[8%] left-[2%] sm:top-[10%] md:top-[5%] md:left-[5%] w-[42%] sm:w-[40%] md:w-[28%] lg:w-[25%] z-20 group cursor-pointer"
+        className="absolute top-[8%] left-[2%] sm:top-[10%] md:top-[5%] md:left-[5%] w-[42%] sm:w-[40%] md:w-[35%] lg:w-[25%] z-20 group cursor-pointer"
       >
         <div className="relative w-full aspect-square">
           <Image
@@ -188,7 +188,7 @@ export default function TracksSection() {
       <div 
         ref={bubble2Ref}
         onClick={(e) => { e.stopPropagation(); setActiveTrack(activeTrack === 2 ? null : 2); }}
-        className="absolute top-[8%] right-[2%] sm:top-[10%] md:top-[5%] md:right-[5%] w-[42%] sm:w-[40%] md:w-[28%] lg:w-[25%] z-20 group cursor-pointer"
+        className="absolute top-[8%] right-[2%] sm:top-[10%] md:top-[5%] md:right-[5%] w-[42%] sm:w-[40%] md:w-[35%] lg:w-[25%] z-20 group cursor-pointer"
       >
         <div className="relative w-full aspect-square">
           <div className="absolute inset-0 transform -scale-x-100">
@@ -214,14 +214,14 @@ export default function TracksSection() {
       {/* --- MASCOT --- */}
       <div
         ref={mascotRef}
-        className="absolute top-[32%] left-[50%] -translate-x-1/2 w-[35%] sm:w-[30%] md:w-[25%] lg:w-[22%] z-20 pointer-events-none"
+        className="absolute top-[32%] left-[50%] -translate-x-1/2 w-[35%] sm:w-[30%] md:w-[27%] lg:w-[22%] z-20 pointer-events-none"
       >
         <Image
           src={getPublicImageUrl("track/trackBubbleMascot.png")}
           alt="Mascot in Bubble"
           width={500}
           height={500}
-          className="w-full h-auto drop-shadow-2xl rounded-full mix-blend-multiply opacity-95"
+          className="w-full h-auto mix-blend-multiply opacity-95"
         />
       </div>
 
@@ -229,7 +229,7 @@ export default function TracksSection() {
       <div 
         ref={bubble3Ref}
         onClick={(e) => { e.stopPropagation(); setActiveTrack(activeTrack === 3 ? null : 3); }}
-        className="absolute bottom-[13%] left-[3%] lg:bottom-[15%] lg:left-[5%] sm:bottom-[20%] md:bottom-[20%] md:left-[8%] w-[42%] md:w-[26%] lg:w-[25%] z-20 group cursor-pointer"
+        className="absolute bottom-[13%] left-[3%] lg:bottom-[15%] lg:left-[5%] sm:bottom-[20%] md:bottom-[20%] md:left-[8%] w-[42%] md:w-[35%] lg:w-[25%] z-20 group cursor-pointer"
       >
         <div className="relative w-full aspect-square">
           <Image
@@ -253,7 +253,7 @@ export default function TracksSection() {
       <div 
         ref={bubble4Ref}
         onClick={(e) => { e.stopPropagation(); setActiveTrack(activeTrack === 4 ? null : 4); }}
-        className="absolute bottom-[13%] right-[2%] sm:bottom-[20%] lg:bottom-[15%] lg:right-[6%] md:bottom-[20%] md:right-[8%] w-[42%] md:w-[26%] lg:w-[25%] z-20 group cursor-pointer"
+        className="absolute bottom-[13%] right-[2%] sm:bottom-[20%] lg:bottom-[15%] lg:right-[6%] md:bottom-[20%] md:right-[8%] w-[42%] md:w-[35%] lg:w-[25%] z-20 group cursor-pointer"
       >
         <div className="relative w-full aspect-square">
            <div className="absolute inset-0 transform -scale-x-100">

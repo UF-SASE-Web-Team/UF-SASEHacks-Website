@@ -108,7 +108,7 @@ export default function FaqSection({ faqItems }: Props) {
     <section id="faq" className="w-full min-h-screen flex items-center relative overflow-hidden py-16 md:py-24">
       <div className="absolute inset-0 z-0">
         <Image
-          src={getPublicImageUrl("faq/faqBackground.png") || "/placeholder.svg"}
+          src={getPublicImageUrl("faq/faqBackground.png")}
           alt="FAQ Background"
           fill
           className="object-cover"
@@ -117,11 +117,11 @@ export default function FaqSection({ faqItems }: Props) {
         />
       </div>
       {/* Flag and Mascot Layer */}
-      <div className="absolute left-[-160px] sm:left-[-160px] md:left-[-160px] top-30 md:top-13 z-20 w-[600px] sm:w-[600px] md:w-[660px] lg:w-[670px] pointer-events-none">
+      <div className="absolute left-[-160px] sm:left-[-160px] md:left-[-160px] top-30 md:top-20 lg:top-13 z-20 w-[600px] sm:w-[600px] md:w-[660px] lg:w-[670px] pointer-events-none">
         <div className="relative w-full">
           {/* FAQ Flag */}
           <Image
-            src={getPublicImageUrl("faq/faqFlag.png") || "/placeholder.svg"}
+            src={getPublicImageUrl("faq/faqFlag.png")}
             alt="FAQ Flag"
             width={500}
             height={700}
@@ -134,7 +134,7 @@ export default function FaqSection({ faqItems }: Props) {
             className="absolute left-[31%] top-[50%] md:top-[48%] w-[32%] sm:w-[34%] md:w-[38%] lg:w-[38%]"
           >
             <Image
-              src={getPublicImageUrl("faq/faqMascot.png") || "/placeholder.svg"}
+              src={getPublicImageUrl("faq/faqMascot.png")}
               alt="FAQ Mascot"
               width={300}
               height={300}
@@ -150,7 +150,7 @@ export default function FaqSection({ faqItems }: Props) {
         className="absolute bottom-0 left-20 md:left-60 w-[90%] md:w-[77%] pointer-events-none z-[5] opacity-90"
       >
         <Image
-          src={getPublicImageUrl("faq/faqWindLeaves.png") || "/placeholder.svg"}
+          src={getPublicImageUrl("faq/faqWindLeaves.png")}
           alt="Wind and Leaves"
           width={1200}
           height={600}

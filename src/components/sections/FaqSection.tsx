@@ -8,6 +8,7 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Image from "next/image"
 import { getPublicImageUrl } from "@/lib/supabase/storage"
+import FallingMascot from "@/components/FallingMascot"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -19,7 +20,6 @@ export default function FaqSection({ faqItems }: Props) {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const faqListRef = useRef<HTMLDivElement>(null)
   const buttonsRef = useRef<HTMLDivElement>(null)
-  const mascotRef = useRef<HTMLDivElement>(null)
   const windLeavesRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -80,16 +80,6 @@ export default function FaqSection({ faqItems }: Props) {
       )
     }
 
-    if (mascotRef.current) {
-      gsap.to(mascotRef.current, {
-        y: 10,
-        duration: 4,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      })
-    }
-
     // Animate wind and leaves
     if (windLeavesRef.current) {
       gsap.to(windLeavesRef.current, {
@@ -128,17 +118,25 @@ export default function FaqSection({ faqItems }: Props) {
             className="w-full h-auto drop-shadow-lg"
           />
 
-          {/* Mascot */}
           <div 
-            ref={mascotRef} 
             className="absolute left-[31%] top-[50%] md:top-[48%] w-[32%] sm:w-[34%] md:w-[38%] lg:w-[38%]"
           >
-            <Image
+            <FallingMascot
               src={getPublicImageUrl("faq/faqMascot.png")}
               alt="FAQ Mascot"
               width={300}
               height={300}
-              className="w-full h-auto drop-shadow-2xl"
+              fallDistance={500}
+              duration={2.2}
+              rotations={1.5}
+              startScale={0.15}
+              endScale={1}
+              startRotateX={50}
+              wobbleIntensity={25}
+              triggerStart="top 75%"
+              ease="power2.out"
+              floatDistance={10}
+              floatDuration={4}
             />
           </div>
         </div>

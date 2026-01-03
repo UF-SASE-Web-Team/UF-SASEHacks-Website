@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { getPublicImageUrl } from "@/lib/supabase/storage"
+import FallingMascot from "@/components/FallingMascot"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -39,7 +40,6 @@ const sundayEvents: ScheduleEvent[] = [
 export default function ScheduleSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
-  const mascotRef = useRef<HTMLDivElement>(null)
   const marqueeRef = useRef<HTMLDivElement>(null)
   const [selectedDay, setSelectedDay] = useState<"saturday" | "sunday">("saturday")
 
@@ -58,17 +58,6 @@ export default function ScheduleSection() {
             },
           }
         )
-      }
-
-      // Mascot floating animation
-      if (mascotRef.current) {
-        gsap.to(mascotRef.current, {
-          y: -20,
-          duration: 3,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        })
       }
 
       // INFINITE SCROLLING MUSIC NOTES
@@ -192,18 +181,23 @@ export default function ScheduleSection() {
             </div>
           </div>
 
-          {/* Mascot */}
-          <div
-            ref={mascotRef}
-            className="relative w-[180px] sm:w-[220px] md:w-[320px] lg:w-[350px] z-20 pointer-events-none drop-shadow-2xl bottom-2 md:bottom-6"
-          >
-            <Image
+          <div className="relative w-[180px] sm:w-[220px] md:w-[320px] lg:w-[350px] z-20 pointer-events-none bottom-2 md:bottom-6">
+            <FallingMascot
               src={getPublicImageUrl("schedule/scheduleMascot.png")}
               alt="Schedule Mascot"
               width={500}
               height={500}
-              className="w-full h-auto"
-              priority
+              fallDistance={500}
+              duration={2.5}
+              rotations={1}
+              startScale={0.3}
+              endScale={1}
+              startRotateX={45}
+              wobbleIntensity={20}
+              triggerStart="top 85%"
+              ease="power2.out"
+              floatDistance={15}
+              floatDuration={3}
             />
           </div>
         </div>

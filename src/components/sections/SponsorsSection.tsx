@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { getPublicImageUrl } from "@/lib/supabase/storage";
+import FallingMascot from "@/components/FallingMascot";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SponsorsSection() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const mascotRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -52,17 +52,6 @@ export default function SponsorsSection() {
         }
       );
     }
-
-    if (mascotRef.current) {
-      gsap.to(mascotRef.current, {
-        y: -20,
-        rotation: 3,
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    }
   }, []);
 
   const copyEmail = () => {
@@ -77,16 +66,23 @@ export default function SponsorsSection() {
         <Image src={getPublicImageUrl("sponsor/sponsorBackground.png")} alt="Sponsor Background" fill className="object-cover" priority />
       </div>
 
-      <div
-        ref={mascotRef}
-        className="absolute right-4 -bottom-12 md:right-20 md:bottom-45 lg:right-32 z-20 w-32 md:w-48 lg:w-64"
-      >
-        <Image
+      <div className="absolute right-4 -bottom-12 md:right-20 md:bottom-45 lg:right-32 z-20 w-32 md:w-48 lg:w-64">
+        <FallingMascot
           src={getPublicImageUrl("sponsor/sponsorMascot.png")}
           alt="Sponsor Mascot"
           width={400}
           height={400}
-          className="w-full h-auto drop-shadow-2xl"
+          fallDistance={700}
+          duration={2}
+          rotations={1.8}
+          startScale={0.2}
+          endScale={1}
+          startRotateX={65}
+          wobbleIntensity={35}
+          triggerStart="top 70%"
+          ease="power2.out"
+          floatDistance={20}
+          floatDuration={3}
         />
       </div>
 

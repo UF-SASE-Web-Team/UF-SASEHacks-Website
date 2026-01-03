@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
@@ -6,6 +6,7 @@ import { Draggable } from "gsap/Draggable";
 import Image from "next/image";
 import { DATES, CITY, DISCORD_INVITE, DEVPOST_URL } from "@/lib/constants";
 import { getPublicImageUrl } from "@/lib/supabase/storage";
+import FallingMascot from "@/components/FallingMascot";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(Draggable)
@@ -27,7 +28,6 @@ const keycapImages = [
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const mascotRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const keycapRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -41,17 +41,6 @@ export default function HeroSection() {
     if (!isClient) return
 
     const ctx = gsap.context(() => {
-      // Floating mascot animation
-      if (mascotRef.current) {
-        gsap.to(mascotRef.current, {
-          y: -20,
-          duration: 2,
-          ease: "power1.inOut",
-          yoyo: true,
-          repeat: -1,
-        })
-      }
-
       // Floating title animation
       if (titleRef.current) {
         gsap.to(titleRef.current, {
@@ -146,12 +135,30 @@ export default function HeroSection() {
         
         {/* GRAPHICS SECTION */}
         <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-12 mb-8 lg:mb-16">
-          <div ref={mascotRef} className="relative w-70 h-60 md:h-64 lg:w-96 lg:h-96 flex-shrink-0">
-            <Image src={getPublicImageUrl("/home/homeMascot.png")} alt="SASEHacks Mascot" fill className="object-contain" priority />
-          </div>
+          <FallingMascot
+            src={getPublicImageUrl("/home/homeMascot.png")}
+            alt="SASEHacks Mascot"
+            className="w-70 h-60 md:h-64 lg:w-96 lg:h-96 flex-shrink-0"
+            fallDistance={600}
+            duration={1.8}
+            rotations={1}
+            startScale={0.2}
+            endScale={1}
+            startRotateX={60}
+            wobbleIntensity={25}
+            triggerStart="top 90%"
+            floatDistance={20}
+            floatDuration={2}
+          />
 
           <div ref={titleRef} className="relative w-[400px] h-[220px] md:w-[600px] md:h-[250px] lg:w-[850px] lg:h-[380px]">
-            <Image src={getPublicImageUrl("/home/homeTitle.png")} alt="SASE HACKS" fill className="object-contain" priority />
+            <Image
+              src={getPublicImageUrl("/home/homeTitle.png")}
+              alt="SASE HACKS"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
         </div>
 

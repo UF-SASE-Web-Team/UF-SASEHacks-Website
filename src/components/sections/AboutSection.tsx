@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getPublicImageUrl } from "@/lib/supabase/storage";
+import FallingMascot from "@/components/FallingMascot";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,10 +17,8 @@ const carouselImages = [
 
 export default function AboutSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const mascotRef = useRef<HTMLDivElement>(null);
   const aboutStackRef = useRef<HTMLDivElement>(null);
   const usStackRef = useRef<HTMLDivElement>(null);
-  
   const shapeBlueRef = useRef<HTMLDivElement>(null);
   const shapeYellowRef = useRef<HTMLDivElement>(null);
   const shapeOrangeRef = useRef<HTMLDivElement>(null);
@@ -45,23 +44,6 @@ export default function AboutSection() {
         ease: "sine.inOut",
       });
 
-      // Falling mascot
-      gsap.fromTo(
-        mascotRef.current,
-        { y: -600, opacity: 0, rotate: -20 },
-        {
-          y: 0,
-          opacity: 1,
-          rotate: -5,
-          duration: 1.8,
-          ease: "bounce.out",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 50%",
-          },
-        }
-      );
-
       // Shapes animation
       const shapes = [shapeBlueRef, shapeYellowRef, shapeOrangeRef, shapeGreenRef];
       shapes.forEach((ref, i) => {
@@ -73,7 +55,6 @@ export default function AboutSection() {
           ease: "sine.inOut",
         });
       });
-
     }, containerRef);
 
     return () => ctx.revert();
@@ -109,13 +90,12 @@ export default function AboutSection() {
         </div>
       </div>
 
-      {/* Background */}
       <div className="absolute inset-0 z-0">
-        <Image 
-          src={getPublicImageUrl("about/aboutBackground.png")} 
-          alt="Cloud Background" 
-          fill 
-          className="object-cover object-bottom" 
+        <Image
+          src={getPublicImageUrl("about/aboutBackground.png") || "/placeholder.svg"}
+          alt="Cloud Background"
+          fill
+          className="object-cover object-bottom"
           priority
         />
       </div>
@@ -181,20 +161,26 @@ export default function AboutSection() {
                 
                 {/* Mascot */}
                 <div 
-                  ref={mascotRef} 
                   className="absolute top-[-68%] md:top-[-72%] right-[-15%] md:right-[-15%] w-[125%] md:w-[130%] z-30"
                 >
-                  <Image 
-                    src={getPublicImageUrl("about/aboutMascot.png")} 
-                    alt="Shark Mascot" 
-                    width={400} 
-                    height={400} 
-                    className="w-full h-auto drop-shadow-2xl"
+                  <FallingMascot
+                    src={getPublicImageUrl("about/aboutMascot.png")}
+                    alt="Shark Mascot"
+                    fallDistance={500}
+                    duration={2.5}
+                    rotations={1}
+                    startScale={0.3}
+                    endScale={1}
+                    startRotateX={45}
+                    wobbleIntensity={20}
+                    triggerStart="top 60%"
+                    ease="power2.out"
+                    floatDistance={12}
+                    floatDuration={2.5}
                   />
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>

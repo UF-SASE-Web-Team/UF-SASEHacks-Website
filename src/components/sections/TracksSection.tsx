@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getPublicImageUrl } from "@/lib/supabase/storage";
+import FallingMascot from "@/components/FallingMascot";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,7 +34,6 @@ const tracks = [
 
 export default function TracksSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const mascotRef = useRef<HTMLDivElement>(null);
   const bubble1Ref = useRef<HTMLDivElement>(null);
   const bubble2Ref = useRef<HTMLDivElement>(null);
   const bubble3Ref = useRef<HTMLDivElement>(null);
@@ -45,16 +45,6 @@ export default function TracksSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      if (mascotRef.current) {
-        gsap.to(mascotRef.current, {
-          y: -25,
-          duration: 3,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        });
-      }
-
       const bubbles = [
         { ref: bubble1Ref, dur: 3.5, delay: 0 },
         { ref: bubble2Ref, dur: 4, delay: 0.5 },
@@ -211,17 +201,21 @@ export default function TracksSection() {
         </div>
       </div>
 
-      {/* --- MASCOT --- */}
-      <div
-        ref={mascotRef}
-        className="absolute top-[32%] left-[50%] -translate-x-1/2 w-[35%] sm:w-[30%] md:w-[27%] lg:w-[22%] z-20 pointer-events-none"
-      >
-        <Image
+      <div className="absolute top-[32%] left-[50%] -translate-x-1/2 w-[35%] sm:w-[30%] md:w-[27%] lg:w-[22%] z-20 pointer-events-none">
+        <FallingMascot
           src={getPublicImageUrl("track/trackBubbleMascot.png")}
           alt="Mascot in Bubble"
-          width={500}
-          height={500}
-          className="w-full h-auto mix-blend-multiply opacity-95"
+          fallDistance={500}
+          duration={2.5}
+          rotations={0.5}
+          startScale={0.1}
+          endScale={1}
+          startRotateX={40}
+          wobbleIntensity={20}
+          triggerStart="top 70%"
+          ease="power3.out"
+          floatDistance={25}
+          floatDuration={3}
         />
       </div>
 

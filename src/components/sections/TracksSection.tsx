@@ -201,7 +201,10 @@ export default function TracksSection() {
         </div>
       </div>
 
-      <div className="absolute top-[32%] left-[50%] -translate-x-1/2 w-[35%] sm:w-[30%] md:w-[27%] lg:w-[22%] z-20 pointer-events-none overflow-visible">
+      <div 
+        className="absolute top-[32%] left-[50%] -translate-x-1/2 w-[35%] sm:w-[30%] md:w-[27%] lg:w-[22%] z-20 pointer-events-none overflow-visible drop-shadow-none"
+        style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transformStyle: 'preserve-3d' }}
+      >
         <FallingMascot
           src={getPublicImageUrl("track/trackBubbleMascot.png")}
           alt="Mascot in Bubble"

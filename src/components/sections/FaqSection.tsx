@@ -119,7 +119,7 @@ export default function FaqSection({ faqItems }: Props) {
           />
 
           <div 
-            className="absolute left-[31%] top-[50%] md:top-[48%] w-[32%] sm:w-[34%] md:w-[38%] lg:w-[38%]"
+            className="absolute left-[31%] top-[50%] md:top-[48%] w-[32%] sm:w-[34%] md:w-[38%] lg:w-[38%] overflow-visible"
           >
             <FallingMascot
               src={getPublicImageUrl("faq/faqMascot.png")}

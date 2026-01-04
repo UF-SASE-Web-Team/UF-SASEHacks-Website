@@ -21,20 +21,24 @@ const saturdayEvents: ScheduleEvent[] = [
   { time: "8:00 AM", title: "Opening Ceremony", location: "Turlington", color: "bg-[#BFDCFF]" },
   { time: "9:00 AM", title: "Team Formation", location: "Throughout Venue", color: "bg-[#FFC7E5]" },
   { time: "10:00 AM", title: "Hacking Begins!", location: "Newell / Marston", color: "bg-[#D0FFCB]" },
-  { time: "11:00 AM", title: "Mini-Workshops", location: "Turlington", color: "bg-[#FFE4B3]" },
-  { time: "2:00 PM", title: "Mentor Check-Ins", location: "Newell Hall", color: "bg-[#BFDCFF]" },
-  { time: "4:00 PM", title: "Technical Workshops", location: "Various Rooms", color: "bg-[#FFC7E5]" },
-  { time: "4:30 PM", title: "Food Break", location: "Turlington", color: "bg-[#D0FFCB]" },
-  { time: "9:00 PM", title: "Wellness Activity", location: "TBA", color: "bg-[#FFE4B3]" },
-  { time: "10:00 PM", title: "Late Night Snacks", location: "Main Area", color: "bg-[#BFDCFF]" },
+  { time: "10:00 AM", title: "Workshop #1", location: "Turlington", color: "bg-[#FFE4B3]" },
+  { time: "11:00 AM", title: "Social #1", location: "TBA", color: "bg-[#BFDCFF]" },
+  { time: "12:00 PM", title: "Lunch", location: "Turlington", color: "bg-[#FFC7E5]" },
+  { time: "2:00 PM", title: "Workshop #2", location: "Turlington", color: "bg-[#D0FFCB]" },
+  { time: "4:00 PM", title: "Workshop #3", location: "Turlington", color: "bg-[#FFE4B3]" },
+  { time: "6:00 PM", title: "Workshop #4", location: "Turlington", color: "bg-[#BFDCFF]" },
+  { time: "7:00 PM", title: "Dinner", location: "Turlington", color: "bg-[#FFC7E5]" },
+  { time: "9:00 PM", title: "Social #2", location: "Turlington", color: "bg-[#D0FFCB]" },
 ]
 
 const sundayEvents: ScheduleEvent[] = [
-  { time: "8:00 AM", title: "Breakfast", location: "Main Area", color: "bg-[#FFC7E5]" },
+  { time: "12:00 AM", title: "Midnight Snack & Social #3", location: "TBD", color: "bg-[#FFE4B3]" },
+  { time: "7:40 AM", title: "Sunrise Social", location: "TBA", color: "bg-[#BFDCFF]" },
+  { time: "9:30 AM", title: "Breakfast", location: "TBA", color: "bg-[#FFC7E5]" },
   { time: "10:00 AM", title: "Project Submissions Close", color: "bg-[#D0FFCB]" },
-  { time: "10:30 AM", title: "Judging Begins", location: "Reitz Meeting Rooms", color: "bg-[#FFE4B3]" },
-  { time: "12:30 PM", title: "Awards & Closing Ceremony", location: "Main Hall", color: "bg-[#BFDCFF]" },
-  { time: "1:30 PM", title: "Event Ends", color: "bg-[#FFC7E5]" },
+  { time: "11:30 AM", title: "Judging Begins", location: "Reitz Meeting Rooms", color: "bg-[#FFE4B3]" },
+  { time: "2:00 PM", title: "Lunch", location: "Turlington", color: "bg-[#BFDCFF]" },
+  { time: "3:00 PM", title: "Awards & Closing Ceremony", location: "Main Stage", color: "bg-[#FFC7E5]" },
 ]
 
 export default function ScheduleSection() {
@@ -181,7 +185,7 @@ export default function ScheduleSection() {
             </div>
           </div>
 
-          <div className="relative w-[180px] sm:w-[220px] md:w-[320px] lg:w-[350px] z-20 pointer-events-none bottom-2 md:bottom-6">
+          <div className="relative w-[180px] sm:w-[220px] md:w-[320px] lg:w-[350px] z-20 pointer-events-none bottom-2 md:bottom-6 overflow-visible">
             <FallingMascot
               src={getPublicImageUrl("schedule/scheduleMascot.png")}
               alt="Schedule Mascot"

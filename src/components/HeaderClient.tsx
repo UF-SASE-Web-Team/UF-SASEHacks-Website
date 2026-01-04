@@ -55,7 +55,7 @@ export default function HeaderClient({ user }: HeaderClientProps) {
   const socialLinks = [
     { 
       name: "Discord", 
-      href: "https://discord.gg/jHZADudePh", 
+      href: "https://discord.gg/FCSwZnk3Xa", 
       icon: <DiscordIcon /> 
     },
     { 

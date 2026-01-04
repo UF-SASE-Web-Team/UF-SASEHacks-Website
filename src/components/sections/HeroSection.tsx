@@ -134,10 +134,7 @@ export default function HeroSection() {
       <div className="relative z-20 flex flex-col items-center w-full max-w-screen-xl px-4">
         
         {/* GRAPHICS SECTION */}
-        <div 
-          className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-12 mb-8 lg:mb-16 overflow-visible"
-          style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transformStyle: 'preserve-3d' }}
-        >
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-12 mb-8 lg:mb-16 overflow-visible isolate drop-shadow-none">
           <FallingMascot
             src={getPublicImageUrl("/home/homeMascot.png")}
             alt="SASEHacks Mascot"

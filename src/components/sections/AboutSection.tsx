@@ -161,7 +161,7 @@ export default function AboutSection() {
                 
                 {/* Mascot */}
                 <div 
-                  className="absolute top-[-68%] md:top-[-72%] right-[-15%] md:right-[-15%] w-[125%] md:w-[130%] z-30"
+                  className="absolute top-[-68%] md:top-[-72%] right-[-15%] md:right-[-15%] w-[125%] md:w-[130%] z-30 isolate drop-shadow-none"
                 >
                   <FallingMascot
                     src={getPublicImageUrl("about/aboutMascot.png")}

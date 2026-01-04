@@ -185,10 +185,7 @@ export default function ScheduleSection() {
             </div>
           </div>
 
-          <div 
-            className="relative w-[180px] sm:w-[220px] md:w-[320px] lg:w-[350px] z-20 pointer-events-none bottom-2 md:bottom-6 overflow-visible drop-shadow-none"
-            style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
-          >
+          <div className="relative w-[180px] sm:w-[220px] md:w-[320px] lg:w-[350px] z-20 pointer-events-none bottom-2 md:bottom-6 overflow-visible isolate drop-shadow-none">
             <FallingMascot
               src={getPublicImageUrl("schedule/scheduleMascot.png")}
               alt="Schedule Mascot"

@@ -151,14 +151,15 @@ export default function FallingMascot({
   ])
 
   return (
-    <div ref={containerRef} className={`relative ${className}`} style={{ perspective: "1000px" }}>
-      <div ref={mascotRef} className="w-full h-full" style={{ transformStyle: "preserve-3d" }}>
+    <div ref={containerRef} className={`relative ${className}`}>
+      <div ref={mascotRef} className="w-full h-full">
         <Image
           src={src}
           alt={alt}
           width={width}
           height={height}
-          className="w-full h-auto drop-shadow-2xl"
+          className="w-full h-auto"
+          style={{ filter: 'none', WebkitFilter: 'none' }}
           draggable={false}
         />
       </div>

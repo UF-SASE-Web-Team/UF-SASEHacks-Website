@@ -1,8 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useState, useEffect } from "react" 
-import { Menu, X, Instagram } from "lucide-react"
+import { useState, useEffect } from "react"
 import SignOutButton from "./auth/SignOutButton"
 import { User } from "@supabase/supabase-js"
 
@@ -20,15 +19,33 @@ const DiscordIcon = ({ size = 18 }: { size?: number }) => (
 )
 
 const DevpostIcon = ({ size = 18 }: { size?: number }) => (
-  <svg 
-    role="img" 
-    viewBox="0 0 24 24" 
-    width={size} 
-    height={size} 
-    fill="currentColor" 
+  <svg
+    role="img"
+    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path d="M6.002 1.61L0 12.004l6.002 10.386h11.996l6.002-10.386L17.998 1.61zm1.858 4.08h2.969c4.35 0 7.144 2.22 7.144 6.314 0 4.134-2.391 6.314-7.144 6.314H7.86V5.69zm2.844 2.508v7.612h1.15c2.73 0 4.11-1.503 4.11-3.806 0-2.263-1.464-3.806-4.11-3.806z"/>
+  </svg>
+)
+
+const MenuIcon = ({ size = 24 }: { size?: number }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+  </svg>
+)
+
+const XIcon = ({ size = 24 }: { size?: number }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+  </svg>
+)
+
+const InstagramIcon = ({ size = 18 }: { size?: number }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
   </svg>
 )
 
@@ -61,7 +78,7 @@ export default function HeaderClient({ user }: HeaderClientProps) {
     { 
       name: "Instagram", 
       href: "https://www.instagram.com/ufsase/", 
-      icon: <Instagram size={18} /> 
+      icon: <InstagramIcon /> 
     },
     { 
       name: "Devpost", 
@@ -121,7 +138,7 @@ export default function HeaderClient({ user }: HeaderClientProps) {
           )}
 
           <button className="lg:hidden text-[#560700] p-1" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileMenuOpen ? <XIcon size={20} /> : <MenuIcon size={20} />}
           </button>
         </div>
       </div>

@@ -40,7 +40,7 @@ export default async function OnboardingPage() {
 
       <div className="relative z-10 mx-auto max-w-screen-lg px-4 py-10">
         {/* Header */}
-        <div className="mb-8 text-center">
+        <div className="mb-8 pt-18 text-center">
           <h1 className="font-[family-name:var(--font-heading)] text-5xl md:text-6xl text-[#560700] mb-4">
             Complete Registration
           </h1>

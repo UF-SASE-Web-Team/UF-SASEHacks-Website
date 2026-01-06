@@ -163,7 +163,7 @@ export default function HeroSection() {
         </div>
 
         {/* INFORMATION SECTION */}
-        <div ref={contentRef} className="flex flex-col items-center text-center max-w-4xl">
+        <div ref={contentRef} className="flex flex-col items-center text-center max-w-5xl">
           <div className="flex flex-wrap gap-3 justify-center mb-8">
             <div className="inline-flex items-center rounded-full bg-[#ebb8ce] text-[#560700] px-6 py-2 text-sm md:text-base font-[family-name:var(--font-body)] font-bold shadow-md uppercase border-2 border-[#560700]/10">
               📍 {CITY}
@@ -177,18 +177,26 @@ export default function HeroSection() {
             Build something amazing in 24 hours. Meet new teammates, learn from mentors, and ship projects you&apos;ll be proud of!
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center w-full sm:w-auto">
+          <div className="flex flex-wrap gap-5 justify-center items-center w-full max-w-4xl">
             <a
               href="/portal"
-              className="inline-flex items-center justify-center rounded-2xl px-10 py-4 font-[family-name:var(--font-heading)] text-xl md:text-3xl bg-[#ebb8ce] text-[#560700] hover:scale-105 transition-transform duration-300 shadow-xl border-4 border-[#560700] w-full sm:w-auto"
+              className="inline-flex items-center justify-center rounded-2xl px-8 py-4 font-[family-name:var(--font-heading)] text-xl md:text-2xl bg-[#ebb8ce] text-[#560700] hover:scale-105 transition-transform duration-300 shadow-xl border-4 border-[#560700] min-w-[240px]"
             >
-              REGISTER NOW
+              REGISTER TO HACK
+            </a>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfmP-10pDzWzliNk0cElpKA4LnD3ac_Z97IaK6Puvgb6WWclg/viewform"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center rounded-2xl px-8 py-4 font-[family-name:var(--font-heading)] text-xl md:text-2xl bg-[#ebb8ce] text-[#560700] hover:scale-105 transition-transform duration-300 shadow-xl border-4 border-[#560700] min-w-[240px]"
+            >
+              REGISTER TO MENTOR
             </a>
             <a
               href={DISCORD_INVITE}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-2xl px-10 py-4 font-[family-name:var(--font-heading)] text-xl md:text-3xl bg-white text-[#560700] hover:scale-105 transition-transform duration-300 shadow-xl border-4 border-[#ebb8ce] w-full sm:w-auto"
+              className="inline-flex items-center justify-center rounded-2xl px-8 py-4 font-[family-name:var(--font-heading)] text-xl md:text-2xl bg-white text-[#560700] hover:scale-105 transition-transform duration-300 shadow-xl border-4 border-[#ebb8ce] min-w-[200px]"
             >
               JOIN DISCORD
             </a>
@@ -196,7 +204,7 @@ export default function HeroSection() {
               href={DEVPOST_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-2xl px-10 py-4 font-[family-name:var(--font-heading)] text-xl md:text-3xl bg-white text-[#560700] hover:scale-105 transition-transform duration-300 shadow-xl border-4 border-[#ebb8ce] w-full sm:w-auto"
+              className="inline-flex items-center justify-center rounded-2xl px-8 py-4 font-[family-name:var(--font-heading)] text-xl md:text-2xl bg-white text-[#560700] hover:scale-105 transition-transform duration-300 shadow-xl border-4 border-[#ebb8ce] min-w-[200px]"
             >
               DEVPOST
             </a>

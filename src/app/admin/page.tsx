@@ -22,10 +22,10 @@ export default async function AdminPage({
   const rejectedCount = res.rows?.filter(r => r.status === "rejected").length ?? 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FFE4B3] via-[#BFDCFF] to-[#D0FFCB] relative overflow-hidden">
+    <div className="min-h-screen bg-[#FFE4B3] relative overflow-hidden">
       {/* Decorative background elements */}
-      <div className="absolute top-20 right-10 w-64 h-64 bg-[#FFC7E5] opacity-20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#E6D4FF] opacity-20 rounded-full blur-3xl"></div>
+      <div className="absolute top-20 right-10 w-64 h-64 bg-[#ebb8ce] opacity-30 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#ebb8ce] opacity-20 rounded-full blur-3xl"></div>
 
       {/* Shark mascot decoration */}
       <div className="absolute bottom-0 left-0 opacity-5 pointer-events-none">

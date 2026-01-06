@@ -56,10 +56,10 @@ export default async function PortalPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FFE4B3] via-[#BFDCFF] to-[#D0FFCB] relative overflow-hidden">
+    <div className="min-h-screen bg-[#FFE4B3] relative overflow-hidden">
       {/* Decorative background elements */}
-      <div className="absolute top-20 right-10 w-64 h-64 bg-[#FFC7E5] opacity-20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#E6D4FF] opacity-20 rounded-full blur-3xl"></div>
+      <div className="absolute top-20 right-10 w-64 h-64 bg-[#ebb8ce] opacity-30 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#ebb8ce] opacity-20 rounded-full blur-3xl"></div>
 
       <div className="relative z-10 mx-auto max-w-screen-xl px-4 py-10">
         {/* Header */}
@@ -104,14 +104,14 @@ export default async function PortalPage() {
               </div>
 
               <div className="space-y-4">
-                <div className="p-4 rounded-xl bg-gradient-to-r from-[#FFE4B3]/30 to-[#BFDCFF]/30">
+                <div className="p-4 rounded-xl bg-[#FFE4B3]/40">
                   <p className="font-[family-name:var(--font-body)] text-gray-700 text-sm mb-1">Applicant Name</p>
                   <p className="font-[family-name:var(--font-body)] text-lg font-semibold text-[#560700]">
                     {profile?.full_name}
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-gradient-to-r from-[#D0FFCB]/30 to-[#FFE4B3]/30">
+                <div className="p-4 rounded-xl bg-[#FFE4B3]/40">
                   <p className="font-[family-name:var(--font-body)] text-gray-700 text-sm mb-1">Current Status</p>
                   <p className="font-[family-name:var(--font-body)] text-lg font-semibold text-[#560700] capitalize">
                     {reg?.status ?? "pending"}
@@ -119,7 +119,7 @@ export default async function PortalPage() {
                 </div>
 
                 {reg?.resume_updated_at && (
-                  <div className="p-4 rounded-xl bg-gradient-to-r from-[#FFC7E5]/30 to-[#E6D4FF]/30">
+                  <div className="p-4 rounded-xl bg-[#FFE4B3]/40">
                     <p className="font-[family-name:var(--font-body)] text-gray-700 text-sm mb-1">Resume Updated</p>
                     <p className="font-[family-name:var(--font-body)] text-sm font-medium text-[#560700]">
                       {new Date(reg.resume_updated_at).toLocaleString()}

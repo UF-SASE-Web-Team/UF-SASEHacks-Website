@@ -42,7 +42,7 @@ export default function FaqSection({ faqItems }: Props) {
       )
     }
 
-    // Animate FAQ list
+    // Animate FAQ list - on load instead of scroll
     if (faqListRef.current) {
       gsap.fromTo(
         faqListRef.current,
@@ -52,16 +52,11 @@ export default function FaqSection({ faqItems }: Props) {
           y: 0,
           duration: 0.8,
           ease: "power3.out",
-          scrollTrigger: {
-            trigger: faqListRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
         },
       )
     }
 
-    // Animate buttons
+    // Animate buttons - on load instead of scroll
     if (buttonsRef.current) {
       gsap.fromTo(
         buttonsRef.current,
@@ -70,12 +65,8 @@ export default function FaqSection({ faqItems }: Props) {
           opacity: 1,
           y: 0,
           duration: 0.8,
+          delay: 0.2,
           ease: "power3.out",
-          scrollTrigger: {
-            trigger: buttonsRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
         },
       )
     }

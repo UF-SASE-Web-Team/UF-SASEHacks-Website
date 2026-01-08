@@ -11,8 +11,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const carouselImages = [
   { id: 1, src: getPublicImageUrl("gbm-4-s25.jpg"), alt: "GBM 4" },
-  { id: 2, src: getPublicImageUrl("gbm-4-s25.jpg"), alt: "Event Photo 2" },
-  { id: 3, src: getPublicImageUrl("gbm-4-s25.jpg"), alt: "Event Photo 3" },
+  { id: 2, src: getPublicImageUrl("sase2.png"), alt: "Event Photo 2" },
+  { id: 3, src: getPublicImageUrl("sase1.png"), alt: "Event Photo 3" },
 ];
 
 export default function AboutSection() {

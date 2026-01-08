@@ -183,13 +183,10 @@ export default function SignInForm({ next = "/portal" }: { next?: string }) {
         Continue with GitHub
       </button>
 
-      <div className="relative my-4">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-300"></div>
-        </div>
-        <div className="relative flex justify-center text-sm">
-          <span className="px-4 bg-white text-gray-500 font-[family-name:var(--font-body)]">or</span>
-        </div>
+      <div className="flex items-center gap-4 my-4">
+        <div className="flex-1 border-t border-gray-300"></div>
+        <span className="text-gray-500 text-sm font-[family-name:var(--font-body)]">or</span>
+        <div className="flex-1 border-t border-gray-300"></div>
       </div>
 
       <button

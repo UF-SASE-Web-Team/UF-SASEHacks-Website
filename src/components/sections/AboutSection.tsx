@@ -82,6 +82,7 @@ export default function AboutSection() {
                 src={item.src}
                 alt={item.alt}
                 fill
+                unoptimized
                 className="object-cover"
                 sizes="(max-width: 640px) 300px, (max-width: 768px) 350px, 400px"
               />

@@ -185,7 +185,7 @@ export default function HeroSection() {
               REGISTER TO HACK
             </a>
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSfmP-10pDzWzliNk0cElpKA4LnD3ac_Z97IaK6Puvgb6WWclg/viewform"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdppaUTD5V9QS-ZwI-wpW-qYDOMFEmjsRAEV8iH7ptMWKM64Q/viewform?usp=header"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-center rounded-2xl px-8 py-4 font-[family-name:var(--font-heading)] text-xl md:text-2xl bg-[#ebb8ce] text-[#560700] hover:scale-105 transition-transform duration-300 shadow-xl border-4 border-[#560700] min-w-[240px]"

@@ -3,5 +3,5 @@ export const DOMAIN = "sasehacks.com";
 export const DATES = "March 7-8, 2026";
 export const CITY = "Gainesville, FL";
 
-export const DISCORD_INVITE = "https://discord.gg/FCSwZnk3Xa";
+export const DISCORD_INVITE = "https://discord.gg/gJJVmEPzc6";
 export const DEVPOST_URL = "https://sasehacks.devpost.com/";

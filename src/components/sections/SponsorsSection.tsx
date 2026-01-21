@@ -94,7 +94,7 @@ export default function SponsorsSection() {
   return (
     <section id="sponsors" className="w-full min-h-screen flex flex-col items-center relative overflow-hidden py-16 md:py-20">
       <div className="absolute inset-0 z-0">
-        <Image src={getPublicImageUrl("sponsor/sponsorBackground.png")} alt="Sponsor Background" fill className="object-cover" priority />
+        <Image src={getPublicImageUrl("sponsor/sponsorBackground.png")} alt="Sponsor Background" fill className="object-cover" priority unoptimized />
       </div>
 
       <div className="absolute right-4 -bottom-12 md:right-20 md:bottom-45 lg:right-32 z-20 w-32 md:w-48 lg:w-64">
@@ -145,6 +145,7 @@ export default function SponsorsSection() {
                     src={sponsor.logo}
                     alt={sponsor.name}
                     fill
+                    unoptimized
                     className="object-contain"
                   />
                 </div>

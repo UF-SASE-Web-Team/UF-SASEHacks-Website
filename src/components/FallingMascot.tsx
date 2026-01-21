@@ -161,6 +161,7 @@ export default function FallingMascot({
           className="w-full h-auto"
           style={{ filter: 'none', WebkitFilter: 'none' }}
           draggable={false}
+          unoptimized={true}
         />
       </div>
     </div>

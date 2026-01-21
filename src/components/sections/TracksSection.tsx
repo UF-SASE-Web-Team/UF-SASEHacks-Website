@@ -113,6 +113,7 @@ export default function TracksSection() {
           fill
           className="object-cover object-center"
           priority
+          unoptimized
         />
       </div>
 
@@ -129,6 +130,7 @@ export default function TracksSection() {
           width={200}
           height={400}
           className="w-full h-auto" 
+          unoptimized
         />
       </div>
 
@@ -143,6 +145,7 @@ export default function TracksSection() {
           width={200}
           height={350}
           className="w-full h-auto"
+          unoptimized
         />
       </div>
 
@@ -159,6 +162,7 @@ export default function TracksSection() {
             alt="Service Track Bubble"
             fill
             className="object-contain mix-blend-multiply opacity-90 rounded-full"
+            unoptimized
           />
           {/* Content */}
           <div className="absolute inset-0 flex items-center justify-center p-8 md:p-12 transition-all duration-300">
@@ -187,6 +191,7 @@ export default function TracksSection() {
               alt="Finance Track Bubble"
               fill
               className="object-contain mix-blend-multiply opacity-90 rounded-full"
+              unoptimized
             />
           </div>
           
@@ -232,6 +237,7 @@ export default function TracksSection() {
             src={getPublicImageUrl("track/trackBubble2.png")}
             alt="Gamification Track Bubble"
             fill
+            unoptimized
             className="object-contain mix-blend-multiply opacity-90 rounded-full"
           />
            <div className="absolute inset-0 flex items-center justify-center p-8 md:p-12 transition-all duration-300">
@@ -257,6 +263,7 @@ export default function TracksSection() {
               src={getPublicImageUrl("track/trackBubble2.png")}
               alt="Art Track Bubble"
               fill
+              unoptimized
               className="object-contain mix-blend-multiply opacity-90 rounded-full"
             />
           </div>
@@ -280,6 +287,7 @@ export default function TracksSection() {
           width={1920}
           height={300}
           className="w-full h-auto object-contain object-bottom"
+          unoptimized
         />
       </div>
     </section>

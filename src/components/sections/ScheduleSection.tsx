@@ -90,6 +90,7 @@ export default function ScheduleSection() {
           fill
           className="object-cover object-bottom opacity-80"
           priority
+          unoptimized
         />
       </div>
 
@@ -171,6 +172,7 @@ export default function ScheduleSection() {
                   width={1920} 
                   height={150} 
                   className="w-full h-auto object-cover opacity-90" 
+                  unoptimized
                 />
               </div>
               <div className="flex w-1/2 shrink-0">
@@ -180,6 +182,7 @@ export default function ScheduleSection() {
                   width={1920} 
                   height={150} 
                   className="w-full h-auto object-cover opacity-90" 
+                  unoptimized
                 />
               </div>
             </div>

@@ -109,6 +109,7 @@ export default function HeroSection() {
           fill
           className="object-cover object-bottom"
           priority
+          unoptimized
         />
       </div>
 
@@ -127,6 +128,7 @@ export default function HeroSection() {
               fill
               className="object-contain pointer-events-none select-none"
               draggable={false}
+              unoptimized
             />
           </div>
         ))}
@@ -158,6 +160,7 @@ export default function HeroSection() {
               fill
               className="object-contain"
               priority
+              unoptimized
             />
           </div>
         </div>

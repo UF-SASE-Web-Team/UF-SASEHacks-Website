@@ -95,6 +95,7 @@ export default function FaqSection({ faqItems }: Props) {
           className="object-cover"
           style={{ objectPosition: "center" }}
           priority
+          unoptimized
         />
       </div>
       {/* Flag and Mascot Layer */}
@@ -107,6 +108,7 @@ export default function FaqSection({ faqItems }: Props) {
             width={500}
             height={700}
             className="w-full h-auto drop-shadow-lg"
+            unoptimized
           />
 
           <div 
@@ -144,6 +146,7 @@ export default function FaqSection({ faqItems }: Props) {
           width={1200}
           height={600}
           className="w-full h-auto"
+          unoptimized
         />
       </div>
 

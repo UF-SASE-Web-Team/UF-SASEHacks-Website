@@ -98,6 +98,7 @@ export default function AboutSection() {
           fill
           className="object-cover object-bottom"
           priority
+          unoptimized
         />
       </div>
 
@@ -105,19 +106,19 @@ export default function AboutSection() {
       <div className="absolute inset-0 pointer-events-none z-10 flex flex-col items-start -space-y-5 translate-y-110 lg:translate-y-0 lg:block">
         {/* Yellow block */}
         <div ref={shapeYellowRef} className="relative lg:absolute lg:bottom-0 lg:left-[1%] w-24 md:w-32 ml-4 lg:ml-0">
-          <Image src={getPublicImageUrl("about/aboutYellowBlock.png")} alt="Yellow" width={140} height={90} />
+          <Image src={getPublicImageUrl("about/aboutYellowBlock.png")} alt="Yellow" width={140} height={90} unoptimized />
         </div>
         {/* Blue block */}
         <div ref={shapeBlueRef} className="relative lg:absolute lg:bottom-0 lg:left-[12%] w-28 md:w-40 ml-4 lg:ml-0">
-          <Image src={getPublicImageUrl("about/aboutBlueBlock.png")} alt="Blue" width={180} height={120} />
+          <Image src={getPublicImageUrl("about/aboutBlueBlock.png")} alt="Blue" width={180} height={120} unoptimized />
         </div>
         {/* Orange block */}
         <div ref={shapeOrangeRef} className="relative lg:absolute lg:bottom-0 lg:left-[24%] w-20 md:w-28 ml-4 lg:ml-0">
-          <Image src={getPublicImageUrl("about/aboutOrangeBlock.png")} alt="Orange" width={120} height={120} />
+          <Image src={getPublicImageUrl("about/aboutOrangeBlock.png")} alt="Orange" width={120} height={120} unoptimized />
         </div>
         {/* Green block */}
         <div ref={shapeGreenRef} className="relative lg:absolute lg:bottom-0 lg:left-[36%] w-16 md:w-24 ml-4 lg:ml-0">
-          <Image src={getPublicImageUrl("about/aboutGreenBlock.png")} alt="Green" width={100} height={100} />
+          <Image src={getPublicImageUrl("about/aboutGreenBlock.png")} alt="Green" width={100} height={100} unoptimized />
         </div>
       </div>
 
@@ -146,6 +147,7 @@ export default function AboutSection() {
                 width={2500} 
                 height={3400} 
                 className="w-full h-auto drop-shadow-xl"
+                unoptimized
               />
             </div>
 
@@ -158,6 +160,7 @@ export default function AboutSection() {
                   width={300} 
                   height={460} 
                   className="w-full h-auto drop-shadow-xl"
+                  unoptimized
                 />
                 
                 {/* Mascot */}

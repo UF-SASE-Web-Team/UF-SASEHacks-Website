@@ -89,9 +89,32 @@ export default function HeaderClient({ user }: HeaderClientProps) {
 
   return (
     <header className="absolute top-0 left-0 right-0 z-50 px-4 pt-4">
+      <a 
+        id="mlh-trust-badge" 
+        style={{
+          display: 'block',
+          maxWidth: '100px', 
+          minWidth: '60px', 
+          position: 'fixed', 
+          left: '15px', 
+          top: '0', 
+          width: '10%', 
+          zIndex: 10000
+        }}
+        href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=gray" 
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img 
+          src="https://s3.amazonaws.com/logged-assets/trust-badge/2026/mlh-trust-badge-2026-gray.svg" 
+          alt="Major League Hacking 2026 Hackathon Season" 
+          style={{ width: '100%' }}
+        />
+      </a>
+
       <div className="mx-auto max-w-[95%] lg:max-w-[1400px] bg-[#ebb8ce] rounded-full px-8 py-1.5 flex items-center justify-between shadow-md border border-[#560700]/10">
         
-        <Link href="/" className="font-[family-name:var(--font-heading)] text-[#560700] text-xl md:text-2xl hover:opacity-80 transition-opacity">
+        <Link href="/" className="ml-16 font-[family-name:var(--font-heading)] text-[#560700] text-xl md:text-2xl hover:opacity-80 transition-opacity">
           SASEHacks
         </Link>
 

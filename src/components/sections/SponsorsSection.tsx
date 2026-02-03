@@ -15,6 +15,11 @@ const SPONSORS = [
     logo: getPublicImageUrl("/Pure-Buttons-Blue-Gradient-Logo-RGB.png"), 
     link: "https://mlh.link/MLH-PureButtons-hackathons",
   },
+  {
+    name: "Florida Community Innovation",
+    logo: getPublicImageUrl("/fciLogo.png"), 
+    link: "https://floridainnovation.org/",
+  },
 ];
 
 export default function SponsorsSection() {

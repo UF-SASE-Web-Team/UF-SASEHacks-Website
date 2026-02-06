@@ -20,6 +20,21 @@ const SPONSORS = [
     logo: getPublicImageUrl("/fciLogo.png"), 
     link: "https://floridainnovation.org/",
   },
+  {
+    name: "ExxonMobil",
+    logo: getPublicImageUrl("/ExxonMobilLogo.png"), 
+    link: "https://exxonmobil.com/",
+  },
+  {
+    name: "P&G",
+    logo: getPublicImageUrl("/P&GLogo.jpeg"), 
+    link: "https://pg.com/",
+  },
+  {
+    name: "Sandia",
+    logo: getPublicImageUrl("/SandiaLogo.jpg"), 
+    link: "https://sandia.gov/",
+  },
 ];
 
 export default function SponsorsSection() {
@@ -143,7 +158,7 @@ export default function SponsorsSection() {
                 href={sponsor.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white/90 hover:bg-white p-4 md:p-6 rounded-2xl transition-all duration-300 hover:scale-105 shadow-xl flex items-center justify-center w-56 h-28 md:w-72 md:h-36"
+                className="bg-white rounded-xl p-2 md:p-4 transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center w-56 h-40 md:w-64 md:h-48"
               >
                 <div className="relative w-full h-full">
                   <Image

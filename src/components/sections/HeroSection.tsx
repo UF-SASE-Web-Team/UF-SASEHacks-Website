@@ -140,7 +140,7 @@ export default function HeroSection() {
           <FallingMascot
             src={getPublicImageUrl("/home/homeMascot.png")}
             alt="SASEHacks Mascot"
-            className="w-70 h-60 md:h-64 lg:w-96 lg:h-96 flex-shrink-0"
+            className="w-70 h-60 md:h-64 lg:w-96 lg:h-96 flex-shrink-0 lg:translate-x-35"
             fallDistance={600}
             duration={1.8}
             rotations={1}

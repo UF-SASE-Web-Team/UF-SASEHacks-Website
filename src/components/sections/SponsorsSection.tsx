@@ -35,6 +35,11 @@ const SPONSORS = [
     logo: getPublicImageUrl("/SandiaLogo.jpg"), 
     link: "https://sandia.gov/",
   },
+  {
+    name: "Alive Credit Union",
+    logo: getPublicImageUrl("/aliveLogo.png"), 
+    link: "https://www.alivecu.coop/",
+  },
 ];
 
 export default function SponsorsSection() {

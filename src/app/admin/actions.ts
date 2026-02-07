@@ -10,9 +10,13 @@ export type AdminRow = {
   resume_updated_at: string | null;
   profiles: {
     full_name: string | null;
+    first_name: string | null;
+    last_name: string | null;
     email: string | null;
     phone_number: string | null;
     date_of_birth: string | null;
+    age: string | null;
+    linkedin_url: string | null;
     school: string | null;
     major: string | null;
     grad_year: string | null;

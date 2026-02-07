@@ -21,11 +21,43 @@ export default async function ProfilePage() {
 
   const { data: registration } = await supabase
     .from("registrations")
-    .select("editing_locked, accuracy_agreement, terms_and_conditions, code_of_conduct, can_photograph, share_resume_with_companies")
+    .select("editing_locked, accuracy_agreement, terms_and_conditions, code_of_conduct, can_photograph, share_resume_with_companies, mlh_code_of_conduct, mlh_data_sharing, mlh_communications")
     .eq("user_id", user.id)
     .single();
 
   const disabled = registration?.editing_locked ?? false;
+
+  // Compute initial values for the new schema, with fallbacks from legacy data
+  // Split full_name into first/last if we have legacy data
+  let initialFirstName = profile?.first_name ?? "";
+  let initialLastName = profile?.last_name ?? "";
+  if (!initialFirstName && !initialLastName && profile?.full_name) {
+    const parts = profile.full_name.split(" ");
+    initialFirstName = parts[0] || "";
+    initialLastName = parts.slice(1).join(" ") || "";
+  }
+
+  // Compute age from date_of_birth if we have legacy data
+  let initialAge = profile?.age ?? "";
+  if (!initialAge && profile?.date_of_birth) {
+    try {
+      const dob = new Date(profile.date_of_birth);
+      const today = new Date();
+      let age = today.getFullYear() - dob.getFullYear();
+      const monthDiff = today.getMonth() - dob.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+        age--;
+      }
+      // Map to our age options
+      if (age < 18) initialAge = "17";
+      else if (age <= 24) initialAge = String(age);
+      else if (age <= 34) initialAge = "25-34";
+      else if (age <= 44) initialAge = "35-44";
+      else initialAge = "45+";
+    } catch {
+      initialAge = "18";
+    }
+  }
 
   return (
     <div className="min-h-screen bg-[#FFE4B3] relative overflow-hidden">
@@ -67,14 +99,15 @@ export default async function ProfilePage() {
         <div className="mt-6">
           <ProfileForm
             initialValues={{
-              full_name: profile?.full_name ?? "",
+              first_name: initialFirstName,
+              last_name: initialLastName,
               email: profile?.email ?? user.email ?? "",
               phone_number: profile?.phone_number ?? "",
-              date_of_birth: profile?.date_of_birth ?? "",
+              age: initialAge || "18",
               school: profile?.school ?? "",
               major: profile?.major ?? "",
               grad_year: profile?.grad_year ?? "2026",
-              level_of_study: profile?.level_of_study ?? "undergraduate",
+              level_of_study: profile?.level_of_study ?? "undergraduate-3-plus-year",
               engineering_skill: profile?.engineering_skill ?? "3",
               hackathon_experience: profile?.hackathon_experience ?? "0",
               address_line1: profile?.address_line1 ?? "",
@@ -83,6 +116,7 @@ export default async function ProfilePage() {
               state: profile?.state ?? "",
               zip_code: profile?.zip_code ?? "",
               country: profile?.country ?? "",
+              linkedin_url: profile?.linkedin_url ?? "",
               tshirt: profile?.tshirt ?? "M",
               dietary: Array.isArray(profile?.dietary)
                 ? profile.dietary.filter((d: unknown): d is typeof dietaryOptions[number] =>
@@ -103,6 +137,9 @@ export default async function ProfilePage() {
               code_of_conduct: !!registration?.code_of_conduct,
               can_photograph: !!registration?.can_photograph,
               share_resume_with_companies: !!registration?.share_resume_with_companies,
+              mlh_code_of_conduct: !!registration?.mlh_code_of_conduct,
+              mlh_data_sharing: !!registration?.mlh_data_sharing,
+              mlh_communications: !!registration?.mlh_communications,
             }}
             action={upsertProfileAndConsents}
             disabled={disabled}

@@ -133,7 +133,11 @@ export default function AdminTable({ rows }: { rows: AdminRow[] }) {
                   onChange={(e) => onToggle(r.user_id, e.target.checked)}
                 />
               </td>
-              <td className="px-3 py-2">{r.profiles?.full_name ?? "-"}</td>
+              <td className="px-3 py-2">
+                {r.profiles?.first_name && r.profiles?.last_name
+                  ? `${r.profiles.first_name} ${r.profiles.last_name}`
+                  : r.profiles?.full_name ?? "-"}
+              </td>
               <td className="px-3 py-2">{r.profiles?.email ?? "-"}</td>
               <td className="px-3 py-2">{r.profiles?.school ?? "-"}</td>
               <td className="px-3 py-2">{r.status}</td>

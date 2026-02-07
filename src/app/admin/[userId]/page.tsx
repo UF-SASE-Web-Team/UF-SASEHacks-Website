@@ -52,6 +52,31 @@ export default async function AdminUserDetailPage({
     }
   };
 
+  // Get display name - prefer first_name + last_name, fallback to full_name
+  const displayName = profile.first_name && profile.last_name
+    ? `${profile.first_name} ${profile.last_name}`
+    : profile.full_name || "Unknown";
+
+  // Get display age - prefer age field, fallback to calculated from date_of_birth
+  const getDisplayAge = () => {
+    if (profile.age) return profile.age;
+    if (profile.date_of_birth) {
+      try {
+        const dob = new Date(profile.date_of_birth);
+        const today = new Date();
+        const age = today.getFullYear() - dob.getFullYear();
+        const monthDiff = today.getMonth() - dob.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+          return String(age - 1);
+        }
+        return String(age);
+      } catch {
+        return "-";
+      }
+    }
+    return "-";
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FFE4B3] via-[#BFDCFF] to-[#D0FFCB] relative overflow-hidden">
       {/* Decorative background elements */}
@@ -82,7 +107,7 @@ export default async function AdminUserDetailPage({
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <h1 className="font-[family-name:var(--font-heading)] text-5xl md:text-6xl text-[#560700]">
-                {profile.full_name}
+                {displayName}
               </h1>
               <div className="mt-2 flex items-center gap-2">
                 <span className="font-[family-name:var(--font-body)] text-sm text-gray-600">User ID:</span>
@@ -106,8 +131,12 @@ export default async function AdminUserDetailPage({
               <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700] mb-4">Personal Information</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Full Name</label>
-              <p className="font-[family-name:var(--font-body)] text-sm mt-1">{profile.full_name || "-"}</p>
+              <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">First Name</label>
+              <p className="font-[family-name:var(--font-body)] text-sm mt-1">{profile.first_name || "-"}</p>
+            </div>
+            <div>
+              <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Last Name</label>
+              <p className="font-[family-name:var(--font-body)] text-sm mt-1">{profile.last_name || "-"}</p>
             </div>
             <div>
               <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Email</label>
@@ -118,9 +147,31 @@ export default async function AdminUserDetailPage({
               <p className="font-[family-name:var(--font-body)] text-sm mt-1">{profile.phone_number || "-"}</p>
             </div>
             <div>
-              <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Date of Birth</label>
-              <p className="font-[family-name:var(--font-body)] text-sm mt-1">{profile.date_of_birth || "-"}</p>
+              <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Age</label>
+              <p className="font-[family-name:var(--font-body)] text-sm mt-1">{getDisplayAge()}</p>
             </div>
+            <div>
+              <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">LinkedIn</label>
+              <p className="font-[family-name:var(--font-body)] text-sm mt-1">
+                {profile.linkedin_url ? (
+                  <a href={profile.linkedin_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                    {profile.linkedin_url}
+                  </a>
+                ) : "-"}
+              </p>
+            </div>
+            {profile.date_of_birth && (
+              <div>
+                <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Date of Birth (legacy)</label>
+                <p className="font-[family-name:var(--font-body)] text-sm mt-1 text-gray-500">{profile.date_of_birth}</p>
+              </div>
+            )}
+            {profile.full_name && profile.first_name && (
+              <div>
+                <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Full Name (legacy)</label>
+                <p className="font-[family-name:var(--font-body)] text-sm mt-1 text-gray-500">{profile.full_name}</p>
+              </div>
+            )}
           </div>
         </div>
           </div>
@@ -145,7 +196,7 @@ export default async function AdminUserDetailPage({
               </div>
               <div>
                 <label className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-600">Level of Study</label>
-                <p className="font-[family-name:var(--font-body)] text-sm mt-1 capitalize">{profile.level_of_study || "-"}</p>
+                <p className="font-[family-name:var(--font-body)] text-sm mt-1 capitalize">{profile.level_of_study?.replace(/-/g, " ") || "-"}</p>
               </div>
             </div>
           </div>
@@ -302,6 +353,36 @@ export default async function AdminUserDetailPage({
                   {registration?.can_photograph ? "✓" : "✗"}
                 </span>
                 <span>Photography Consent (optional)</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className={registration?.share_resume_with_companies ? "text-green-600" : "text-gray-400"}>
+                  {registration?.share_resume_with_companies ? "✓" : "✗"}
+                </span>
+                <span>Share Resume with Companies (optional)</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 pt-4 border-t">
+            <h3 className="text-sm font-semibold mb-2">MLH Agreements</h3>
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center gap-2">
+                <span className={registration?.mlh_code_of_conduct ? "text-green-600" : "text-red-600"}>
+                  {registration?.mlh_code_of_conduct ? "✓" : "✗"}
+                </span>
+                <span>MLH Code of Conduct</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className={registration?.mlh_data_sharing ? "text-green-600" : "text-red-600"}>
+                  {registration?.mlh_data_sharing ? "✓" : "✗"}
+                </span>
+                <span>MLH Data Sharing</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className={registration?.mlh_communications ? "text-green-600" : "text-gray-400"}>
+                  {registration?.mlh_communications ? "✓" : "✗"}
+                </span>
+                <span>MLH Communications (optional)</span>
               </div>
             </div>
           </div>

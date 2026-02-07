@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -10,10 +10,18 @@ import {
   dietaryOptions,
   gradYearOptions,
   levelOfStudyOptions,
+  levelOfStudyLabels,
   hackathonExperienceOptions,
   genderOptions,
+  genderLabels,
   raceOptions,
+  raceLabels,
+  ageOptions,
+  majorOptions,
+  majorLabels,
 } from "@/lib/validation";
+import { searchSchools } from "@/lib/mlh-schools";
+import { searchCountries } from "@/lib/countries";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -24,6 +32,9 @@ type Props = {
     code_of_conduct: boolean;
     can_photograph: boolean;
     share_resume_with_companies: boolean;
+    mlh_code_of_conduct: boolean;
+    mlh_data_sharing: boolean;
+    mlh_communications: boolean;
   };
   profileAction: (state: unknown, formData: FormData) => Promise<{ ok: boolean; error?: string }>;
   consentAction: (state: unknown, formData: FormData) => Promise<{ ok: boolean; error?: string }>;
@@ -47,7 +58,20 @@ export default function OnboardingForm({
   const [codeOfConduct, setCodeOfConduct] = useState(initialConsents.code_of_conduct);
   const [canPhotograph, setCanPhotograph] = useState(initialConsents.can_photograph);
   const [shareResumeWithCompanies, setShareResumeWithCompanies] = useState(initialConsents.share_resume_with_companies);
+  const [mlhCodeOfConduct, setMlhCodeOfConduct] = useState(initialConsents.mlh_code_of_conduct);
+  const [mlhDataSharing, setMlhDataSharing] = useState(initialConsents.mlh_data_sharing);
+  const [mlhCommunications, setMlhCommunications] = useState(initialConsents.mlh_communications);
   const [resumeFile, setResumeFile] = useState<File | null>(null);
+
+  // School autocomplete state
+  const [schoolQuery, setSchoolQuery] = useState(initialProfile.school);
+  const [showSchoolDropdown, setShowSchoolDropdown] = useState(false);
+  const schoolResults = useMemo(() => searchSchools(schoolQuery, 8), [schoolQuery]);
+
+  // Country autocomplete state
+  const [countryQuery, setCountryQuery] = useState(initialProfile.country);
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+  const countryResults = useMemo(() => searchCountries(countryQuery, 10), [countryQuery]);
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
@@ -60,7 +84,7 @@ export default function OnboardingForm({
     setIsSubmitting(true);
 
     // Validate required consents
-    if (!accuracyAgreement || !termsAndConditions || !codeOfConduct) {
+    if (!accuracyAgreement || !termsAndConditions || !codeOfConduct || !mlhCodeOfConduct || !mlhDataSharing) {
       setServerMsg("You must accept all required agreements to continue.");
       setIsSubmitting(false);
       return;
@@ -98,6 +122,9 @@ export default function OnboardingForm({
       if (codeOfConduct) consentFd.append("code_of_conduct", "on");
       if (canPhotograph) consentFd.append("can_photograph", "on");
       if (shareResumeWithCompanies) consentFd.append("share_resume_with_companies", "on");
+      if (mlhCodeOfConduct) consentFd.append("mlh_code_of_conduct", "on");
+      if (mlhDataSharing) consentFd.append("mlh_data_sharing", "on");
+      if (mlhCommunications) consentFd.append("mlh_communications", "on");
 
       const consentResult = await consentAction(undefined, consentFd);
       if (!consentResult.ok) {
@@ -135,14 +162,26 @@ export default function OnboardingForm({
 
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block">
-            <span className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-700">Full name *</span>
+            <span className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-700">First Name *</span>
             <input
               className="mt-2 w-full rounded-xl border-2 border-gray-300 px-4 py-3 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#ff9b5e] focus:border-transparent hover:border-gray-400 font-[family-name:var(--font-body)]"
               disabled={disabled}
-              {...form.register("full_name")}
+              {...form.register("first_name")}
             />
-            {form.formState.errors.full_name && (
-              <p className="text-xs text-red-600 mt-1">{form.formState.errors.full_name.message}</p>
+            {form.formState.errors.first_name && (
+              <p className="text-xs text-red-600 mt-1">{form.formState.errors.first_name.message}</p>
+            )}
+          </label>
+
+          <label className="block">
+            <span className="font-[family-name:var(--font-body)] text-sm font-semibold text-gray-700">Last Name *</span>
+            <input
+              className="mt-2 w-full rounded-xl border-2 border-gray-300 px-4 py-3 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#ff9b5e] focus:border-transparent hover:border-gray-400 font-[family-name:var(--font-body)]"
+              disabled={disabled}
+              {...form.register("last_name")}
+            />
+            {form.formState.errors.last_name && (
+              <p className="text-xs text-red-600 mt-1">{form.formState.errors.last_name.message}</p>
             )}
           </label>
 
@@ -170,15 +209,33 @@ export default function OnboardingForm({
           </label>
 
           <label className="block">
-            <span className="text-sm font-medium">Date of Birth *</span>
-            <input
-              type="date"
+            <span className="text-sm font-medium">Age *</span>
+            <select
               className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
               disabled={disabled}
-              {...form.register("date_of_birth")}
+              {...form.register("age")}
+            >
+              <option value="">Select your age</option>
+              {ageOptions.map(a => (
+                <option key={a} value={a}>{a === "17" ? "Under 18" : a}</option>
+              ))}
+            </select>
+            {form.formState.errors.age && (
+              <p className="text-xs text-red-600 mt-1">{form.formState.errors.age.message}</p>
+            )}
+          </label>
+
+          <label className="block">
+            <span className="text-sm font-medium">LinkedIn URL *</span>
+            <input
+              type="url"
+              className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
+              disabled={disabled}
+              placeholder="https://linkedin.com/in/yourprofile"
+              {...form.register("linkedin_url")}
             />
-            {form.formState.errors.date_of_birth && (
-              <p className="text-xs text-red-600 mt-1">{form.formState.errors.date_of_birth.message}</p>
+            {form.formState.errors.linkedin_url && (
+              <p className="text-xs text-red-600 mt-1">{form.formState.errors.linkedin_url.message}</p>
             )}
           </label>
         </div>
@@ -192,27 +249,62 @@ export default function OnboardingForm({
           <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700]">Education</h2>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <label className="block">
+          {/* School with autocomplete */}
+          <div className="block relative">
             <span className="text-sm font-medium">School *</span>
             <input
               className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
               disabled={disabled}
-              placeholder="e.g., University of Florida"
-              {...form.register("school")}
+              placeholder="Start typing your school name..."
+              value={schoolQuery}
+              onChange={(e) => {
+                setSchoolQuery(e.target.value);
+                form.setValue("school", e.target.value);
+                setShowSchoolDropdown(true);
+              }}
+              onFocus={() => setShowSchoolDropdown(true)}
+              onBlur={() => setTimeout(() => setShowSchoolDropdown(false), 200)}
             />
+            {showSchoolDropdown && schoolResults.length > 0 && (
+              <div className="absolute z-10 mt-1 w-full bg-white border rounded-md shadow-lg max-h-60 overflow-auto">
+                {schoolResults.map(school => (
+                  <button
+                    key={school.id}
+                    type="button"
+                    className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100"
+                    onMouseDown={() => {
+                      setSchoolQuery(school.name);
+                      form.setValue("school", school.name);
+                      setShowSchoolDropdown(false);
+                    }}
+                  >
+                    {school.name}
+                  </button>
+                ))}
+              </div>
+            )}
+            {showSchoolDropdown && schoolQuery.length >= 2 && schoolResults.length === 0 && (
+              <div className="absolute z-10 mt-1 w-full bg-white border rounded-md shadow-lg p-3 text-sm text-gray-500">
+                No matching schools found. You can enter a custom school name.
+              </div>
+            )}
             {form.formState.errors.school && (
               <p className="text-xs text-red-600 mt-1">{form.formState.errors.school.message}</p>
             )}
-          </label>
+          </div>
 
           <label className="block">
-            <span className="text-sm font-medium">Major / Field *</span>
-            <input
+            <span className="text-sm font-medium">Major / Field (optional)</span>
+            <select
               className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
               disabled={disabled}
-              placeholder="e.g., Computer Science"
               {...form.register("major")}
-            />
+            >
+              <option value="">Select your major</option>
+              {majorOptions.map(m => (
+                <option key={m} value={m}>{majorLabels[m]}</option>
+              ))}
+            </select>
             {form.formState.errors.major && (
               <p className="text-xs text-red-600 mt-1">{form.formState.errors.major.message}</p>
             )}
@@ -237,7 +329,7 @@ export default function OnboardingForm({
               {...form.register("level_of_study")}
             >
               {levelOfStudyOptions.map(l => (
-                <option key={l} value={l}>{l.charAt(0).toUpperCase() + l.slice(1)}</option>
+                <option key={l} value={l}>{levelOfStudyLabels[l]}</option>
               ))}
             </select>
           </label>
@@ -289,17 +381,60 @@ export default function OnboardingForm({
           <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700]">Contact Information</h2>
 
         <div className="grid gap-4">
+          <div className="block relative">
+            <span className="text-sm font-medium">Country of Residence *</span>
+            <input
+              className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
+              disabled={disabled}
+              placeholder="Start typing your country..."
+              value={countryQuery}
+              onChange={(e) => {
+                setCountryQuery(e.target.value);
+                form.setValue("country", e.target.value);
+                setShowCountryDropdown(true);
+              }}
+              onFocus={() => setShowCountryDropdown(true)}
+              onBlur={() => setTimeout(() => setShowCountryDropdown(false), 200)}
+            />
+            {showCountryDropdown && countryResults.length > 0 && (
+              <div className="absolute z-10 mt-1 w-full bg-white border rounded-md shadow-lg max-h-60 overflow-auto">
+                {countryResults.map(country => (
+                  <button
+                    key={country.code}
+                    type="button"
+                    className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100"
+                    onMouseDown={() => {
+                      setCountryQuery(country.name);
+                      form.setValue("country", country.name);
+                      setShowCountryDropdown(false);
+                    }}
+                  >
+                    {country.name}
+                  </button>
+                ))}
+              </div>
+            )}
+            {form.formState.errors.country && (
+              <p className="text-xs text-red-600 mt-1">{form.formState.errors.country.message}</p>
+            )}
+          </div>
+        </div>
+
+        <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <h3 className="text-sm font-semibold text-gray-700 mb-1">Shipping Address (Optional)</h3>
+          <p className="text-xs text-gray-500 mb-4">
+            Only needed if we need to ship prizes, swag, or other materials to you.
+          </p>
+
+        <div className="grid gap-4">
           <label className="block">
-            <span className="text-sm font-medium">Address Line 1 *</span>
+            <span className="text-sm font-medium">Address Line 1</span>
             <input
               className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
               disabled={disabled}
               placeholder="Street address"
               {...form.register("address_line1")}
             />
-            {form.formState.errors.address_line1 && (
-              <p className="text-xs text-red-600 mt-1">{form.formState.errors.address_line1.message}</p>
-            )}
           </label>
 
           <label className="block">
@@ -307,61 +442,40 @@ export default function OnboardingForm({
             <input
               className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
               disabled={disabled}
-              placeholder="Apt, suite, etc (optional)"
+              placeholder="Apt, suite, etc"
               {...form.register("address_line2")}
             />
           </label>
 
           <div className="grid gap-4 sm:grid-cols-3">
             <label className="block">
-              <span className="text-sm font-medium">City *</span>
+              <span className="text-sm font-medium">City</span>
               <input
                 className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
                 disabled={disabled}
                 {...form.register("city")}
               />
-              {form.formState.errors.city && (
-                <p className="text-xs text-red-600 mt-1">{form.formState.errors.city.message}</p>
-              )}
             </label>
 
             <label className="block">
-              <span className="text-sm font-medium">State *</span>
+              <span className="text-sm font-medium">State</span>
               <input
                 className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
                 disabled={disabled}
                 {...form.register("state")}
               />
-              {form.formState.errors.state && (
-                <p className="text-xs text-red-600 mt-1">{form.formState.errors.state.message}</p>
-              )}
             </label>
 
             <label className="block">
-              <span className="text-sm font-medium">Zip Code *</span>
+              <span className="text-sm font-medium">Zip Code</span>
               <input
                 className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
                 disabled={disabled}
                 {...form.register("zip_code")}
               />
-              {form.formState.errors.zip_code && (
-                <p className="text-xs text-red-600 mt-1">{form.formState.errors.zip_code.message}</p>
-              )}
             </label>
           </div>
-
-          <label className="block">
-            <span className="text-sm font-medium">Country *</span>
-            <input
-              className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
-              disabled={disabled}
-              placeholder="e.g., United States"
-              {...form.register("country")}
-            />
-            {form.formState.errors.country && (
-              <p className="text-xs text-red-600 mt-1">{form.formState.errors.country.message}</p>
-            )}
-          </label>
+        </div>
         </div>
         </div>
       </div>
@@ -374,12 +488,13 @@ export default function OnboardingForm({
 
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block">
-            <span className="text-sm font-medium">T-shirt size *</span>
+            <span className="text-sm font-medium">T-shirt size (optional)</span>
             <select
               className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
               disabled={disabled}
               {...form.register("tshirt")}
             >
+              <option value="">Select size</option>
               {tshirtOptions.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
           </label>
@@ -458,22 +573,21 @@ export default function OnboardingForm({
           <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700]">Demographics</h2>
 
         <label className="block">
-          <span className="text-sm font-medium">Gender *</span>
+          <span className="text-sm font-medium">Gender (optional)</span>
           <select
             className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
             disabled={disabled}
             {...form.register("gender")}
           >
+            <option value="">Select gender</option>
             {genderOptions.map(g => (
-              <option key={g} value={g}>
-                {g.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")}
-              </option>
+              <option key={g} value={g}>{genderLabels[g]}</option>
             ))}
           </select>
         </label>
 
         <label className="block">
-          <span className="text-sm font-medium">Race (select all that apply) *</span>
+          <span className="text-sm font-medium">Race / Ethnicity (optional, select all that apply)</span>
           <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
             {raceOptions.map(opt => (
               <label key={opt} className="flex items-center gap-2 text-sm">
@@ -481,14 +595,108 @@ export default function OnboardingForm({
                   type="checkbox"
                   value={opt}
                   disabled={disabled}
-                  defaultChecked={initialProfile.race.includes(opt)}
+                  defaultChecked={initialProfile.race?.includes(opt)}
                   {...form.register("race")}
                 />
-                <span className="capitalize">{opt.split("-").join(" ")}</span>
+                <span>{raceLabels[opt]}</span>
               </label>
             ))}
           </div>
         </label>
+        </div>
+      </div>
+
+      {/* MLH Agreements */}
+      <div className="relative">
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#1d3a8a] to-[#4d7df9] opacity-10 blur-xl"></div>
+        <div className="relative bg-white rounded-3xl shadow-xl border border-[#FFE4B3]/30 p-6 md:p-8 space-y-4">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl md:text-3xl text-[#560700]">MLH Agreements</h2>
+          <p className="text-sm text-gray-600">
+            We participate in Major League Hacking (MLH) as an MLH Member Event. The following agreements are required by MLH.
+          </p>
+
+        <div className="space-y-4">
+          <label className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              checked={mlhCodeOfConduct}
+              onChange={(e) => setMlhCodeOfConduct(e.target.checked)}
+              disabled={disabled}
+              className="mt-1"
+            />
+            <span className="text-sm">
+              <span className="font-medium">MLH Code of Conduct *</span>
+              <span className="block text-gray-600 mt-1">
+                I have read and agree to the{" "}
+                <a
+                  href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  MLH Code of Conduct
+                </a>.
+              </span>
+            </span>
+          </label>
+
+          <label className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              checked={mlhDataSharing}
+              onChange={(e) => setMlhDataSharing(e.target.checked)}
+              disabled={disabled}
+              className="mt-1"
+            />
+            <span className="text-sm">
+              <span className="font-medium">MLH Data Sharing *</span>
+              <span className="block text-gray-600 mt-1">
+                I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and MLH administration in-line with the{" "}
+                <a
+                  href="https://github.com/MLH/mlh-policies/blob/main/privacy-policy.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  MLH Privacy Policy
+                </a>. I further agree to the terms of both the{" "}
+                <a
+                  href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  MLH Contest Terms and Conditions
+                </a>{" "}
+                and the{" "}
+                <a
+                  href="https://github.com/MLH/mlh-policies/blob/main/privacy-policy.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  MLH Privacy Policy
+                </a>.
+              </span>
+            </span>
+          </label>
+
+          <label className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              checked={mlhCommunications}
+              onChange={(e) => setMlhCommunications(e.target.checked)}
+              disabled={disabled}
+              className="mt-1"
+            />
+            <span className="text-sm">
+              <span className="font-medium">MLH Communications (optional)</span>
+              <span className="block text-gray-600 mt-1">
+                I authorize MLH to send me occasional emails about relevant events, career opportunities, and community announcements.
+              </span>
+            </span>
+          </label>
+        </div>
         </div>
       </div>
 

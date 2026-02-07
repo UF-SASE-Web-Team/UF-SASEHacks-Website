@@ -21,16 +21,50 @@ export default async function OnboardingPage() {
 
   const { data: reg } = await supabase
     .from("registrations")
-    .select("accuracy_agreement, terms_and_conditions, code_of_conduct, can_photograph, editing_locked, share_resume_with_companies")
+    .select("accuracy_agreement, terms_and_conditions, code_of_conduct, can_photograph, editing_locked, share_resume_with_companies, mlh_code_of_conduct, mlh_data_sharing, mlh_communications")
     .eq("user_id", user.id)
     .single();
 
   // If profile is complete (has name and school), redirect to portal
-  if (profile?.full_name && profile?.school) {
+  // Check for new schema (first_name + last_name) or legacy (full_name)
+  const hasCompleteName = (profile?.first_name && profile?.last_name) || profile?.full_name;
+  if (hasCompleteName && profile?.school) {
     redirect("/portal");
   }
 
   const locked = reg?.editing_locked ?? false;
+
+  // Compute initial values for the new schema, with fallbacks from legacy data
+  // Split full_name into first/last if we have legacy data
+  let initialFirstName = profile?.first_name ?? "";
+  let initialLastName = profile?.last_name ?? "";
+  if (!initialFirstName && !initialLastName && profile?.full_name) {
+    const parts = profile.full_name.split(" ");
+    initialFirstName = parts[0] || "";
+    initialLastName = parts.slice(1).join(" ") || "";
+  }
+
+  // Compute age from date_of_birth if we have legacy data
+  let initialAge = profile?.age ?? "";
+  if (!initialAge && profile?.date_of_birth) {
+    try {
+      const dob = new Date(profile.date_of_birth);
+      const today = new Date();
+      let age = today.getFullYear() - dob.getFullYear();
+      const monthDiff = today.getMonth() - dob.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+        age--;
+      }
+      // Map to our age options
+      if (age < 18) initialAge = "17";
+      else if (age <= 24) initialAge = String(age);
+      else if (age <= 34) initialAge = "25-34";
+      else if (age <= 44) initialAge = "35-44";
+      else initialAge = "45+";
+    } catch {
+      initialAge = "18";
+    }
+  }
 
   return (
     <div className="min-h-screen bg-[#FFE4B3] relative overflow-hidden">
@@ -59,15 +93,16 @@ export default async function OnboardingPage() {
 
         <OnboardingForm
         initialProfile={{
-          full_name: profile?.full_name ?? "",
+          first_name: initialFirstName,
+          last_name: initialLastName,
           email: profile?.email ?? user.email ?? "",
           phone_number: profile?.phone_number ?? "",
-          date_of_birth: profile?.date_of_birth ?? "",
+          age: initialAge || "18",
 
           school: profile?.school ?? "",
           major: profile?.major ?? "",
           grad_year: profile?.grad_year ?? "2026",
-          level_of_study: profile?.level_of_study ?? "undergraduate",
+          level_of_study: profile?.level_of_study ?? "undergraduate-3-plus-year",
 
           engineering_skill: profile?.engineering_skill ?? "3",
           hackathon_experience: profile?.hackathon_experience ?? "0",
@@ -78,6 +113,8 @@ export default async function OnboardingPage() {
           state: profile?.state ?? "",
           zip_code: profile?.zip_code ?? "",
           country: profile?.country ?? "",
+
+          linkedin_url: profile?.linkedin_url ?? "",
 
           tshirt: profile?.tshirt ?? "M",
           dietary: profile?.dietary ?? [],
@@ -92,6 +129,9 @@ export default async function OnboardingPage() {
           code_of_conduct: reg?.code_of_conduct ?? false,
           can_photograph: reg?.can_photograph ?? false,
           share_resume_with_companies: reg?.share_resume_with_companies ?? false,
+          mlh_code_of_conduct: reg?.mlh_code_of_conduct ?? false,
+          mlh_data_sharing: reg?.mlh_data_sharing ?? false,
+          mlh_communications: reg?.mlh_communications ?? false,
         }}
         profileAction={upsertProfile}
         consentAction={saveRegistrationFlags}

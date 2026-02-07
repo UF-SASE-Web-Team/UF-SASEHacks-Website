@@ -21,9 +21,10 @@ export async function ensureRows() {
       id: user.id,
       email: user.email,
       full_name: "",
+      first_name: "",
+      last_name: "",
       school: "",
       major: "",
-      tshirt: "M",
       dietary: [],
       accessibility: "",
       country: "",
@@ -49,16 +50,26 @@ export async function upsertProfile(_: unknown, formData: FormData) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { ok: false, error: "Not authenticated" };
 
+  const firstName = String(formData.get("first_name") ?? "");
+  const lastName = String(formData.get("last_name") ?? "");
+
+  // Helper for optional enum fields - returns undefined if empty
+  const optionalString = (val: FormDataEntryValue | null) => {
+    const str = String(val ?? "");
+    return str === "" ? undefined : str;
+  };
+
   const values = {
-    full_name: String(formData.get("full_name") ?? ""),
+    first_name: firstName,
+    last_name: lastName,
     email: String(formData.get("email") ?? ""),
     phone_number: String(formData.get("phone_number") ?? ""),
-    date_of_birth: String(formData.get("date_of_birth") ?? ""),
+    age: String(formData.get("age") ?? "18"),
 
     school: String(formData.get("school") ?? ""),
     major: String(formData.get("major") ?? ""),
     grad_year: String(formData.get("grad_year") ?? "2026"),
-    level_of_study: String(formData.get("level_of_study") ?? "undergraduate"),
+    level_of_study: String(formData.get("level_of_study") ?? "undergraduate-3-plus-year"),
 
     engineering_skill: String(formData.get("engineering_skill") ?? "3"),
     hackathon_experience: String(formData.get("hackathon_experience") ?? "0"),
@@ -70,11 +81,13 @@ export async function upsertProfile(_: unknown, formData: FormData) {
     zip_code: String(formData.get("zip_code") ?? ""),
     country: String(formData.get("country") ?? ""),
 
-    tshirt: String(formData.get("tshirt") ?? "M"),
+    linkedin_url: String(formData.get("linkedin_url") ?? ""),
+
+    tshirt: optionalString(formData.get("tshirt")),
     dietary: Array.from(formData.getAll("dietary")).map(String),
     accessibility: String(formData.get("accessibility") ?? ""),
 
-    gender: String(formData.get("gender") ?? "prefer-not-to-say"),
+    gender: optionalString(formData.get("gender")),
     race: Array.from(formData.getAll("race")).map(String),
   };
 
@@ -83,9 +96,16 @@ export async function upsertProfile(_: unknown, formData: FormData) {
     return { ok: false, error: parsed.error.flatten().formErrors.join(", ") || "Validation failed" };
   }
 
+  // Compute full_name from first_name + last_name for backwards compatibility
+  const fullName = `${firstName} ${lastName}`.trim();
+
   const { error } = await supabase
     .from("profiles")
-    .upsert({ id: user.id, ...parsed.data }, { onConflict: "id" });
+    .upsert({
+      id: user.id,
+      ...parsed.data,
+      full_name: fullName,
+    }, { onConflict: "id" });
 
   if (error) return { ok: false, error: error.message };
 
@@ -105,6 +125,9 @@ export async function saveRegistrationFlags(_: unknown, formData: FormData) {
     code_of_conduct: formData.get("code_of_conduct") === "on",
     can_photograph: formData.get("can_photograph") === "on",
     share_resume_with_companies: formData.get("share_resume_with_companies") === "on",
+    mlh_code_of_conduct: formData.get("mlh_code_of_conduct") === "on",
+    mlh_data_sharing: formData.get("mlh_data_sharing") === "on",
+    mlh_communications: formData.get("mlh_communications") === "on",
   };
   const parsed = registrationFlagsSchema.safeParse(values);
   if (!parsed.success) {

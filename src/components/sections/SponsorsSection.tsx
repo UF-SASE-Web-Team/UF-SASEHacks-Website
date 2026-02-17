@@ -11,16 +11,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SPONSORS = [
   {
-    name: "Pure Buttons",
-    logo: getPublicImageUrl("/Pure-Buttons-Blue-Gradient-Logo-RGB.png"), 
-    link: "https://mlh.link/MLH-PureButtons-hackathons",
-  },
-  {
-    name: "Florida Community Innovation",
-    logo: getPublicImageUrl("/fciLogo.png"), 
-    link: "https://floridainnovation.org/",
-  },
-  {
     name: "ExxonMobil",
     logo: getPublicImageUrl("/ExxonMobilLogo.png"), 
     link: "https://exxonmobil.com/",
@@ -39,6 +29,21 @@ const SPONSORS = [
     name: "Alive Credit Union",
     logo: getPublicImageUrl("/aliveLogo.png"), 
     link: "https://www.alivecu.coop/",
+  },
+  {
+    name: "Florida Community Innovation",
+    logo: getPublicImageUrl("/fciLogo.png"), 
+    link: "https://floridainnovation.org/",
+  },
+  {
+    name: "Pure Buttons",
+    logo: getPublicImageUrl("/Pure-Buttons-Blue-Gradient-Logo-RGB.png"), 
+    link: "https://mlh.link/MLH-PureButtons-hackathons",
+  },
+  {
+    name: "Celsius",
+    logo: getPublicImageUrl("/CelsiusLogo.png"), 
+    link: "https://www.celsius.com/",
   },
 ];
 

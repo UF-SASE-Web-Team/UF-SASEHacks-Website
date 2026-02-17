@@ -2,7 +2,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import OnboardingForm from "@/components/forms/OnboardingForm";
 import { upsertProfile, saveRegistrationFlags, uploadResumeOnboarding } from "../actions";
-import { HACK_NAME } from "@/lib/constants";
+import { HACK_NAME, REGISTRATIONS_OPEN } from "@/lib/constants";
 
 export default async function OnboardingPage() {
   const supabase = await createSupabaseServerClient();
@@ -73,6 +73,22 @@ export default async function OnboardingPage() {
       <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#ebb8ce] opacity-20 rounded-full blur-3xl"></div>
 
       <div className="relative z-10 mx-auto max-w-screen-lg px-4 py-10">
+        {!REGISTRATIONS_OPEN && (
+          <div className="mb-8 rounded-xl bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 p-6">
+            <div className="flex items-start gap-3">
+              <svg className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div className="font-[family-name:var(--font-body)]">
+                <p className="text-sm font-medium text-red-900 mb-1">Registrations Closed</p>
+                <p className="text-sm text-red-700">
+                  We are no longer accepting new registrations at this time. Thank you for your interest in {HACK_NAME}!
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Header */}
         <div className="mb-8 pt-18 text-center">
           <h1 className="font-[family-name:var(--font-heading)] text-5xl md:text-6xl text-[#560700] mb-4">
@@ -136,7 +152,7 @@ export default async function OnboardingPage() {
         profileAction={upsertProfile}
         consentAction={saveRegistrationFlags}
         resumeAction={uploadResumeOnboarding}
-        disabled={locked}
+        disabled={locked || !REGISTRATIONS_OPEN}
       />
       </div>
     </div>

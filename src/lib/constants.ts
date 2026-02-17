@@ -5,3 +5,5 @@ export const CITY = "Gainesville, FL";
 
 export const DISCORD_INVITE = "https://discord.gg/gJJVmEPzc6";
 export const DEVPOST_URL = "https://sasehacks.devpost.com/";
+
+export const REGISTRATIONS_OPEN = false;

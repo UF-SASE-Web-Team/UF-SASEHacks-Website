@@ -2,7 +2,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { ensureRows } from "./actions";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { HACK_NAME, DISCORD_INVITE, DEVPOST_URL } from "@/lib/constants";
+import { HACK_NAME, DISCORD_INVITE, DEVPOST_URL, REGISTRATIONS_OPEN } from "@/lib/constants";
 
 export default async function PortalPage() {
   await ensureRows();
@@ -18,6 +18,10 @@ export default async function PortalPage() {
 
   // Redirect to onboarding if profile is incomplete
   if (!profile?.full_name || !profile?.school) {
+    // If registrations are closed, redirect new users to home page instead
+    if (!REGISTRATIONS_OPEN) {
+      redirect("/");
+    }
     redirect("/portal/onboarding");
   }
 

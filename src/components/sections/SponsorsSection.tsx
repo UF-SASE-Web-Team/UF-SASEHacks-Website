@@ -11,6 +11,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SPONSORS = [
   {
+    name: "Blue Origin",
+    logo: getPublicImageUrl("/BlueOriginLogo.png"), 
+    link: "https://blueorigin.com/",
+  },
+  {
     name: "ExxonMobil",
     logo: getPublicImageUrl("/ExxonMobilLogo.png"), 
     link: "https://exxonmobil.com/",
@@ -44,6 +49,11 @@ const SPONSORS = [
     name: "Celsius",
     logo: getPublicImageUrl("/CelsiusLogo.png"), 
     link: "https://www.celsius.com/",
+  },
+  {
+    name: "FDOT",
+    logo: getPublicImageUrl("/fdotLogo.png"), 
+    link: "https://www.fdot.gov/",
   },
 ];
 

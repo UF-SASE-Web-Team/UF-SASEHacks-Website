@@ -51,9 +51,10 @@ const InstagramIcon = ({ size = 18 }: { size?: number }) => (
 
 interface HeaderClientProps {
   user: User | null
+  showDashboard: boolean
 }
 
-export default function HeaderClient({ user }: HeaderClientProps) {
+export default function HeaderClient({ user, showDashboard }: HeaderClientProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
 
@@ -142,18 +143,20 @@ export default function HeaderClient({ user }: HeaderClientProps) {
             ))}
           </div>
 
-          <Link href="/portal" className="hidden px-5 py-1.5 rounded-full text-xs font-black bg-[#560700] text-[#FFE4B3] hover:opacity-90 transition-opacity uppercase">
-            Portal
-          </Link>
+          {showDashboard && (
+            <Link href="/portal" className="hidden sm:inline-flex px-5 py-1.5 rounded-full text-xs font-black bg-[#560700] text-[#FFE4B3] hover:opacity-90 transition-opacity uppercase">
+              Dashboard
+            </Link>
+          )}
 
           {mounted && (
             <>
               {user ? (
-                <div className="hidden sm:block">
+                <div>
                   <SignOutButton />
                 </div>
               ) : (
-                <Link href="/login" className="hidden sm:hidden px-5 py-1.5 rounded-full text-xs font-black border border-[#560700] text-[#560700] hover:bg-[#560700] hover:text-[#FFE4B3] transition-all uppercase">
+                <Link href="/login" className="px-5 py-1.5 rounded-full text-xs font-black border border-[#560700] text-[#560700] hover:bg-[#560700] hover:text-[#FFE4B3] transition-all uppercase">
                   Login
                 </Link>
               )}
@@ -175,8 +178,13 @@ export default function HeaderClient({ user }: HeaderClientProps) {
                 {link.name}
               </Link>
             ))}
+            {showDashboard && (
+              <Link href="/portal" className="text-[#560700] border-b border-[#560700]/5 pb-2" onClick={() => setMobileMenuOpen(false)}>
+                DASHBOARD
+              </Link>
+            )}
             {mounted && !user && (
-              <Link href="/login" className="hidden text-[#560700] border-b border-[#560700]/5 pb-2" onClick={() => setMobileMenuOpen(false)}>
+              <Link href="/login" className="text-[#560700] border-b border-[#560700]/5 pb-2" onClick={() => setMobileMenuOpen(false)}>
                 LOGIN
               </Link>
             )}

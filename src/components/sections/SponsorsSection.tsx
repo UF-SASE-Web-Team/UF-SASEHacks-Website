@@ -31,6 +31,16 @@ const SPONSORS = [
     link: "https://sandia.gov/",
   },
   {
+    name: "AkioAI",
+    logo: getPublicImageUrl("/akioAILogo.png"), 
+    link: "https://akioai.com/",
+  },
+  {
+    name: "First Florida Credit Union",
+    logo: getPublicImageUrl("/firstfloridaLogo.png"), 
+    link: "https://www.firstflorida.org/",
+  },
+  {
     name: "Alive Credit Union",
     logo: getPublicImageUrl("/aliveLogo.png"), 
     link: "https://www.alivecu.coop/",
@@ -170,7 +180,7 @@ export default function SponsorsSection() {
 
           <div 
             ref={sponsorsGridRef}
-            className="flex flex-wrap justify-center gap-6 md:gap-10 items-center max-w-5xl mx-auto"
+            className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 items-center max-w-5xl mx-auto md:flex md:flex-wrap md:justify-center md:gap-10"
           >
             {SPONSORS.map((sponsor, index) => (
               <a
@@ -178,7 +188,7 @@ export default function SponsorsSection() {
                 href={sponsor.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white rounded-xl p-2 md:p-4 transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center w-56 h-40 md:w-64 md:h-48"
+                className="bg-white rounded-xl p-2 md:p-4 transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center aspect-[4/3] md:w-64 md:h-48"
               >
                 <div className="relative w-full h-full">
                   <Image

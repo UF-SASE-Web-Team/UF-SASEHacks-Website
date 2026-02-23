@@ -17,10 +17,10 @@ type ScheduleEvent = {
 }
 
 const saturdayEvents: ScheduleEvent[] = [
-  { time: "9:00 AM", title: "Check-in", location: "WEIM 1070", color: "bg-[#FFE4B3]" },
-  { time: "10:00 AM", title: "Opening Ceremony", location: "WEIM 1064", color: "bg-[#BFDCFF]" },
+  { time: "8:00 AM", title: "Check-in", location: "WEIM 1070", color: "bg-[#FFE4B3]" },
+  { time: "9:00 AM", title: "Opening Ceremony", location: "WEIM 1064", color: "bg-[#BFDCFF]" },
+  { time: "10:00 AM", title: "Hacking Begins", color: "bg-[#D0FFCB]" },
   { time: "11:00 AM", title: "Workshop #1", location: "WEIM 1076", color: "bg-[#FFC7E5]" },
-  { time: "11:00 AM", title: "Hacking Begins", color: "bg-[#D0FFCB]" },
   { time: "12:00 PM", title: "Lunch", location: "Newell", color: "bg-[#FFE4B3]" },
   { time: "2:00 PM", title: "Workshop #2", location: "WEIM 1076", color: "bg-[#BFDCFF]" },
   { time: "3:00 PM", title: "Social #1", location: "WEIM 1070", color: "bg-[#FFC7E5]" },
@@ -34,7 +34,7 @@ const saturdayEvents: ScheduleEvent[] = [
 const sundayEvents: ScheduleEvent[] = [
   { time: "12:00 AM", title: "Midnight Snack", location: "Newell", color: "bg-[#FFE4B3]" },
   { time: "9:00 AM", title: "Breakfast", location: "Newell", color: "bg-[#BFDCFF]" },
-  { time: "11:00 AM", title: "Hacking Ends", color: "bg-[#FFC7E5]" },
+  { time: "10:00 AM", title: "Hacking Ends", color: "bg-[#FFC7E5]" },
   { time: "11:30 AM", title: "Judging", location: "TURL1105, 2306, 2318, 2319, 2322", color: "bg-[#D0FFCB]" },
   { time: "11:00 AM", title: "Lunch", location: "TUR L005", color: "bg-[#FFE4B3]" },
   { time: "2:00 PM", title: "Closing Ceremony", location: "TUR L007", color: "bg-[#BFDCFF]" },

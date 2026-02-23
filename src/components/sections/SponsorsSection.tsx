@@ -61,6 +61,11 @@ const SPONSORS = [
     link: "https://www.celsius.com/",
   },
   {
+    name: "Snag",
+    logo: getPublicImageUrl("/snagLogo.png"), 
+    link: "https://snagdelivery.app/",
+  },
+  {
     name: "FDOT",
     logo: getPublicImageUrl("/fdotLogo.png"), 
     link: "https://www.fdot.gov/",

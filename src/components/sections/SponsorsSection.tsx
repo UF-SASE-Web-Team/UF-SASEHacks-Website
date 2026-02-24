@@ -66,6 +66,11 @@ const SPONSORS = [
     link: "https://snagdelivery.app/",
   },
   {
+    name: "VuPlay",
+    logo: getPublicImageUrl("/vuplayLogo.png"), 
+    link: "https://vuplaycreative.carrd.co/",
+  },
+  {
     name: "FDOT",
     logo: getPublicImageUrl("/fdotLogo.png"), 
     link: "https://www.fdot.gov/",

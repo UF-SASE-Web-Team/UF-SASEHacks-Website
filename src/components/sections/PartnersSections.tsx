@@ -35,7 +35,7 @@ export default function PartnersSections() {
       <div className="mx-auto max-w-screen-xl px-4 md:px-8 w-full">
         <div className="mb-12 md:mb-16">
           <h2 className="font-[family-name:var(--font-heading)] text-white text-4xl md:text-6xl lg:text-7xl mb-4 text-center drop-shadow-lg uppercase">
-            PARTNERS
+            Student Organizations
           </h2>
           <p className="font-[family-name:var(--font-body)] text-white text-lg md:text-xl mb-12 text-center drop-shadow-md max-w-2xl mx-auto">
             Shoutout to our amazing student organization partners.

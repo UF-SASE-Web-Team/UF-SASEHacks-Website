@@ -22,13 +22,13 @@ const saturdayEvents: ScheduleEvent[] = [
   { time: "10:00 AM", title: "Hacking Begins", color: "bg-[#D0FFCB]" },
   { time: "11:00 AM", title: "Workshop #1", location: "WEIM 1076", color: "bg-[#FFC7E5]" },
   { time: "12:00 PM", title: "Lunch", location: "Newell", color: "bg-[#FFE4B3]" },
-  { time: "2:00 PM", title: "Workshop #2", location: "WEIM 1076", color: "bg-[#BFDCFF]" },
+  { time: "1:00 PM", title: "Workshop #2", location: "TBD", color: "bg-[#BFDCFF]" },
+  { time: "2:00 PM", title: "Workshop #3", location: "WEIM 1076", color: "bg-[#BFDCFF]" },
   { time: "3:00 PM", title: "Social #1", location: "WEIM 1070", color: "bg-[#FFC7E5]" },
-  { time: "4:00 PM", title: "Workshop #3", location: "WEIM 1076", color: "bg-[#D0FFCB]" },
-  { time: "5:00 PM", title: "Workshop #4", location: "WEIM 1070", color: "bg-[#FFE4B3]" },
+  { time: "4:00 PM", title: "Workshop #4", location: "WEIM 1076", color: "bg-[#D0FFCB]" },
+  { time: "5:00 PM", title: "Workshop #5", location: "WEIM 1070", color: "bg-[#FFE4B3]" },
   { time: "7:00 PM", title: "Dinner", location: "Newell", color: "bg-[#BFDCFF]" },
-  { time: "8:00 PM", title: "Workshop #5", location: "WEIM 1076", color: "bg-[#FFC7E5]" },
-  { time: "9:00 PM", title: "Social #2", location: "WEIM 1070", color: "bg-[#D0FFCB]" },
+  { time: "8:00 PM", title: "Social #2", location: "WEIM 1070", color: "bg-[#D0FFCB]" },
 ]
 
 const sundayEvents: ScheduleEvent[] = [
@@ -36,7 +36,7 @@ const sundayEvents: ScheduleEvent[] = [
   { time: "9:00 AM", title: "Breakfast", location: "Newell", color: "bg-[#BFDCFF]" },
   { time: "10:00 AM", title: "Hacking Ends", color: "bg-[#FFC7E5]" },
   { time: "11:30 AM", title: "Judging", location: "TURL1105, 2306, 2318, 2319, 2322", color: "bg-[#D0FFCB]" },
-  { time: "11:00 AM", title: "Lunch", location: "TUR L005", color: "bg-[#FFE4B3]" },
+  { time: "12:30 PM", title: "Lunch", location: "TUR L005", color: "bg-[#FFE4B3]" },
   { time: "2:00 PM", title: "Closing Ceremony", location: "TUR L007", color: "bg-[#BFDCFF]" },
 ]
 

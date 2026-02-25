@@ -56,9 +56,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <h3 className="font-[family-name:var(--font-heading)] text-[#560700] text-2xl md:text-3xl">
                 SASEHacks
               </h3>
-              <p className="font-[family-name:var(--font-body)] text-[#560700]/60 text-xs md:text-sm">
-                © {new Date().getFullYear()} {HACK_NAME}. All rights reserved.
+              <p className="font-[family-name:var(--font-body)] text-[#560700]/60 text-md md:text-lg">
+                Made with ❤️ by the SASEHacks Team
               </p>
+              <p className="font-[family-name:var(--font-body)] text-[#560700]/60 text-md md:text-lg">
+                © 2026
+              </p>
+              <a
+                href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-[family-name:var(--font-body)] text-[#560700] text-xs md:text-sm underline underline-offset-2"
+              >
+                MLH Code of Conduct
+              </a>
             </div>
           </div>
         </footer>

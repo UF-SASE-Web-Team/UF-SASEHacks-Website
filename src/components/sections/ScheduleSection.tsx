@@ -35,7 +35,7 @@ const sundayEvents: ScheduleEvent[] = [
   { time: "12:00 AM", title: "Midnight Snack", location: "Newell", color: "bg-[#FFE4B3]" },
   { time: "9:00 AM", title: "Breakfast", location: "Newell", color: "bg-[#BFDCFF]" },
   { time: "10:00 AM", title: "Hacking Ends", color: "bg-[#FFC7E5]" },
-  { time: "11:30 AM", title: "Judging", location: "TURL1105, 2306, 2318, 2319, 2322", color: "bg-[#D0FFCB]" },
+  { time: "11:30 AM", title: "Judging", location: "Marston 3rd Floor", color: "bg-[#D0FFCB]" },
   { time: "12:30 PM", title: "Lunch", location: "TUR L005", color: "bg-[#FFE4B3]" },
   { time: "2:00 PM", title: "Closing Ceremony", location: "TUR L007", color: "bg-[#BFDCFF]" },
 ]

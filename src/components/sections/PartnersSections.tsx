@@ -4,27 +4,27 @@ import { getPublicImageUrl } from "@/lib/supabase/storage";
 const PARTNERS = [
   {
     name: "Open Source Club",
-    logo: getPublicImageUrl("partners/open-source-club.png"),
+    logo: getPublicImageUrl("partners/OSCLogo.png"),
     link: "https://ufosc.org/",
   },
   {
     name: "WiCSE",
-    logo: getPublicImageUrl("partners/wicse.png"),
+    logo: getPublicImageUrl("partners/wicseLogo.png"),
     link: "https://ufwicse.com/",
   },
   {
     name: "SHPE",
-    logo: getPublicImageUrl("partners/shpe.png"),
+    logo: getPublicImageUrl("partners/shpeLogo.png"),
     link: "https://www.shpeuf.com/",
   },
   {
-    name: "GatorAI",
-    logo: getPublicImageUrl("partners/gatorai.png"),
+name: "GatorAI",
+    logo: getPublicImageUrl("partners/gator_ai_logo.jpg"),
     link: "https://www.ufgatorai.info/",
   },
   {
     name: "PCBuilding",
-    logo: getPublicImageUrl("partners/pcbuilding.png"),
+    logo: getPublicImageUrl("partners/spcb_logo.png"),
     link: "https://www.spcbatuf.org/",
   },
 ];

@@ -36,6 +36,11 @@ const SPONSORS = [
     link: "https://akioai.com/",
   },
   {
+    name: "DSI",
+    logo: getPublicImageUrl("/dsiLogo.png"), 
+    link: "https://www.ufdsi.com/",
+  },
+  {
     name: "First Florida Credit Union",
     logo: getPublicImageUrl("/firstfloridaLogo.png"), 
     link: "https://www.firstflorida.org/",

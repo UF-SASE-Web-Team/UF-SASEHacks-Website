@@ -67,6 +67,7 @@ export default function HeaderClient({ user, showDashboard }: HeaderClientProps)
     { name: "Tracks", href: "/#tracks" },
     { name: "Schedule", href: "/#schedule" },
     { name: "Sponsors", href: "/#sponsors" },
+    { name: "Partners", href: "/#partners" },
     { name: "FAQ", href: "/#faq" },
   ]
 

@@ -4,6 +4,7 @@ import AboutSection from "@/components/sections/AboutSection";
 import TracksSection from "@/components/sections/TracksSection";
 import ScheduleSection from "@/components/sections/ScheduleSection";
 import SponsorsSection from "@/components/sections/SponsorsSection";
+import PartnersSections from "@/components/sections/PartnersSections";
 import FaqSection from "@/components/sections/FaqSection";
 
 async function getFaq() {
@@ -27,6 +28,7 @@ export default async function Page() {
       <TracksSection />
       <ScheduleSection />
       <SponsorsSection />
+      <PartnersSections />
       <FaqSection faqItems={faq} />
     </>
   );

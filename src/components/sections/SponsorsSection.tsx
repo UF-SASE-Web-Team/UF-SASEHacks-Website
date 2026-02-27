@@ -71,6 +71,11 @@ const SPONSORS = [
     link: "https://snagdelivery.app/",
   },
   {
+    name: "DalMoros Pasta Lab",
+    logo: getPublicImageUrl("/dalmorosLogo.png"), 
+    link: "https://dalmoros.us/",
+  },
+  {
     name: "VuPlay",
     logo: getPublicImageUrl("/vuplayLogo.png"), 
     link: "https://vuplaycreative.carrd.co/",

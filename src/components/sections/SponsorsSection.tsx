@@ -76,6 +76,11 @@ const SPONSORS = [
     link: "https://dalmoros.us/",
   },
   {
+    name: "Dominos",
+    logo: getPublicImageUrl("/dominosLogo.png"), 
+    link: "https://www.dominos.com/",
+  },
+  {
     name: "VuPlay",
     logo: getPublicImageUrl("/vuplayLogo.png"), 
     link: "https://vuplaycreative.carrd.co/",

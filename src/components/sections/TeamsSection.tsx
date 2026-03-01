@@ -252,7 +252,7 @@ export default function TeamsSection() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <h2 className="font-[family-name:var(--font-heading)] text-[#560700] text-3xl md:text-4xl lg:text-5xl text-center mb-8 md:mb-12">
+        <h2 className="font-[family-name:var(--font-heading)] text-[#560700] text-5xl md:text-7xl text-center mb-8 drop-shadow-md">
           Meet Our Teams
         </h2>
 

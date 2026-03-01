@@ -69,7 +69,8 @@ const teams: Team[] = [
     boxImage: getPublicImageUrl("teams/elements/blueBox.png"),
     members: [
       { name: "Vincent Lin", position: "Software Lead", linkedin: "https://www.linkedin.com/in/vincent-lin-uf/", photo: getPublicImageUrl("teams/website/vincent-lin.png") },
-      { name: "Alex Nguyen", position: "Software Engineer", photo: getPublicImageUrl("teams/website/alex-nguyen.jpg") },
+      { name: "Alex Nguyen", position: "Software Engineer", linkedin: "https://www.linkedin.com/in/alexander-nguyen-van/", photo: getPublicImageUrl("teams/website/alex-nguyen.jpg") },
+      { name: "Nivedhaa Sankaran", position: "Software Engineer", linkedin: "https://www.linkedin.com/in/nivedhaa-sankaran/", photo: getPublicImageUrl("teams/website/nivedhaa-s.jpeg") },
     ],
     labelSize: "text-2xl md:text-5xl lg:text-6xl",
   },

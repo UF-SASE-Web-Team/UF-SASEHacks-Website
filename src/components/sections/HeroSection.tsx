@@ -140,7 +140,7 @@ export default function HeroSection() {
           <FallingMascot
             src={getPublicImageUrl("/home/homeMascot.png")}
             alt="SASEHacks Mascot"
-            className="w-70 h-60 md:h-64 lg:w-96 lg:h-96 flex-shrink-0"
+            className="w-70 h-60 md:h-64 lg:w-96 lg:h-96 flex-shrink-0 lg:translate-x-35"
             fallDistance={600}
             duration={1.8}
             rotations={1}
@@ -181,12 +181,6 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-wrap gap-5 justify-center items-center w-full max-w-4xl">
-            <a
-              href="/portal"
-              className="inline-flex items-center justify-center rounded-2xl px-8 py-4 font-[family-name:var(--font-heading)] text-xl md:text-2xl bg-[#ebb8ce] text-[#560700] hover:scale-105 transition-transform duration-300 shadow-xl border-4 border-[#560700] min-w-[240px]"
-            >
-              REGISTER TO HACK
-            </a>
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSdppaUTD5V9QS-ZwI-wpW-qYDOMFEmjsRAEV8iH7ptMWKM64Q/viewform"
               target="_blank"

@@ -11,9 +11,84 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SPONSORS = [
   {
+    name: "Blue Origin",
+    logo: getPublicImageUrl("/BlueOriginLogo.png"), 
+    link: "https://blueorigin.com/",
+  },
+  {
+    name: "ExxonMobil",
+    logo: getPublicImageUrl("/ExxonMobilLogo.png"), 
+    link: "https://exxonmobil.com/",
+  },
+  {
+    name: "P&G",
+    logo: getPublicImageUrl("/P&GLogo.jpeg"), 
+    link: "https://pg.com/",
+  },
+  {
+    name: "Sandia",
+    logo: getPublicImageUrl("/SandiaLogo.jpg"), 
+    link: "https://sandia.gov/",
+  },
+  {
+    name: "AkioAI",
+    logo: getPublicImageUrl("/akioAILogo.png"), 
+    link: "https://akioai.com/",
+  },
+  {
+    name: "DSI",
+    logo: getPublicImageUrl("/dsiLogo.png"), 
+    link: "https://www.ufdsi.com/",
+  },
+  {
+    name: "First Florida Credit Union",
+    logo: getPublicImageUrl("/firstfloridaLogo.png"), 
+    link: "https://www.firstflorida.org/",
+  },
+  {
+    name: "Alive Credit Union",
+    logo: getPublicImageUrl("/aliveLogo.png"), 
+    link: "https://www.alivecu.coop/",
+  },
+  {
+    name: "Florida Community Innovation",
+    logo: getPublicImageUrl("/fciLogo.png"), 
+    link: "https://floridainnovation.org/",
+  },
+  {
     name: "Pure Buttons",
     logo: getPublicImageUrl("/Pure-Buttons-Blue-Gradient-Logo-RGB.png"), 
     link: "https://mlh.link/MLH-PureButtons-hackathons",
+  },
+  {
+    name: "Celsius",
+    logo: getPublicImageUrl("/CelsiusLogo.png"), 
+    link: "https://www.celsius.com/",
+  },
+  {
+    name: "Snag",
+    logo: getPublicImageUrl("/snagLogo.png"), 
+    link: "https://snagdelivery.app/",
+  },
+  {
+    name: "DalMoros Pasta Lab",
+    logo: getPublicImageUrl("/dalmorosLogo.png"), 
+    link: "https://dalmoros.us/",
+  },
+  {
+    name: "Dominos",
+    logo: getPublicImageUrl("/dominosLogo.png"), 
+    link: "https://www.dominos.com/",
+  },
+  {
+    name: "VuPlay",
+    logo: getPublicImageUrl("/vuplayLogo.png"), 
+    link: "https://vuplaycreative.carrd.co/",
+  },
+  {
+    name: "FDOT",
+    logo: getPublicImageUrl("/fdotLogo.png"), 
+    link: "https://www.fdot.gov/",
   },
 ];
 
@@ -130,7 +205,7 @@ export default function SponsorsSection() {
 
           <div 
             ref={sponsorsGridRef}
-            className="flex flex-wrap justify-center gap-6 md:gap-10 items-center max-w-5xl mx-auto"
+            className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 items-center max-w-5xl mx-auto md:flex md:flex-wrap md:justify-center md:gap-10"
           >
             {SPONSORS.map((sponsor, index) => (
               <a
@@ -138,7 +213,7 @@ export default function SponsorsSection() {
                 href={sponsor.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white/90 hover:bg-white p-4 md:p-6 rounded-2xl transition-all duration-300 hover:scale-105 shadow-xl flex items-center justify-center w-56 h-28 md:w-72 md:h-36"
+                className="bg-white rounded-xl p-2 md:p-4 transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center aspect-[4/3] md:w-64 md:h-48"
               >
                 <div className="relative w-full h-full">
                   <Image

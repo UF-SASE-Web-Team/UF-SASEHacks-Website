@@ -49,7 +49,8 @@ const defaultCirclesPosition: PositionStyle = {
 };
 
 const defaultLabelSize = "text-3xl md:text-5xl lg:text-6xl";
-const defaultCircleSize = "w-12 h-12 md:w-20 md:h-20 lg:w-24 lg:h-24";
+const defaultCircleSize = "w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24";
+const defaultGridCircleSize = "w-10 h-10 md:w-18 md:h-18 lg:w-24 lg:h-24";
 
 const teams: Team[] = [
   {
@@ -77,10 +78,10 @@ const teams: Team[] = [
     boxImage: getPublicImageUrl("teams/elements/purpleBox.png"),
     members: [
       { name: "Pryanna Pradhan", position: "Operations Lead", linkedin: "https://www.linkedin.com/in/pryanna-pradhan-178138346/", photo: getPublicImageUrl("teams/operation/pryanna-pradhan.jpg") },
-      { name: "Frankie Lin", position: "Operations Coordinator" },
-      { name: "Tiffany Chen", position: "Operations Coordinator" },
-      { name: "Alexander Ngov", position: "Operations Coordinator" },
-      { name: "Man Kai Andrew Ho", position: "Operations Coordinator" },
+      { name: "Frankie Lin", position: "Operations Coordinator", photo: getPublicImageUrl("teams/operation/frankie-lin.jpg") },
+      { name: "Tiffany Chen", position: "Operations Coordinator", photo: getPublicImageUrl("teams/operation/tiffany-chen.jpg") },
+      { name: "Alexander Ngov", position: "Operations Coordinator", photo: getPublicImageUrl("teams/operation/alexander-ngov.jpg") },
+      { name: "Man Kai Andrew Ho", position: "Operations Coordinator", photo: getPublicImageUrl("teams/operation/andrew-ho.jpg") },
     ],
     labelSize: "text-xl md:text-4xl lg:text-5xl",
   },
@@ -90,10 +91,10 @@ const teams: Team[] = [
     boxImage: getPublicImageUrl("teams/elements/greenBox.png"),
     members: [
       { name: "Michael Hemingway", position: "Workshop Lead", linkedin: "https://www.linkedin.com/in/michael-hemingway-uf/", photo: getPublicImageUrl("teams/workshop/michael-hemingway.jpg") },
-      { name: "Taran Raj", position: "Workshop Coordinator" },
-      { name: "Thomas Beegle", position: "Workshop Coordinator" },
-      { name: "Ryan Xi", position: "Workshop Coordinator" },
-      { name: "Rishi Gandhi", position: "Workshop Coordinator" },
+      { name: "Taran Raj", position: "Workshop Coordinator", photo: getPublicImageUrl("teams/workshop/taran-raj.jpg") },
+      { name: "Thomas Beegle", position: "Workshop Coordinator", photo: getPublicImageUrl("teams/workshop/thomas-beegle.jpg") },
+      { name: "Ryan Xi", position: "Workshop Coordinator", photo: getPublicImageUrl("teams/workshop/ryan-xi.jpg") },
+      { name: "Rishi Gandhi", position: "Workshop Coordinator", photo: getPublicImageUrl("teams/workshop/rishi-gandhi.jpg") },
     ],
     labelSize: "text-xl md:text-4xl lg:text-6xl",
   },
@@ -102,10 +103,10 @@ const teams: Team[] = [
     label: "Merch",
     boxImage: getPublicImageUrl("teams/elements/redBox.png"),
     members: [
-      { name: "Savin Karki", position: "Merch Lead", linkedin: "https://www.linkedin.com/in/savin-karki/", photo: getPublicImageUrl("teams/merch/savin-karki.png") },
-      { name: "Kyle Yumul", position: "Merch Coordinator" },
-      { name: "Angela Chen", position: "Merch Coordinator" },
-      { name: "Ariya Mouthapong", position: "Merch Coordinator" },
+      { name: "Savin Karki", position: "Merch Lead", linkedin: "https://www.linkedin.com/in/savin-karki/", photo: getPublicImageUrl("teams/merch/savin-karki.jpg") },
+      { name: "Kyle Yumul", position: "Merch Coordinator", photo: getPublicImageUrl("teams/merch/kyle-yumul.jpg") },
+      { name: "Angela Chen", position: "Merch Coordinator", photo: getPublicImageUrl("teams/merch/angela-chen.jpg") },
+      { name: "Ariya Mouthapong", position: "Merch Coordinator", photo: getPublicImageUrl("teams/merch/ariya-mouthapong.jpg") },
     ],
   },
   {
@@ -113,10 +114,10 @@ const teams: Team[] = [
     label: "Award/Judging",
     boxImage: getPublicImageUrl("teams/elements/yellowBox.png"),
     members: [
-      { name: "Karen Liang", position: "Award/Judging Lead", linkedin: "https://www.linkedin.com/in/karen-z-liang/", photo: getPublicImageUrl("teams/award-judging/karen-liang.jpg") },
-      { name: "Winnie Lin", position: "Award/Judging Coordinator" },
-      { name: "Saaketh Kesireddy", position: "Award/Judging Coordinator" },
-      { name: "Oscar Cao", position: "Award/Judging Coordinator" },
+      { name: "Karen Liang", position: "Award/Judging Lead", linkedin: "https://www.linkedin.com/in/karen-z-liang/", photo: getPublicImageUrl("teams/award-judging/karen-liang.png") },
+      { name: "Winnie Lin", position: "Award/Judging Coordinator", photo: getPublicImageUrl("teams/award-judging/winnie-lin.jpg") },
+      { name: "Saaketh Kesireddy", position: "Award/Judging Coordinator", photo: getPublicImageUrl("teams/award-judging/saaketh-kesireddy.jpg") },
+      { name: "Oscar Cao", position: "Award/Judging Coordinator", photo: getPublicImageUrl("teams/award-judging/oscar-cao.jpg") },
     ],
     labelSize: "text-sm md:text-3xl lg:text-4xl xl:text-5xl",
   },
@@ -371,11 +372,14 @@ export default function TeamsSection() {
                         const isLeadOrDirector = (position?: string) =>
                           position?.toLowerCase().includes("director") || position?.toLowerCase().includes("lead");
 
+                        const isGridLayout = team.members.length >= 4;
+                        const circleSize = team.circleSize || (isGridLayout ? defaultGridCircleSize : defaultCircleSize);
+
                         const renderCircle = (member: TeamMember, key: number) => (
                           <button
                             key={key}
                             onClick={() => setSelectedMember({ member, teamLabel: team.label })}
-                            className={`relative ${team.circleSize || defaultCircleSize} rounded-full bg-pink-200 shadow-lg flex items-center justify-center overflow-hidden cursor-pointer transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2`}
+                            className={`relative ${circleSize} rounded-full bg-pink-200 shadow-lg flex items-center justify-center overflow-hidden cursor-pointer transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2`}
                             style={{ border: `4px solid ${isLeadOrDirector(member.position) ? "#D4728C" : "white"}` }}
                             aria-label={`View ${member.name}'s profile`}
                           >
@@ -383,7 +387,7 @@ export default function TeamsSection() {
                               <Image src={member.photo} alt={member.name} fill className="object-cover" />
                             ) : (
                               <div className="w-full h-full bg-pink-100 flex items-center justify-center">
-                                <svg className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-pink-300" fill="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-pink-300" fill="currentColor" viewBox="0 0 24 24">
                                   <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                                 </svg>
                               </div>
@@ -395,14 +399,14 @@ export default function TeamsSection() {
                           return team.members.map((member, i) => renderCircle(member, i));
                         } else if (team.members.length === 4) {
                           return (
-                            <div className="grid grid-cols-2 gap-2 md:gap-3">
+                            <div className="grid grid-cols-2 gap-1 md:gap-2 lg:gap-3">
                               {team.members.map((member, i) => renderCircle(member, i))}
                             </div>
                           );
                         } else if (team.members.length === 5) {
                           return (
                             <>
-                              <div className="grid grid-cols-2 gap-2 md:gap-3">
+                              <div className="grid grid-cols-2 gap-1 md:gap-2 lg:gap-3">
                                 {team.members.slice(0, 4).map((member, i) => renderCircle(member, i))}
                               </div>
                               {renderCircle(team.members[4], 4)}

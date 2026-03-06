@@ -19,8 +19,9 @@ type ScheduleEvent = {
 const saturdayEvents: ScheduleEvent[] = [
   { time: "8:00 AM", title: "Check-in", location: "WEIM 1070", color: "bg-[#FFE4B3]" },
   { time: "9:00 AM", title: "Opening Ceremony", location: "WEIM 1064", color: "bg-[#BFDCFF]" },
+  { time: "9:45 AM", title: "Team Formation Social", location: "WEIM 1064", color: "bg-[#BFDCFF]" },
   { time: "10:00 AM", title: "Hacking Begins", color: "bg-[#D0FFCB]" },
-  { time: "11:00 AM", title: "MLH's Github Co-Pilot & Google AI Workshop ", location: "WEIM 1076", color: "bg-[#FFC7E5]" },
+  { time: "10:15 AM", title: "MLH's Github Co-Pilot & Google AI Workshop ", location: "WEIM 1076", color: "bg-[#FFC7E5]" },
   { time: "12:00 PM", title: "Lunch - Dal Moros Pasta", location: "Newell", color: "bg-[#FFE4B3]" },
   { time: "1:00 PM", title: "GatorAI's Intro to Neural Networks Workshop", location: "WEIM 1070", color: "bg-[#BFDCFF]" },
   { time: "2:00 PM", title: "SHPE's React Based Component Libraries Workshop", location: "WEIM 1076", color: "bg-[#BFDCFF]" },

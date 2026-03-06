@@ -9,6 +9,9 @@ import FallingMascot from "@/components/FallingMascot";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const DESCRIPTION_PREVIEW_LENGTH = 260;
+const MOBILE_DESCRIPTION_PREVIEW_LENGTH = 80;
+
 const allPrizes = [
   { type: "Best Overall", name: "Best Overall", sponsor: "UF SASE", prize: "Mechanical Keyboard", desc: "Awarded to unparalleled excellence in a project's innovation and execution." },
   { type: "Track", name: "Best Finance Project", sponsor: "UF SASE", prize: "JBL Speaker", desc: "Create a program that helps users manage money, improve financial literacy, or make informed financial decisions." },
@@ -45,6 +48,7 @@ export default function TracksSection() {
   const reefsRef = useRef<HTMLDivElement>(null);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeDescriptionIndex, setActiveDescriptionIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -89,6 +93,8 @@ export default function TracksSection() {
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev - 1 + allPrizes.length) % allPrizes.length);
   };
+
+  const closeDescriptionModal = () => setActiveDescriptionIndex(null);
 
   return (
     <section
@@ -174,6 +180,14 @@ export default function TracksSection() {
             }
 
             const bubbleImg = index % 2 === 0 ? "track/trackBubble1.png" : "track/trackBubble2.png";
+            const previewLength = isMobile ? MOBILE_DESCRIPTION_PREVIEW_LENGTH : DESCRIPTION_PREVIEW_LENGTH;
+            const shouldTruncate = item.desc.length > previewLength;
+            const hasVeryLongDescription = item.desc.length > 420;
+            const hasVeryLongTitle = item.name.length > 32;
+            const isGamificationTitle = item.name === "Best Gamification Project";
+            const descriptionText = shouldTruncate
+              ? `${item.desc.slice(0, previewLength).trimEnd()}...`
+              : item.desc;
 
             const isVisible = Math.abs(offset) <= 2 || Math.abs(offset) >= length - 2;
             if (!isVisible) return null;
@@ -203,7 +217,7 @@ export default function TracksSection() {
                     <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-1 md:mb-3 opacity-90 mix-blend-color-burn">
                       {item.type}
                     </span>
-                    <h3 className="font-[family-name:var(--font-heading)] text-xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-4 px-2 leading-[1.1] drop-shadow-sm w-full max-w-[90%] break-words">
+                    <h3 className={`font-[family-name:var(--font-heading)] mb-2 sm:mb-4 px-2 leading-tight drop-shadow-sm w-full mx-auto break-words text-center ${isGamificationTitle ? "max-w-[84%] text-sm sm:text-lg md:text-2xl lg:text-3xl" : hasVeryLongTitle ? "max-w-[82%] text-sm sm:text-xl md:text-2xl lg:text-3xl" : hasVeryLongDescription ? "max-w-[90%] text-lg sm:text-2xl md:text-3xl lg:text-4xl" : "max-w-[90%] text-xl sm:text-3xl md:text-4xl lg:text-5xl"}`}>
                       {item.name}
                     </h3>
                     <div className="flex flex-col gap-1 sm:gap-2 mb-2 sm:mb-5">
@@ -212,9 +226,24 @@ export default function TracksSection() {
                         Prize: {item.prize}
                       </span>
                     </div>
-                    <p className="font-[family-name:var(--font-body)] text-[9px] sm:text-[11px] md:text-sm lg:text-base leading-snug sm:leading-relaxed px-4 sm:px-8 mix-blend-color-burn max-w-[90%]">
-                      {item.desc}
-                    </p>
+                    <div className="max-w-[90%]">
+                      <p className="font-[family-name:var(--font-body)] text-[10px] sm:text-xs md:text-sm lg:text-base leading-snug sm:leading-relaxed px-4 sm:px-8 mix-blend-color-burn">
+                        {descriptionText}
+                      </p>
+                    </div>
+                    {shouldTruncate && (
+                      <button
+                        type="button"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          setActiveDescriptionIndex(index);
+                        }}
+                        className="mt-2 text-[10px] sm:text-xs font-bold uppercase tracking-wide text-[#560700] bg-white/45 hover:bg-white/60 px-3 py-1 rounded-full border border-white/60 transition-colors"
+                        aria-label={`Read more for ${item.name}`}
+                      >
+                        Read more
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -290,6 +319,43 @@ export default function TracksSection() {
           unoptimized
         />
       </div>
+
+      {activeDescriptionIndex !== null && (
+        <div
+          className="fixed inset-0 z-[90] bg-black/50 backdrop-blur-sm flex items-center justify-center px-4"
+          onClick={closeDescriptionModal}
+        >
+          <div
+            className="relative w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-3xl border border-white/50 bg-white/80 p-6 sm:p-8 text-[#560700] shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={closeDescriptionModal}
+              className="absolute right-4 top-4 rounded-full border border-[#560700]/30 bg-white/70 px-3 py-1 text-xs font-bold uppercase tracking-wide hover:bg-white"
+              aria-label="Close description modal"
+            >
+              Close
+            </button>
+
+            <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase opacity-90">
+              {allPrizes[activeDescriptionIndex].type}
+            </span>
+            <h3 className="mt-2 pr-14 font-[family-name:var(--font-heading)] text-2xl sm:text-4xl leading-tight">
+              {allPrizes[activeDescriptionIndex].name}
+            </h3>
+            <div className="mt-4 flex flex-col gap-2">
+              <span className="text-xs sm:text-sm font-bold">Sponsor: {allPrizes[activeDescriptionIndex].sponsor}</span>
+              <span className="text-xs sm:text-sm font-bold bg-white/60 px-4 py-2 rounded-full inline-block border border-white/70 w-fit">
+                Prize: {allPrizes[activeDescriptionIndex].prize}
+              </span>
+            </div>
+            <p className="mt-5 font-[family-name:var(--font-body)] text-sm sm:text-base leading-relaxed">
+              {allPrizes[activeDescriptionIndex].desc}
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

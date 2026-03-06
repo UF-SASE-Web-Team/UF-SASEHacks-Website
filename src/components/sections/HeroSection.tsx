@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Draggable } from "gsap/Draggable";
 import Image from "next/image";
-import { DATES, CITY, DISCORD_INVITE, DEVPOST_URL } from "@/lib/constants";
+import { DATES, CITY, DISCORD_INVITE, DEVPOST_URL, HACKER_GUIDE_URL } from "@/lib/constants";
 import { getPublicImageUrl } from "@/lib/supabase/storage";
 import FallingMascot from "@/components/FallingMascot";
 
@@ -181,7 +181,7 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-wrap gap-5 justify-center items-center w-full max-w-4xl">
-            <a
+            {/* <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSdppaUTD5V9QS-ZwI-wpW-qYDOMFEmjsRAEV8iH7ptMWKM64Q/viewform"
               target="_blank"
               rel="noreferrer"
@@ -196,7 +196,7 @@ export default function HeroSection() {
               className="inline-flex items-center justify-center rounded-2xl px-8 py-4 font-[family-name:var(--font-heading)] text-xl md:text-2xl bg-[#ebb8ce] text-[#560700] hover:scale-105 transition-transform duration-300 shadow-xl border-4 border-[#560700] min-w-[240px]"
             >
               SIGN UP TO VOLUNTEER
-            </a>
+            </a> */}
             <a
               href={DISCORD_INVITE}
               target="_blank"
@@ -212,6 +212,14 @@ export default function HeroSection() {
               className="inline-flex items-center justify-center rounded-2xl px-8 py-4 font-[family-name:var(--font-heading)] text-xl md:text-2xl bg-white text-[#560700] hover:scale-105 transition-transform duration-300 shadow-xl border-4 border-[#ebb8ce] min-w-[200px]"
             >
               DEVPOST
+            </a>
+            <a
+              href={HACKER_GUIDE_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center rounded-2xl px-8 py-4 font-[family-name:var(--font-heading)] text-xl md:text-2xl bg-white text-[#560700] hover:scale-105 transition-transform duration-300 shadow-xl border-4 border-[#ebb8ce] min-w-[200px]"
+            >
+              HACKER GUIDE
             </a>
           </div>
 

@@ -5,5 +5,6 @@ export const CITY = "Gainesville, FL";
 
 export const DISCORD_INVITE = "https://discord.gg/gJJVmEPzc6";
 export const DEVPOST_URL = "https://sasehacks.devpost.com/";
+export const HACKER_GUIDE_URL = "https://www.notion.so/SASEHacks-2026-Hacker-Guide-3199fa3e113580e993caf4e3832d7aa8";
 
 export const REGISTRATIONS_OPEN = false;

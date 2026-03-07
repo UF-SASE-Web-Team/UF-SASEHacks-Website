@@ -17,7 +17,7 @@ type ScheduleEvent = {
 }
 
 const saturdayEvents: ScheduleEvent[] = [
-  { time: "8:00 AM", title: "Check-in", location: "WEIM 1070", color: "bg-[#FFE4B3]" },
+  { time: "8:00 AM", title: "Check-in", location: "WEIM 1064", color: "bg-[#FFE4B3]" },
   { time: "9:00 AM", title: "Opening Ceremony", location: "WEIM 1064", color: "bg-[#BFDCFF]" },
   { time: "9:45 AM", title: "Team Formation Social", location: "WEIM 1064", color: "bg-[#BFDCFF]" },
   { time: "10:00 AM", title: "Hacking Begins", color: "bg-[#D0FFCB]" },

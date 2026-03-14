@@ -11,6 +11,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SPONSORS = [
   {
+    name: "ECE - Department of Experiental Learning",
+    logo: getPublicImageUrl("/eceDepExpLogo.png"), 
+    link: "https://www.ece.ufl.edu/academics/undergraduate/experiential-learning/",
+  },
+  {
     name: "Blue Origin",
     logo: getPublicImageUrl("/BlueOriginLogo.png"), 
     link: "https://blueorigin.com/",
